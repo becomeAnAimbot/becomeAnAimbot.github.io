@@ -5,7 +5,8 @@
         <script src="javascript/p5/p5/addons/p5.dom.js"></script>
         <script src="javascript/multiTargetGame/Driver.js"></script>
         <script src="javascript/multiTargetGame/Target.js"></script>
-		<script src="javascript/general/instructions"></script>
+		<script src="javascript/general/instructions.js"></script>
+        <script src="javascript/general/animations.js"></script>
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     </head>
@@ -21,7 +22,7 @@
 				<li>All targets will be shifting around except for the green one</li>
 				<li>Your score will be based on your accuracy and the amount of hits in the given minute</li>
 			</ol>
-			<h2 class="hideInstructionsButton">Hide Instructions<h2>
+            <h2 class="hideInstructionsButton" onclick="hideInstructions()">Hide Instructions</h2>
 		</div>
     </body>
 </html>

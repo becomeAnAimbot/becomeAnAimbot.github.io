@@ -22,6 +22,8 @@ body {
 	flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 90%;
+    margin-left: 5%;
 }
 
 .instructionsButton {
@@ -37,15 +39,14 @@ body {
 .hideInstructionsButton {
 	border-style: solid;
 	padding: 0em 1em;
-	visibility: hidden;
+	display: none;
 }
 
 .hideInstructionsButton:hover {
 	background-color: #AAAAAA;
 	cursor: pointer;
-	visibility: hidden;
 }
 
 .instructionsList {
-	visibility: hidden;
+	display: none;
 }
