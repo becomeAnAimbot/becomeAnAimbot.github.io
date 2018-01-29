@@ -1,7 +1,8 @@
 var targets = [];
 
 function setup() {
-    createCanvas(windowWidth, windowHeight/1.5);
+    var canv = createCanvas(windowWidth, windowHeight/1.5);
+    canv.parent('gameContainer');
     background(150);
     for(var i=0; i<20; i++) {
         targets[i] = new Target();
