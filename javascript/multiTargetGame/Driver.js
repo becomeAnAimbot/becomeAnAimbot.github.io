@@ -18,7 +18,7 @@ function draw() {
                 clear();
                 background(150);
                 targets[i].isCurrentTarget = false;
-                targets[(i+1)%10].isCurrentTarget = true;
+                targets[(i+1)%targets.length].isCurrentTarget = true;
                 targets[i].shootTarget();
                 drawAllTargets();
             }

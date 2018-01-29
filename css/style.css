@@ -9,6 +9,43 @@ body {
     align-items: center;
 }
 
+#gameContainer:hover {
+	cursor:crosshair;
+}
+
 .gameHeader {
     text-align: center;
+}
+
+.instructions {
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.instructionsButton {
+	border-style: solid;
+	padding: 0em 1em;
+}
+
+.instructionsButton:hover {
+	background-color: #AAAAAA;
+	cursor: pointer;
+}
+
+.hideInstructionsButton {
+	border-style: solid;
+	padding: 0em 1em;
+	visibility: hidden;
+}
+
+.hideInstructionsButton:hover {
+	background-color: #AAAAAA;
+	cursor: pointer;
+	visibility: hidden;
+}
+
+.instructionsList {
+	visibility: hidden;
 }
