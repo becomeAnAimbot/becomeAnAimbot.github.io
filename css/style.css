@@ -50,3 +50,17 @@ body {
 .instructionsList {
 	display: none;
 }
+
+.startButton {
+	padding: 1em 1em;
+    margin: 0;
+    border: none;
+    border-style: solid;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.startButton:hover {
+    background-color: #CCCCCC;
+	cursor: pointer;
+}
