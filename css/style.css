@@ -17,6 +17,21 @@ body {
     text-align: center;
 }
 
+#gameTimer {
+    visibility: hidden;
+    text-align: center;
+}
+
+.statsContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.statsContainer h2 {
+    padding: 1%;
+    visibility: hidden;
+}
+
 .instructions {
 	display: flex;
 	flex-direction: column;
@@ -63,4 +78,11 @@ body {
 .startButton:hover {
     background-color: #CCCCCC;
 	cursor: pointer;
+}
+
+.countDown {
+    font-size: 10em;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
 }
