@@ -1,27 +1,27 @@
-function Target() {
+function Target(p) {
     
     this.shot = true;
     this.x;
     this.y;
-    this.width = windowWidth/50;
-    this.height = windowWidth/50;
+    this.width = p.windowWidth/50;
+    this.height = p.windowWidth/50;
     this.isCurrentTarget = false;
     
     this.show = function() {
-        fill(0);
-        noStroke();
+        p.fill(0);
+        p.noStroke();
         this.x = this.pickX();
         this.y = this.pickY();
         if(this.isCurrentTarget) {
-            fill(0, 255, 0);
+            p.fill(0, 255, 0);
         }
-        ellipse(this.x, this.y, this.width, this.height);
+        p.ellipse(this.x, this.y, this.width, this.height);
         this.shot = false;
     }
     
     this.targetHit = function() {
-        if(mouseX < (this.x + (this.width/2)) && mouseX > (this.x - (this.width/2))) {
-            if(mouseY < (this.y + (this.height/2)) && mouseY > (this.y - (this.height/2))) {
+        if(p.mouseX < (this.x + (this.width/2)) && p.mouseX > (this.x - (this.width/2))) {
+            if(p.mouseY < (this.y + (this.height/2)) && p.mouseY > (this.y - (this.height/2))) {
                 return true;
             }
         }
@@ -33,7 +33,7 @@ function Target() {
     }
     
     this.pickX = function() {
-        var x = Math.floor(Math.random() * windowWidth - 100);
+        var x = Math.floor(Math.random() * p.windowWidth - 100);
         if(x < 50) {
             x = 50;
         }
@@ -41,7 +41,7 @@ function Target() {
     }
     
     this.pickY = function() {
-        var y = Math.floor(Math.random() * (windowHeight/1.5) - 100);
+        var y = Math.floor(Math.random() * (p.windowHeight/1.5) - 100);
         if(y < 50) {
             y = 50;
         }
