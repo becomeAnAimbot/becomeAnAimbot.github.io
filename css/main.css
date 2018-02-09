@@ -1,0 +1,25 @@
+.mainScreenBackground {
+    margin: 0;
+    padding: 0;
+}
+
+.mainTitle {
+    text-align: center;
+    font-size: 2em;
+}
+
+.mainGamesList {
+    text-align: center;
+}
+
+.listGame {
+    border-radius: 2em;
+    border-style: solid;
+    width: 30%;
+    margin-left: 35%;
+}
+
+.listGame:hover {
+    cursor: pointer;
+    background: #FFFFFF;
+}

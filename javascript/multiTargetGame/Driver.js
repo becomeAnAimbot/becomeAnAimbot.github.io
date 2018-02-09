@@ -163,5 +163,3 @@ var prioritySketch = function(p) {
         showBut.attribute("onclick", "hideInstructions()");
     };
 }
-
-var test = new p5(prioritySketch);
