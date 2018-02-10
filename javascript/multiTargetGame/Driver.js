@@ -51,6 +51,7 @@ var prioritySketch = function(p) {
     
     p.drawAllTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
+            p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
         }
     };
@@ -59,6 +60,7 @@ var prioritySketch = function(p) {
         for(let i=0; i<20; i++) {
             p.priorityVariables.targets[i] = new Target(p);
             p.priorityVariables.targets[0].isCurrentTarget = true;
+            p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
         }
     };
