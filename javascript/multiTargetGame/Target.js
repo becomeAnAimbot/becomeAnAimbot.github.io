@@ -1,4 +1,4 @@
-function Target(p) {
+function Target(p, widthBound, heightBound) {
     
     this.shot = true;
     this.x;
@@ -6,6 +6,12 @@ function Target(p) {
     this.width = p.windowWidth/50;
     this.height = p.windowWidth/50;
     this.isCurrentTarget = false;
+    
+    this.xBound = widthBound;
+    this.yBound = heightBound;
+    
+    this.xSpeed;
+    this.ySpeed;
     
     this.show = function() {
         p.fill(0);
@@ -31,7 +37,7 @@ function Target(p) {
     }
     
     this.pickRandomX = function() {
-        var x = Math.floor(Math.random() * p.windowWidth - 100);
+        var x = Math.floor(Math.random() * this.xBound - 100);
         if(x < 50) {
             x = 50;
         }
@@ -39,7 +45,7 @@ function Target(p) {
     }
     
     this.pickRandomY = function() {
-        var y = Math.floor(Math.random() * (p.windowHeight/1.5) - 100);
+        var y = Math.floor(Math.random() * this.yBound - 100);
         if(y < 50) {
             y = 50;
         }
@@ -49,5 +55,40 @@ function Target(p) {
     this.randomPlacement = function() {
         this.x = this.pickRandomX();
         this.y = this.pickRandomY();
+    }
+    
+    this.move = function(x, y) {
+        this.x += this.xSpeed;
+        this.y += this.ySpeed;
+    }
+    
+    this.assignRandomSpeed = function() {
+        this.xSpeed = ((Math.random() > .5) ? 1 : -1) * 5;
+        this.ySpeed = ((Math.random() > .5) ? 1 : -1) * 5;
+    }
+    
+    this.checkTopHit = function() {
+        if(this.y <= 0) return true;
+        return false;
+    }
+    
+    this.checkRightHit = function() {
+        if(this.x >= this.xBound) return true;
+        return false;
+    }
+    
+    this.checkBottomHit = function() {
+        if(this.y >= this.yBound) return true;
+        return false;
+    }
+    
+    this.checkLeftHit = function() {
+        if(this.x <= 0) return true;
+        return false;
+    }
+    
+    this.updateTargetBounds = function(windowWidth, windowHeight) {
+        this.xBound = windowWidth;
+        this.yBound = windowHeight;
     }
 }

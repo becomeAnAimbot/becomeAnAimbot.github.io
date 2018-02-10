@@ -1,5 +1,7 @@
 var mainSketch = function(p) {
     
+    ambientTargets = [];
+    
     p.setup = function() {
         canv = p.createCanvas(p.windowWidth, p.windowHeight);
         p.background(150);
@@ -8,10 +10,26 @@ var mainSketch = function(p) {
         canv.position(0,0);
         
         p.mainScreenHtml();
+        
+        for(let i = 0; i < 25; i++)
+        {
+            t = new Target(p, p.windowWidth, p.windowHeight);
+            t.randomPlacement();
+            t.show();
+            t.assignRandomSpeed();
+            ambientTargets.push(t);
+        }
     };
     
     p.draw = function() {
         p.background(150);
+        
+        for(let i = 0; i < ambientTargets.length; i++)
+        {
+            ambientTargets[i].show();
+            p.checkBoundaryHits(ambientTargets[i]);
+            ambientTargets[i].move();
+        }
     };
     
     p.mainScreenHtml = function() {
@@ -34,5 +52,16 @@ var mainSketch = function(p) {
     
     p.windowResized = function() {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
+        for(let i = 0; i< ambientTargets.length; i++)
+        {
+            ambientTargets[i].updateTargetBounds(p.windowWidth, p.windowHeight);
+        }
+    }
+    
+    p.checkBoundaryHits = function(target) {
+        if(target.checkTopHit()) target.ySpeed *= -1;
+        if(target.checkRightHit()) target.xSpeed *= -1;
+        if(target.checkBottomHit()) target.ySpeed *= -1;
+        if(target.checkLeftHit()) target.xSpeed *= -1;
     }
 }
