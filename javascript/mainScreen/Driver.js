@@ -31,4 +31,8 @@ var mainSketch = function(p) {
         gameOne.addClass("listGame");
         gameOne.attribute("onclick","startPriorityGame()");
     }
+    
+    p.windowResized = function() {
+        p.resizeCanvas(p.windowWidth, p.windowHeight);
+    }
 }

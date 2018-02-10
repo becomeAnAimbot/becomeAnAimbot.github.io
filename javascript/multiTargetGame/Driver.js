@@ -101,6 +101,10 @@ var prioritySketch = function(p) {
         }, 100);
     };
     
+    p.windowResized = function() {
+        p.resizeCanvas(p.windowWidth, p.windowHeight);
+    }
+    
     p.createPriorityHtml = function () {
         bodyCont = p.createElement("div", "");
         bodyCont.id("bodyContainer");
