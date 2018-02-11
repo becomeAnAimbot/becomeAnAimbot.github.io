@@ -29,8 +29,6 @@ var prioritySketch = function(p) {
             p.noLoop();
             return;
         } else {
-            p.background(150);
-            p.moveTargets();
             if(p.priorityVariables.alreadyShooting && !p.mouseIsPressed) {
                     p.priorityVariables.alreadyShooting = false;
             }
@@ -56,7 +54,9 @@ var prioritySketch = function(p) {
                 let per = ((p.priorityVariables.shotsHit/p.priorityVariables.totalShots)) * 100.0;
                 str = "Accuracy: " + per.toFixed(2) + "%";
                 percentEle.html(str);
-            }   
+            }
+            p.background(150);
+            p.moveTargets();
         }
     };
     
@@ -70,8 +70,8 @@ var prioritySketch = function(p) {
     p.moveTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
             p.priorityVariables.targets[i].checkBoundaryHits();
-            p.priorityVariables.targets[i].show();
             p.priorityVariables.targets[i].move();
+            p.priorityVariables.targets[i].show();
         }
     };
     
