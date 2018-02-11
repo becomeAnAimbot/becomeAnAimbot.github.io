@@ -3,6 +3,7 @@ function Target(p, widthBound, heightBound) {
     this.shot = true;
     this.x;
     this.y;
+    this.color;
     this.width = p.windowWidth/50;
     this.height = p.windowWidth/50;
     this.isCurrentTarget = false;
@@ -14,7 +15,8 @@ function Target(p, widthBound, heightBound) {
     this.ySpeed;
     
     this.show = function() {
-        p.fill(0);
+        if(this.color == undefined) p.fill(0);
+        else this.assignRandomColor();
         p.noStroke();
         if(this.isCurrentTarget) {
             p.fill(0, 255, 0);
@@ -62,9 +64,16 @@ function Target(p, widthBound, heightBound) {
         this.y += this.ySpeed;
     }
     
-    this.assignRandomSpeed = function() {
-        this.xSpeed = ((Math.random() > .5) ? 1 : -1) * 5;
-        this.ySpeed = ((Math.random() > .5) ? 1 : -1) * 5;
+    this.assignRandomSpeed = function(min, max) {
+        this.xSpeed = p.random(min, max);
+        this.ySpeed = p.random(min, max);
+    }
+    
+    this.checkBoundaryHits = function(target) {
+        if(this.checkTopHit()) this.ySpeed *= -1;
+        if(this.checkRightHit()) this.xSpeed *= -1;
+        if(this.checkBottomHit()) this.ySpeed *= -1;
+        if(this.checkLeftHit()) this.xSpeed *= -1;
     }
     
     this.checkTopHit = function() {
@@ -90,5 +99,9 @@ function Target(p, widthBound, heightBound) {
     this.updateTargetBounds = function(windowWidth, windowHeight) {
         this.xBound = windowWidth;
         this.yBound = windowHeight;
+    }
+    
+    this.assignRandomColor = function() {
+        p.fill(Math.floor(p.random(0,250)), Math.floor(p.random(0,250)), Math.floor(p.random(0,250)));
     }
 }

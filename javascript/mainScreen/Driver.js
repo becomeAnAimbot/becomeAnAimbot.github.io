@@ -11,23 +11,21 @@ var mainSketch = function(p) {
         
         p.mainScreenHtml();
         
-        for(let i = 0; i < 25; i++)
-        {
+        for(let i = 0; i < 25; i++) {
             t = new Target(p, p.windowWidth, p.windowHeight);
             t.randomPlacement();
+            t.color = "Random";
             t.show();
-            t.assignRandomSpeed();
+            t.assignRandomSpeed(-10,10);
             ambientTargets.push(t);
         }
     };
     
     p.draw = function() {
-        p.background(150);
-        
-        for(let i = 0; i < ambientTargets.length; i++)
-        {
+        p.background("#FFFFFF"); 
+        for(let i = 0; i < ambientTargets.length; i++) {
             ambientTargets[i].show();
-            p.checkBoundaryHits(ambientTargets[i]);
+            ambientTargets[i].checkBoundaryHits(ambientTargets[i]);
             ambientTargets[i].move();
         }
     };
@@ -52,16 +50,9 @@ var mainSketch = function(p) {
     
     p.windowResized = function() {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
-        for(let i = 0; i< ambientTargets.length; i++)
-        {
+        for(let i = 0; i< ambientTargets.length; i++) {
             ambientTargets[i].updateTargetBounds(p.windowWidth, p.windowHeight);
-        }
-    }
-    
-    p.checkBoundaryHits = function(target) {
-        if(target.checkTopHit()) target.ySpeed *= -1;
-        if(target.checkRightHit()) target.xSpeed *= -1;
-        if(target.checkBottomHit()) target.ySpeed *= -1;
-        if(target.checkLeftHit()) target.xSpeed *= -1;
+            ambientTargets[i].height = p.windowWidth/50;
+            ambientTargets[i].width = p.windowWidth/50;        }
     }
 }

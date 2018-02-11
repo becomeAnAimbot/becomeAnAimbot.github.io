@@ -3,14 +3,19 @@ var prioritySketch = function(p) {
     p.priorityVariables = new PriorityVariables();
     
     p.setup = function() {
+        p.priorityVariables.canvHeight = p.windowHeight/1.5;
+        p.priorityVariables.canvWidth = p.windowWidth;
         p.createPriorityHtml();
-        canv = p.createCanvas(p.windowWidth, p.windowHeight/1.5);
+        canv = p.createCanvas(p.priorityVariables.canvWidth, p.priorityVariables.canvHeight);
         canv.parent("gameContainer");
+        canv.id("targetGameCanvas");
         p.background(150);
         startButton = p.createButton("START GAME");
         startButton.addClass("startButton");
-        startButton.position(p.windowWidth/2 -  startButton.width, p.windowHeight/2 - startButton.height);
+        startButton.parent("#gameContainer");
+        startButton.position(canv.position());
         startButton.mousePressed(p.startGame);
+        p.reAssignAllSpeeds();
     };
 
     p.draw = function() {
@@ -21,6 +26,8 @@ var prioritySketch = function(p) {
             p.background(150);
             return;
         } else {
+            p.background(150);
+            p.moveTargets();
             if(p.priorityVariables.alreadyShooting && !p.mouseIsPressed) {
                     p.priorityVariables.alreadyShooting = false;
             }
@@ -37,6 +44,7 @@ var prioritySketch = function(p) {
                         p.priorityVariables.targets[i].isCurrentTarget = false;
                         p.priorityVariables.targets[(i+1)%p.priorityVariables.targets.length].isCurrentTarget = true;
                         p.priorityVariables.targets[i].shootTarget();
+                        p.reAssignAllSpeeds();
                         p.drawAllTargets();
                     } 
                 }
@@ -56,9 +64,25 @@ var prioritySketch = function(p) {
         }
     };
     
+    p.moveTargets = function() {
+        for(let i=0; i<p.priorityVariables.targets.length; i++) {
+            p.priorityVariables.targets[i].checkBoundaryHits();
+            p.priorityVariables.targets[i].show();
+            p.priorityVariables.targets[i].move();
+        }
+    };
+    
+    p.reAssignAllSpeeds = function() {
+        for(let i=0; i<p.priorityVariables.targets.length; i++) {
+            if(!p.priorityVariables.targets[i].isCurrentTarget) p.priorityVariables.targets[i].assignRandomSpeed(-10,10);
+            else p.priorityVariables.targets[i].assignRandomSpeed(-5,5);
+        }
+    }
+    
     p.createTargets = function() {
         for(let i=0; i<20; i++) {
             p.priorityVariables.targets[i] = new Target(p, p.windowWidth, p.windowHeight/1.5);
+            p.priorityVariables.targets[i].assignRandomSpeed();
             p.priorityVariables.targets[0].isCurrentTarget = true;
             p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
@@ -69,7 +93,9 @@ var prioritySketch = function(p) {
         startButton.hide();
         countDown = p.createElement("p", 3);
         countDown.addClass("countDown");
-        countDown.position((p.windowWidth/2.1), p.windowHeight/2.7);
+        countDown.parent("#gameContainer");
+        countDown.position(p.select("#targetGameCanvas").position());
+        
         let counter = 2;
         let cd = setInterval(function() {
             if(counter === 0) {
@@ -104,8 +130,8 @@ var prioritySketch = function(p) {
     };
     
     p.windowResized = function() {
-        p.resizeCanvas(p.windowWidth, p.windowHeight);
-    }
+        p.resizeCanvas(p.windowWidth, p.windowHeight/1.5);
+    };
     
     p.createPriorityHtml = function () {
         bodyCont = p.createElement("div", "");
