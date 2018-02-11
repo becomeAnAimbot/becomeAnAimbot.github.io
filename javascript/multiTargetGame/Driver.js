@@ -118,7 +118,7 @@ var prioritySketch = function(p) {
         p.select("#gameTimer").style("visibility", "visible");
         p.select("#accuracyPercent").style("visibility", "visible");
         p.select("#accuracyShots").style("visibility", "visible");
-        let counter = 1.9;
+        let counter = 59.9;
         let cd = setInterval(function() {
             if(counter <= 0) {
                 clearInterval(cd);
