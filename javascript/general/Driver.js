@@ -48,4 +48,12 @@ function startPriorityGame() {
     onPriorityPractice = true;
 }
 
+function startMainScreen() {
+    clearBody();
+    priSketch.remove();
+    onPriorityPractice = false;
+    screenSwitch = true;
+    onMainScreen = true;
+}
+
 masterFunction();

@@ -11,7 +11,8 @@ var prioritySketch = function(p) {
         canv.id("targetGameCanvas");
         p.background(150);
         startButton = p.createButton("START GAME");
-        startButton.addClass("startButton");
+        startButton.addClass("priorityTargetButton");
+        startButton.id("priorityStartButton");
         startButton.parent("#gameContainer");
         startButton.position(canv.position());
         startButton.mousePressed(p.startGame);
@@ -24,6 +25,8 @@ var prioritySketch = function(p) {
         } else if(p.priorityVariables.gameOver) {
             p.clear();
             p.background(150);
+            p.showEndButtons();
+            p.noLoop();
             return;
         } else {
             p.background(150);
@@ -115,7 +118,7 @@ var prioritySketch = function(p) {
         p.select("#gameTimer").style("visibility", "visible");
         p.select("#accuracyPercent").style("visibility", "visible");
         p.select("#accuracyShots").style("visibility", "visible");
-        let counter = 59.9;
+        let counter = 1.9;
         let cd = setInterval(function() {
             if(counter <= 0) {
                 clearInterval(cd);
@@ -128,6 +131,34 @@ var prioritySketch = function(p) {
             }
         }, 100);
     };
+    
+    p.showEndButtons = function() {
+        p.select("#endButtons").style("display","flex");
+    };
+    
+    p.restartGame = function() {
+        p.priorityVariables = new PriorityVariables();
+        p.priorityVariables.canvHeight = p.windowHeight/1.5;
+        p.priorityVariables.canvWidth = p.windowWidth;
+        p.select("#endButtons").hide();
+        
+        let shotsEle = p.select("#accuracyShots");
+        let percentEle = p.select("#accuracyPercent");
+        
+        p.select("#gameTimer").html("Get Ready!");
+        let str = "Shots: " + p.priorityVariables.shotsHit + "/" + p.priorityVariables.totalShots;
+        shotsEle.html(str);
+        let per = 100.0;
+        str = "Accuracy: " + per.toFixed(2) + "%";
+        percentEle.html(str);
+        
+        p.startGame();
+        p.loop();
+    };
+    
+    p.goHome = function() {
+        startMainScreen();
+    }
     
     p.windowResized = function() {
         p.resizeCanvas(p.windowWidth, p.windowHeight/1.5);
@@ -160,6 +191,21 @@ var prioritySketch = function(p) {
         gameCont = p.createElement("div", "");
         gameCont.id("gameContainer");
         gameCont.parent(bodyCont);
+        
+        endButtons = p.createElement("div","");
+        endButtons.id("endButtons");
+        endButtons.parent(bodyCont);
+        endButtons.hide();
+        
+        retryButton = p.createButton("PLAY AGAIN");
+        retryButton.addClass("priorityTargetButton");
+        retryButton.parent("#endButtons");
+        retryButton.mousePressed(p.restartGame);
+        
+        mainMenuButton = p.createButton("MAIN MENU");
+        mainMenuButton.addClass("priorityTargetButton");
+        mainMenuButton.parent("#endButtons");
+        mainMenuButton.mousePressed(p.goHome);
 
         instrucs = p.createElement("div", "");
         instrucs.addClass("instructions");

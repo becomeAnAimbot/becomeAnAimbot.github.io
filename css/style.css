@@ -68,7 +68,7 @@ body {
 	display: none;
 }
 
-.startButton {
+.priorityTargetButton {
 	padding: 1em 1em;
     margin: 0;
     border: none;
@@ -77,7 +77,7 @@ body {
     font-weight: bold;
 }
 
-.startButton:hover {
+.priorityTargetButton:hover {
     background-color: #CCCCCC;
 	cursor: pointer;
 }
@@ -87,4 +87,13 @@ body {
     font-weight: bold;
     padding: 0;
     margin: 0;
+}
+
+#endButtons {
+    display: flex;
+    justify-content: center;
+}
+
+#endButtons button {
+    margin: 1em;
 }
