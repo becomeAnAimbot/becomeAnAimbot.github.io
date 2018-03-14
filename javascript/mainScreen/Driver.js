@@ -41,11 +41,27 @@ var mainSketch = function(p) {
         gamesList = p.createElement("div","");
         gamesList.parent(gameCont);
         gamesList.addClass("mainGamesList");
+        gamesList.style("background","#FFFFFF");
         
         gameOne = p.createElement("h2","Priority Target Practice");
         gameOne.parent(gamesList);
         gameOne.addClass("listGame");
         gameOne.attribute("onclick","startPriorityGame()");
+        
+        gameTwo = p.createElement("h2","Priority Target Practice");
+        gameTwo.parent(gamesList);
+        gameTwo.addClass("listGame");
+        gameTwo.attribute("onclick","startPriorityGame()");
+        
+        gameThree = p.createElement("h2","Priority Target Practice");
+        gameThree.parent(gamesList);
+        gameThree.addClass("listGame");
+        gameThree.attribute("onclick","startPriorityGame()");
+        
+        gameFour = p.createElement("h2","Priority Target Practice");
+        gameFour.parent(gamesList);
+        gameFour.addClass("listGame");
+        gameFour.attribute("onclick","startPriorityGame()");
     }
     
     p.windowResized = function() {

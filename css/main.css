@@ -10,6 +10,12 @@
 
 .mainGamesList {
     text-align: center;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 15%;
+    border-style: solid;
+    height: 15em;
+    overflow-y: scroll;
 }
 
 .listGame {
@@ -21,5 +27,21 @@
 
 .listGame:hover {
     cursor: pointer;
-    background: #FFFFFF;
+    background: #DDDDDD;
+}
+
+::-webkit-scrollbar {
+    width: 1em;
+}
+
+::-webkit-scrollbar-track {
+    background: #FFFFFF; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
