@@ -4,15 +4,19 @@
 }
 
 .mainTitle {
-    text-align: center;
-    font-size: 2em;
+    display: block;
+    margin-top: 2.5%;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
 }
 
 .mainGamesList {
     text-align: center;
     width: 50%;
     margin-left: 25%;
-    margin-top: 15%;
+    margin-top: 5%;
     border-style: solid;
     height: 15em;
     overflow-y: scroll;
@@ -35,13 +39,13 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #FFFFFF; 
+    background: #FFFFFF;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: #888;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: #555;
 }
