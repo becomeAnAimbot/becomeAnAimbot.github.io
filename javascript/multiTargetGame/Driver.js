@@ -1,6 +1,17 @@
 var prioritySketch = function(p) {
     
+    var hitSound;
+    var missSounds;
+    
     p.priorityVariables = new PriorityVariables();
+    
+    p.preload = function() {
+        hitSound = p.loadSound("sounds/hitmarker.mp3");
+        missSound1 = p.loadSound("sounds/Wall-Hit6.wav");
+        missSound2 = p.loadSound("sounds/Wall-Hit7.wav");
+        missSound3 = p.loadSound("sounds/Wall-Hit8.wav");
+        missSounds = [missSound1, missSound2, missSound3];
+    }
     
     p.setup = function() {
         p.priorityVariables.canvHeight = p.windowHeight/1.5;
@@ -37,9 +48,12 @@ var prioritySketch = function(p) {
                 let shotsEle = p.select("#accuracyShots");
                 let percentEle = p.select("#accuracyPercent");
                 p.priorityVariables.totalShots++;
+                let hit = false;
                 for(let i=0; i<p.priorityVariables.targets.length; i++) {
                     if(p.priorityVariables.targets[i].targetHit() && p.priorityVariables.targets[i].isCurrentTarget) {
+                        hit = true;
                         p.priorityVariables.shotsHit++;
+                        hitSound.play();
                         p.clear();
                         p.background(150);
                         p.priorityVariables.targets[i].isCurrentTarget = false;
@@ -47,7 +61,11 @@ var prioritySketch = function(p) {
                         p.priorityVariables.targets[i].shootTarget();
                         p.reAssignAllSpeeds();
                         p.drawAllTargets();
-                    } 
+                    }
+                }
+                if(!hit){
+                    let r = Math.floor(Math.random() * 3)
+                    missSounds[r].play();
                 }
                 let str = "Shots: " + p.priorityVariables.shotsHit + "/" + p.priorityVariables.totalShots;
                 shotsEle.html(str);
@@ -168,6 +186,8 @@ var prioritySketch = function(p) {
         bodyCont = p.createElement("div", "");
         bodyCont.id("bodyContainer");
 
+        createHeader(p, bodyCont);
+        
         gameTitle = p.createElement("h1", "Target Priority Practice");
         gameTitle.addClass("gameHeader");
         gameTitle.parent(bodyCont);
