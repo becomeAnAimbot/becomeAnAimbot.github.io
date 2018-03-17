@@ -34,34 +34,7 @@ var mainSketch = function(p) {
         gameCont = p.createElement("div","");
         gameCont.id("bodyContainer");
         
-        mainHeader = p.createElement("div");
-        mainHeader.parent(gameCont);
-        mainHeader.addClass("mainHeader");
-        
-        leftHeader = p.createElement("div");
-        leftHeader.parent(mainHeader);
-        leftHeader.id("leftHeader");
-        
-        homeButton = p.createElement("button","Home");
-        homeButton.parent(leftHeader);
-        homeButton.id("homeButton");
-        homeButton.attribute("onclick","FUNCTION_NAME()");
-        
-        searchBar = p.createInput();
-        searchBar.parent(leftHeader);
-        searchBar.id("searchBar");
-        
-        magGlass = p.createElement("img");
-        magGlass.attribute("src", "images/magnifyingGlass.png");
-        magGlass.style("width","25px");
-        magGlass.style("padding-left","0.5em")
-        magGlass.parent(leftHeader);
-        magGlass.id("magGlass");
-
-        signInButton = p.createElement("button","Sign in");
-        signInButton.parent(mainHeader);
-        signInButton.id("signIn");
-        signInButton.attribute("onclick","FUNCTION_NAME()");
+        createHeader(p, gameCont);
         
         mainTitle = p.createElement("img");
         mainTitle.attribute("src", "images/large_title.png");
