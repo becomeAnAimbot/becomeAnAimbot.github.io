@@ -33,7 +33,25 @@ var mainSketch = function(p) {
     p.mainScreenHtml = function() {
         gameCont = p.createElement("div","");
         gameCont.id("bodyContainer");
+        
+        mainHeader = p.createElement("div");
+        mainHeader.parent(gameCont);
+        mainHeader.addClass("mainHeader");
+        
+        searchBar = p.createInput();
+        searchBar.parent(mainHeader);
+        searchBar.id("searchBar");
+        
+        homeButton = p.createElement("button","Home");
+        homeButton.parent(mainHeader);
+        homeButton.id("homeButton");
+        homeButton.attribute("onclick","FUNCTION_NAME()");
 
+        signInButton = p.createElement("button","Sign In");
+        signInButton.parent(mainHeader);
+        signInButton.id("signIn");
+        signInButton.attribute("onclick","FUNCTION_NAME()")
+        
         mainTitle = p.createElement("img");
         mainTitle.attribute("src", "images/large_title.png");
         mainTitle.parent(gameCont);

@@ -3,6 +3,40 @@
     padding: 0;
 }
 
+.mainHeader {
+    border-bottom: 0.3em solid black;
+    padding: 1em;
+    background: white;
+    justify-content: center;
+}
+
+#searchBar {
+    margin: 1em;
+    background-color: white;;
+    border: 0.2em solid black;
+    display: inline-block;
+    padding: 0.5em;
+}
+
+#homeButton, #signIn {
+    font-family: 'Oswald', sans-serif;
+    border: 0.1em solid black;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.5em;
+    background-color: white;
+}
+
+#signIn:hover {
+    cursor: pointer;
+    background: #DDDDDD;
+}
+
+#homeButton:hover {
+    cursor: pointer;
+    background: #DDDDDD;
+}
+
 .mainTitle {
     display: block;
     margin-top: 2.5%;
