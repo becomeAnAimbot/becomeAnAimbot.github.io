@@ -1,0 +1,12 @@
+.statsBox {
+    margin-top: 5%;
+    width: 50%;
+    margin-left: 25%;
+    display: block;
+    text-align: center;
+    border-style: solid;
+}
+
+.chartHeight {
+    height: 300px;
+}

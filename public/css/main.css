@@ -20,6 +20,11 @@
     align-items: center;
 }
 
+#rightHeader {
+    display: flex;
+    align-items: center;
+}
+
 #searchBar {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -28,7 +33,7 @@
     padding: 0.8em;
 }
 
-#homeButton, #signIn {
+#homeButton, #signIn, #statsButton {
     font-family: 'Oswald', sans-serif;
     border: 0.1em solid black;
     text-decoration: none;
@@ -45,6 +50,11 @@
 }
 
 #homeButton:hover {
+    cursor: pointer;
+    background: #DDDDDD;
+}
+
+#statsButton:hover {
     cursor: pointer;
     background: #DDDDDD;
 }
