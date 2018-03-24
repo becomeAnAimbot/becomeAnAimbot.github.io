@@ -1,6 +1,7 @@
 var mainSketch = function(p) {
 
-    ambientTargets = [];
+    var ambientTargets = [];
+    var randomColors = ["#BE0000", "#003AFF", "#007800", "#EA006E", "#A461D7", "#D14200", "#00B3F3"];
 
     p.setup = function() {
         canv = p.createCanvas(p.windowWidth, p.windowHeight);
@@ -14,7 +15,7 @@ var mainSketch = function(p) {
         for(let i = 0; i < 25; i++) {
             t = new Target(p, p.windowWidth, p.windowHeight);
             t.randomPlacement();
-            t.color = "Random";
+            t.color = p.chooseRandomColor();
             t.show();
             t.assignRandomSpeed(-10,10);
             ambientTargets.push(t);
@@ -30,14 +31,22 @@ var mainSketch = function(p) {
         }
     };
 
+    p.chooseRandomColor = function() {
+      return randomColors[p.getRandomInt(randomColors.length)];
+    }
+
+    p.getRandomInt = function(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+
     p.mainScreenHtml = function() {
         gameCont = p.createElement("div","");
         gameCont.id("bodyContainer");
-        
+
         createHeader(p, gameCont);
-        
+
         mainTitle = p.createElement("img");
-        mainTitle.attribute("src", "public/images/large_title.png");
+        mainTitle.attribute("src", "images/small_title.png");
         mainTitle.parent(gameCont);
         mainTitle.addClass("mainTitle");
 

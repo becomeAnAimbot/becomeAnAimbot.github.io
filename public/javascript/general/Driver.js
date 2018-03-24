@@ -127,7 +127,7 @@ function createHeader(p, gameCont) {
         searchBar.id("searchBar");
 
         magGlass = p.createElement("img");
-        magGlass.attribute("src", "public/images/magnifyingGlass.png");
+        magGlass.attribute("src", "images/magnifyingGlass.png");
         magGlass.style("width","25px");
         magGlass.style("padding-left","0.5em")
         magGlass.parent(leftHeader);

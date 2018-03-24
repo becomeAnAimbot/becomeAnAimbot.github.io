@@ -6,10 +6,10 @@ var prioritySketch = function(p) {
     p.priorityVariables = new PriorityVariables();
     
     p.preload = function() {
-        hitSound = p.loadSound("public/sounds/hitmarker.mp3");
-        missSound1 = p.loadSound("public/sounds/Wall-Hit6.wav");
-        missSound2 = p.loadSound("public/sounds/Wall-Hit7.wav");
-        missSound3 = p.loadSound("public/sounds/Wall-Hit8.wav");
+        hitSound = p.loadSound("sounds/hitmarker.mp3");
+        missSound1 = p.loadSound("sounds/Wall-Hit6.wav");
+        missSound2 = p.loadSound("sounds/Wall-Hit7.wav");
+        missSound3 = p.loadSound("sounds/Wall-Hit8.wav");
         missSounds = [missSound1, missSound2, missSound3];
     }
     
