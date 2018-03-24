@@ -33,7 +33,7 @@
     padding: 0.8em;
 }
 
-#homeButton, #signIn, #statsButton {
+#homeButton, #signIn, #signUp, #statsButton {
     font-family: 'Oswald', sans-serif;
     border: 0.1em solid black;
     text-decoration: none;
@@ -45,6 +45,11 @@
 }
 
 #signIn:hover {
+    cursor: pointer;
+    background: #DDDDDD;
+}
+
+#signUp:hover {
     cursor: pointer;
     background: #DDDDDD;
 }

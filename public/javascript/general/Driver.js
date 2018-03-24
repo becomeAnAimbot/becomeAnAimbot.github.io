@@ -1,12 +1,14 @@
 var onMainScreen = true;
 var onPriorityPractice = false;
 var onLoginScreen = false;
+var onSignupScreen = false;
 var onStatScreen = false;
 var screenSwitch = true;
 
 var priSketch;
 var maiSketch;
 var logSketch;
+var sigSketch;
 var staSketch;
 
 function masterFunction() {
@@ -25,6 +27,11 @@ function masterFunction() {
        } else if(onLoginScreen) {
          if(checkScreenSwitch()) {
            logSketch = new p5(loginSketch);
+           screenSwitch = false;
+         }
+       } else if(onSignupScreen) {
+         if(checkScreenSwitch()) {
+           sigSketch = new p5(signupSketch);
            screenSwitch = false;
          }
        } else if(onStatScreen) {
@@ -51,6 +58,7 @@ function checkScreenSwitch() {
 
 function clearAllSketches() {
     logSketch = null;
+    sigSketch = null;
     priSketch = null;
     maiSketch = null;
     staSketch = null;
@@ -58,9 +66,10 @@ function clearAllSketches() {
 
 function removeAllSketches() {
   if(logSketch != null) logSketch.remove();
+  if(sigSketch != null) sigSketch.remove();
   if(priSketch != null) priSketch.remove();
   if(maiSketch != null) maiSketch.remove();
-    if(staSketch != null) staSketch.remove();
+  if(staSketch != null) staSketch.remove();
 }
 
 function startPriorityGame() {
@@ -68,6 +77,7 @@ function startPriorityGame() {
     removeAllSketches();
     onMainScreen = false;
     onLoginScreen = false;
+    onSignupScreen = false;
     screenSwitch = true;
     onPriorityPractice = true;
     onStatScreen = false;
@@ -78,6 +88,7 @@ function startMainScreen() {
     removeAllSketches();
     onPriorityPractice = false;
     onLoginScreen = false;
+    onSignupScreen = false;
     screenSwitch = true;
     onMainScreen = true;
     onStatScreen = false;
@@ -90,7 +101,19 @@ function startLoginScreen() {
   onMainScreen = false;
   screenSwitch = true;
   onLoginScreen = true;
-    onStatScreen = false;
+  onSignupScreen = false;
+  onStatScreen = false;
+}
+
+function startSignupScreen() {
+  clearBody();
+  removeAllSketches();
+  onPriorityPractice = false;
+  onMainScreen = false;
+  screenSwitch = true;
+  onLoginScreen = false;
+  onSignupScreen = true;
+  onStatScreen = false;
 }
 
 function startStatScreen() {
@@ -100,6 +123,7 @@ function startStatScreen() {
     onMainScreen = false;
     screenSwitch = true;
     onLoginScreen = false;
+    onSignupScreen = false;
     onStatScreen = true;
 }
 
@@ -137,6 +161,11 @@ function createHeader(p, gameCont) {
         signInButton.parent(rightHeader);
         signInButton.id("signIn");
         signInButton.attribute("onclick","startLoginScreen()");
+
+        signUpButton = p.createElement("button","Register");
+        signUpButton.parent(rightHeader);
+        signUpButton.id("signUp");
+        signUpButton.attribute("onclick","startSignupScreen()");
 
         statsButton = p.createElement("button", "Stats");
         statsButton.parent(rightHeader);

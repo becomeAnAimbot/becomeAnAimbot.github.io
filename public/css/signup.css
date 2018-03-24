@@ -1,0 +1,36 @@
+.signupBox {
+  margin-top: 5%;
+  width: 50%;
+  margin-left: 25%;
+  display: block;
+  text-align: center;
+  border-style: solid;
+}
+
+.signupText {
+  width: 30%;
+  margin-left: 35%;
+  display: block;
+}
+
+.signupButton {
+  width: 30%;
+  margin-left: 35%;
+  display: block;
+}
+
+#usernameField {
+  margin-bottom: 5%;
+}
+
+#passwordField {
+  margin-bottom: 5%;
+}
+
+#signupForm {
+  padding: 5% 0%;
+}
+
+#hiddenInput {
+  display:none;
+}
