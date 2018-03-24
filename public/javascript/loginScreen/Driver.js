@@ -58,9 +58,9 @@ var loginSketch = function(p) {
 
         loginForm = p.createElement("form","");
         loginForm.attribute("id","loginForm");
-        loginForm.attribute("target","_blank");
+        loginForm.attribute("target","loginIFrame");
         loginForm.attribute("method","post");
-        loginForm.attribute("action","http://167.99.105.82:8080");
+        loginForm.attribute("action","http://167.99.105.82:6969");
         loginForm.parent(loginBox);
 
         nameLabel = p.createElement("label","Username");
@@ -99,7 +99,14 @@ var loginSketch = function(p) {
         submitButton.attribute("type","submit");
         submitButton.attribute("id","submitButton");
         submitButton.attribute("class","loginButton");
+        submitButton.attribute("onClick","checkLogin()");
         submitButton.parent(loginForm);
+
+        loginIFrame = p.createElement("iframe", "");
+        loginIFrame.attribute("name","loginIFrame");
+        loginIFrame.attribute("id","loginIFrame");
+        loginIFrame.attribute("src","");
+        loginIFrame.parent(gameCont);
     }
 
     p.windowResized = function() {
@@ -109,4 +116,30 @@ var loginSketch = function(p) {
             ambientTargets[i].height = p.windowWidth/50;
             ambientTargets[i].width = p.windowWidth/50;        }
     }
+}
+
+function checkLogin() {
+  let cd = setTimeout(function() {
+    checkLoginStatus();
+  }, 3000);
+}
+
+function checkLoginStatus() {
+  var myIframe= document.getElementById("loginIFrame");
+  var iframeDocument = (myIframe.contentWindow || myIframe.contentDocument);
+  iframeDocument = iframeDocument.document;
+  let x = iframeDocument.getElementsByTagName("pre");
+  if(x[0].innerHTML === "Login Success") {
+    loggedIn();
+  } else if(x[0].innerHTML === "Login Failure") {
+    notLoggedIn();
+  } else {
+    connFailed();
+  }
+}
+
+function loggedIn() {
+  let x = document.getElementById("usernameField").value;
+  document.cookie = `aimbotUser=${x}; expires=Thu, 18 Dec 2030 12:00:00 UTC`;
+  startMainScreen();
 }
