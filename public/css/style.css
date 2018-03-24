@@ -97,3 +97,7 @@ body {
 #endButtons button {
     margin: 1em;
 }
+
+.hiddenIFrame {
+    display: none;
+}

@@ -105,6 +105,7 @@ var loginSketch = function(p) {
         loginIFrame = p.createElement("iframe", "");
         loginIFrame.attribute("name","loginIFrame");
         loginIFrame.attribute("id","loginIFrame");
+        loginIFrame.attribute("class","hiddenIFrame");
         loginIFrame.attribute("src","");
         loginIFrame.parent(gameCont);
     }

@@ -119,7 +119,8 @@ var signupSketch = function(p) {
         hiddenInput.attribute("name", "func");
         hiddenInput.attribute("value", "signupUser");
 
-        submitButton = p.createElement("input", "Submit");
+        submitButton = p.createElement("input", "Sign Up!");
+        submitButton.attribute("value","Sign Up!");
         submitButton.attribute("type","submit");
         submitButton.attribute("id","submitButton");
         submitButton.attribute("class","signupButton");
