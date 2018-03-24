@@ -58,7 +58,7 @@ var signupSketch = function(p) {
 
         signupForm = p.createElement("form","");
         signupForm.attribute("id","signupForm");
-        signupForm.attribute("target","_blank");
+        signupForm.attribute("target","loginIFrame");
         signupForm.attribute("method","post");
         signupForm.attribute("action","http://167.99.105.82:8080");
         signupForm.parent(signupBox);
@@ -89,25 +89,25 @@ var signupSketch = function(p) {
 
         passLabel2 = p.createElement("label","Confirm Password");
         passLabel2.parent(signupForm);
-        passLabel2.attribute("for","passwordField");
-        passLabel2.attribute("id","passwordLabel");
+        passLabel2.attribute("for","passwordRepField");
+        passLabel2.attribute("id","passwordRepLabel");
 
         passwordInput2 = p.createElement("input", "");
         passwordInput2.attribute("type", "password");
-        passwordInput2.attribute("name", "pass");
-        passwordInput2.attribute("id", "passwordField");
+        passwordInput2.attribute("name", "repeatPass");
+        passwordInput2.attribute("id", "passwordRepField");
         passwordInput2.attribute("class", "signupText");
         passwordInput2.parent(signupForm);
 
         emailLabel = p.createElement("label","E-mail");
         emailLabel.parent(signupForm);
-        emailLabel.attribute("for","passwordField");
-        emailLabel.attribute("id","passwordLabel");
+        emailLabel.attribute("for","emailField");
+        emailLabel.attribute("id","emailLabel");
 
         emailInput = p.createElement("input", "");
-        emailInput.attribute("type", "password");
-        emailInput.attribute("name", "pass");
-        emailInput.attribute("id", "passwordField");
+        emailInput.attribute("type", "text");
+        emailInput.attribute("name", "email");
+        emailInput.attribute("id", "emailField");
         emailInput.attribute("class", "signupText");
         emailInput.parent(signupForm);
 
@@ -117,14 +117,22 @@ var signupSketch = function(p) {
         hiddenInput.attribute("id", "hiddenInput");
         hiddenInput.attribute("type", "text");
         hiddenInput.attribute("name", "func");
-        hiddenInput.attribute("value", "signupUser");
+        hiddenInput.attribute("value", "addUser");
 
         submitButton = p.createElement("input", "Sign Up!");
+        submitButton.parent(signupForm);
         submitButton.attribute("value","Sign Up!");
         submitButton.attribute("type","submit");
         submitButton.attribute("id","submitButton");
         submitButton.attribute("class","signupButton");
-        submitButton.parent(signupForm);
+        submitButton.attribute("onClick","checkSignup()");
+
+        loginIFrame = p.createElement("iframe", "");
+        loginIFrame.parent(gameCont);
+        loginIFrame.attribute("name","loginIFrame");
+        loginIFrame.attribute("id","loginIFrame");
+        loginIFrame.attribute("class","hiddenIFrame");
+        loginIFrame.attribute("src","");
     }
 
     p.windowResized = function() {
@@ -134,4 +142,36 @@ var signupSketch = function(p) {
             ambientTargets[i].height = p.windowWidth/50;
             ambientTargets[i].width = p.windowWidth/50;        }
     }
+}
+
+function checkSignup() {
+  let cd = setTimeout(function() {
+    checkSignupStatus();
+  }, 3000);
+}
+
+function checkSignupStatus() {
+  var myIframe= document.getElementById("loginIFrame");
+  var iframeDocument = (myIframe.contentWindow || myIframe.contentDocument);
+  iframeDocument = iframeDocument.document;
+  let x = iframeDocument.getElementsByTagName("pre");
+  if(x[0].innerHTML === "User Created") {
+    userCreated();
+  } else if(x[0].innerHTML === "Duplicate User") {
+    userNotCreated();
+  } else {
+    connFailed();
+  }
+}
+
+function userCreated() {
+  document.getElementById("usernameField").value = "SUCCESS";
+}
+
+function userNotCreated() {
+  document.getElementById("usernameField").value = "DUPLICATE";
+}
+
+function connFailed() {
+  document.getElementById("usernameField").value = "CONN FAIL";
 }
