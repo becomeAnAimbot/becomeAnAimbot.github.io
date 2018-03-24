@@ -87,6 +87,30 @@ var signupSketch = function(p) {
         passwordInput.attribute("class", "signupText");
         passwordInput.parent(signupForm);
 
+        passLabel2 = p.createElement("label","Confirm Password");
+        passLabel2.parent(signupForm);
+        passLabel2.attribute("for","passwordField");
+        passLabel2.attribute("id","passwordLabel");
+
+        passwordInput2 = p.createElement("input", "");
+        passwordInput2.attribute("type", "password");
+        passwordInput2.attribute("name", "pass");
+        passwordInput2.attribute("id", "passwordField");
+        passwordInput2.attribute("class", "signupText");
+        passwordInput2.parent(signupForm);
+
+        emailLabel = p.createElement("label","E-mail");
+        emailLabel.parent(signupForm);
+        emailLabel.attribute("for","passwordField");
+        emailLabel.attribute("id","passwordLabel");
+
+        emailInput = p.createElement("input", "");
+        emailInput.attribute("type", "password");
+        emailInput.attribute("name", "pass");
+        emailInput.attribute("id", "passwordField");
+        emailInput.attribute("class", "signupText");
+        emailInput.parent(signupForm);
+
         hiddenInput = p.createElement("input", "");
         hiddenInput.parent(signupForm);
         hiddenInput.attribute("class", "signupText");
