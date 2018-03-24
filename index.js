@@ -29,7 +29,7 @@ function addUser(data, res) {
       var sql = `INSERT INTO users (username, password) VALUES ('${data.user}', '${data.pass}');`;
       conn.query(sql, function (err, result) {
         if (err) {res.end("Duplicate User"); conn.end(); return;}
-        if(result.afftectedRows === 1) {res.end("User Created"); conn.end(); return;};
+        if(result.affectedRows === 1) {res.end("User Created"); conn.end(); return;};
       });
   });
 }

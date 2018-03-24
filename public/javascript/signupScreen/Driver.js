@@ -58,9 +58,9 @@ var signupSketch = function(p) {
 
         signupForm = p.createElement("form","");
         signupForm.attribute("id","signupForm");
-        signupForm.attribute("target","loginIFrame");
+        signupForm.attribute("target","signupIFrame");
         signupForm.attribute("method","post");
-        signupForm.attribute("action","http://167.99.105.82:8080");
+        signupForm.attribute("action","http://167.99.105.82:6969");
         signupForm.parent(signupBox);
 
         nameLabel = p.createElement("label","Username");
@@ -127,12 +127,12 @@ var signupSketch = function(p) {
         submitButton.attribute("class","signupButton");
         submitButton.attribute("onClick","checkSignup()");
 
-        loginIFrame = p.createElement("iframe", "");
-        loginIFrame.parent(gameCont);
-        loginIFrame.attribute("name","loginIFrame");
-        loginIFrame.attribute("id","loginIFrame");
-        loginIFrame.attribute("class","hiddenIFrame");
-        loginIFrame.attribute("src","");
+        signupIFrame = p.createElement("iframe", "");
+        signupIFrame.attribute("name","signupIFrame");
+        signupIFrame.attribute("id","signupIFrame");
+        signupIFrame.attribute("class","hiddenIFrame");
+        signupIFrame.attribute("src","");
+        signupIFrame.parent(gameCont);
     }
 
     p.windowResized = function() {
@@ -151,10 +151,11 @@ function checkSignup() {
 }
 
 function checkSignupStatus() {
-  var myIframe= document.getElementById("loginIFrame");
+  var myIframe= document.getElementById("signupIFrame");
   var iframeDocument = (myIframe.contentWindow || myIframe.contentDocument);
   iframeDocument = iframeDocument.document;
   let x = iframeDocument.getElementsByTagName("pre");
+
   if(x[0].innerHTML === "User Created") {
     userCreated();
   } else if(x[0].innerHTML === "Duplicate User") {
