@@ -11,14 +11,14 @@ var statsSketch = function(p) {
 
         p.mainScreenHtml();
 
-        for(let i = 0; i < 25; i++) {
-            t = new Target(p, p.windowWidth, p.windowHeight);
-            t.randomPlacement();
-            t.color = "Random";
-            t.show();
-            t.assignRandomSpeed(-10,10);
-            ambientTargets.push(t);
-        }
+        // for(let i = 0; i < 25; i++) {
+        //     t = new Target(p, p.windowWidth, p.windowHeight);
+        //     t.randomPlacement();
+        //     t.color = "Random";
+        //     t.show();
+        //     t.assignRandomSpeed(-10,10);
+        //     ambientTargets.push(t);
+        // }
     };
 
     p.draw = function() {
