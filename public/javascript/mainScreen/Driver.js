@@ -37,7 +37,7 @@ var mainSketch = function(p) {
         createHeader(p, gameCont);
         
         mainTitle = p.createElement("img");
-        mainTitle.attribute("src", "images/large_title.png");
+        mainTitle.attribute("src", "public/images/large_title.png");
         mainTitle.parent(gameCont);
         mainTitle.addClass("mainTitle");
 

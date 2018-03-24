@@ -1,11 +1,13 @@
 var onMainScreen = true;
 var onPriorityPractice = false;
 var onLoginScreen = false;
+var onStatScreen = false;
 var screenSwitch = true;
 
 var priSketch;
 var maiSketch;
 var logSketch;
+var staSketch;
 
 function masterFunction() {
     let cd = setInterval(function() {
@@ -25,6 +27,11 @@ function masterFunction() {
            logSketch = new p5(loginSketch);
            screenSwitch = false;
          }
+       } else if(onStatScreen) {
+           if (checkScreenSwitch()) {
+               staSketch = new p5(statsSketch);
+               screenSwitch = false;
+           }
        }
     }, 10);
 }
@@ -46,12 +53,14 @@ function clearAllSketches() {
     logSketch = null;
     priSketch = null;
     maiSketch = null;
+    staSketch = null;
 }
 
 function removeAllSketches() {
   if(logSketch != null) logSketch.remove();
   if(priSketch != null) priSketch.remove();
   if(maiSketch != null) maiSketch.remove();
+    if(staSketch != null) staSketch.remove();
 }
 
 function startPriorityGame() {
@@ -61,6 +70,7 @@ function startPriorityGame() {
     onLoginScreen = false;
     screenSwitch = true;
     onPriorityPractice = true;
+    onStatScreen = false;
 }
 
 function startMainScreen() {
@@ -70,6 +80,7 @@ function startMainScreen() {
     onLoginScreen = false;
     screenSwitch = true;
     onMainScreen = true;
+    onStatScreen = false;
 }
 
 function startLoginScreen() {
@@ -79,7 +90,19 @@ function startLoginScreen() {
   onMainScreen = false;
   screenSwitch = true;
   onLoginScreen = true;
+    onStatScreen = false;
 }
+
+function startStatScreen() {
+    clearBody();
+    removeAllSketches();
+    onPriorityPractice = false;
+    onMainScreen = false;
+    screenSwitch = true;
+    onLoginScreen = false;
+    onStatScreen = true;
+}
+
 
 function createHeader(p, gameCont) {
         mainHeader = p.createElement("div");
@@ -89,6 +112,10 @@ function createHeader(p, gameCont) {
         leftHeader = p.createElement("div");
         leftHeader.parent(mainHeader);
         leftHeader.id("leftHeader");
+
+        rightHeader = p.createElement("div");
+        rightHeader.parent(mainHeader);
+        rightHeader.id("rightHeader");
 
         homeButton = p.createElement("button","Home");
         homeButton.parent(leftHeader);
@@ -100,16 +127,21 @@ function createHeader(p, gameCont) {
         searchBar.id("searchBar");
 
         magGlass = p.createElement("img");
-        magGlass.attribute("src", "images/magnifyingGlass.png");
+        magGlass.attribute("src", "public/images/magnifyingGlass.png");
         magGlass.style("width","25px");
         magGlass.style("padding-left","0.5em")
         magGlass.parent(leftHeader);
         magGlass.id("magGlass");
 
         signInButton = p.createElement("button","Sign in");
-        signInButton.parent(mainHeader);
+        signInButton.parent(rightHeader);
         signInButton.id("signIn");
         signInButton.attribute("onclick","startLoginScreen()");
+
+        statsButton = p.createElement("button", "Stats");
+        statsButton.parent(rightHeader);
+        statsButton.id("statsButton");
+        statsButton.attribute("onclick", "startStatScreen()");
 }
 
 masterFunction();
