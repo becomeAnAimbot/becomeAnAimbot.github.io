@@ -38,7 +38,7 @@ var statsSketch = function(p) {
         createHeader(p, gameCont);
 
         mainTitle = p.createElement("img");
-        mainTitle.attribute("src", "images/large_title.png");
+        mainTitle.attribute("src", "images/small_title.png");
         mainTitle.parent(gameCont);
         mainTitle.addClass("mainTitle");
 
