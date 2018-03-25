@@ -1,37 +1,60 @@
 .signupBox {
   margin-top: 5%;
-  width: 50%;
-  margin-left: 25%;
+  width: 30%;
+  margin-left: 35%;
   font-size: 125%;
   display: block;
   text-align: center;
-  border-style: solid;
+  box-shadow: 0.7em 0.7em 0.6em #999999;
 }
 
 .signupText {
-  width: 30%;
-  margin-left: 35%;
+  width: 80%;
+  margin-left: 10%;
   display: block;
+  border: none;
+  border-bottom: 0.15em solid #FFA500;
+  height: 1.75em;
+  font-size: 1.05em;
+  margin-bottom: 15%;
+  text-align: center;
+}
+
+.signupText:focus {
+  border-bottom: 0.2em solid #FFA500;
+  outline: none;
 }
 
 .signupButton {
-  width: 30%;
-  margin-left: 35%;
+  width: 100%;
   display: block;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  background-color: #FFFFFF;
+  border: none;
+  margin: 0;
+  padding: 0.5em 0.5em;
+  margin-top: 15%;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
 }
 
-#usernameField {
-  margin-bottom: 5%;
-}
-
-#passwordField {
-  margin-bottom: 5%;
+.signupButton:hover {
+  background-color: #FFA500;
+  cursor: pointer;
 }
 
 #signupForm {
-  padding: 5% 0%;
+  padding: 0%;
+  padding-top: 5%;
+
 }
 
 #hiddenInput {
   display:none;
 }
+

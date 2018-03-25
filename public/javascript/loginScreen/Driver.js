@@ -99,6 +99,7 @@ var loginSketch = function(p) {
         submitButton.attribute("type","submit");
         submitButton.attribute("id","submitButton");
         submitButton.attribute("class","loginButton");
+        submitButton.attribute("value","Sign in");
         submitButton.attribute("onClick","checkLogin()");
         submitButton.parent(loginForm);
 

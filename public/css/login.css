@@ -1,7 +1,7 @@
 .loginBox {
   margin-top: 5%;
-  width: 20%;
-  margin-left: 40%;
+  width: 30%;
+  margin-left: 35%;
   font-size: 125%;
   display: block;
   text-align: center;
@@ -9,8 +9,8 @@
 }
 
 .loginText {
-  width: 90%;
-  margin-left: 5%;
+  width: 80%;
+  margin-left: 10%;
   display: block;
   border: none;
   border-bottom: 0.15em solid #FFA500;
