@@ -107,6 +107,7 @@ var prioritySketch = function(p) {
             p.priorityVariables.targets[0].isCurrentTarget = true;
             p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
+            p.priorityVariables.targets[i].isForGame = true;
         }
     };
     

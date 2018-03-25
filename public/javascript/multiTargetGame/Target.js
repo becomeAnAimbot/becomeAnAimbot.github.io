@@ -7,6 +7,7 @@ function Target(p, widthBound, heightBound) {
     this.width = p.windowWidth/50;
     this.height = p.windowWidth/50;
     this.isCurrentTarget = false;
+    this.isForGame = false;
 
     this.xBound = widthBound;
     this.yBound = heightBound;
@@ -58,7 +59,7 @@ function Target(p, widthBound, heightBound) {
     this.randomPlacement = function() {
         this.x = this.pickRandomX();
         this.y = this.pickRandomY();
-        if(this.y <= document.getElementById('headerID').offsetHeight) this.y += document.getElementById('headerID').offsetHeight;
+        if(this.y <= document.getElementById('headerID').offsetHeight && !this.isForGame) this.y += document.getElementById('headerID').offsetHeight;
     }
 
     this.move = function(x, y) {
@@ -79,7 +80,8 @@ function Target(p, widthBound, heightBound) {
     }
 
     this.checkTopHit = function() {
-        if(this.y <= document.getElementById("headerID").offsetHeight) return true;
+        if(this.y <= document.getElementById("headerID").offsetHeight && !this.isForGame) return true;
+        if(this.y <= 0) return true;
         return false;
     }
 
