@@ -5,7 +5,7 @@
   font-size: 125%;
   display: block;
   text-align: center;
-  border-style: solid;
+  box-shadow: 0.7em 0.7em 0.6em #999999;
 }
 
 .loginText {

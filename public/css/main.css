@@ -28,9 +28,16 @@
 }
 
 #searchBar {
-    background-color: white;;
-    border: 0.2em solid black;
+    background-color: white;
+    border: none;
+    border-bottom: 0.15em solid #FFA500;
     margin-left: 0.5em;
+    height: 1.75em;
+}
+
+#searchBar:focus {
+    border-bottom: 0.2em solid #FFA500;
+    outline:none;
 }
 
 #homeButton, #signIn, #signUp, #statsButton {
@@ -40,11 +47,11 @@
     font-size: 1.5em;
     background-color: #FFFFFF;
     border: none;
+    padding: 0.5em 0.5em;
     -webkit-transition: background-color 0.5s ease-out;
     -moz-transition: background-color 0.5s ease-out;
     -o-transition: background-color 0.5s ease-out;
     transition: background-color 0.5s ease-out;
-    padding: 0.5em 0.5em;
 }
 
 #signIn:hover {
