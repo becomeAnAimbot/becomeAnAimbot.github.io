@@ -58,6 +58,7 @@ function Target(p, widthBound, heightBound) {
     this.randomPlacement = function() {
         this.x = this.pickRandomX();
         this.y = this.pickRandomY();
+        if(this.y <= document.getElementById('headerID').offsetHeight) this.y += document.getElementById('headerID').offsetHeight;
     }
 
     this.move = function(x, y) {
@@ -78,7 +79,7 @@ function Target(p, widthBound, heightBound) {
     }
 
     this.checkTopHit = function() {
-        if(this.y <= 0) return true;
+        if(this.y <= document.getElementById("headerID").offsetHeight) return true;
         return false;
     }
 

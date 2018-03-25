@@ -132,6 +132,7 @@ function createHeader(p, gameCont) {
         mainHeader = p.createElement("div");
         mainHeader.parent(gameCont);
         mainHeader.addClass("mainHeader");
+        mainHeader.attribute("id","headerID");
 
         leftHeader = p.createElement("div");
         leftHeader.parent(mainHeader);
