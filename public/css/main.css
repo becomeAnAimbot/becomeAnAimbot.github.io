@@ -74,6 +74,22 @@
     background-color: #FFA500;
 }
 
+#homeButton:focus {
+    outline:none;
+}
+
+#statsButton:focus {
+    outline:none;
+}
+
+#signUp:focus {
+    outline:none;
+}
+
+#signIn:focus {
+    outline:none;
+}
+
 .mainTitle {
     display: block;
     margin-top: 2.5%;
