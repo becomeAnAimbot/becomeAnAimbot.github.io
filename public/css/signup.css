@@ -6,6 +6,7 @@
   display: block;
   text-align: center;
   box-shadow: 0.7em 0.7em 0.6em #999999;
+  margin-bottom: 5%;
 }
 
 .signupText {
@@ -16,7 +17,7 @@
   border-bottom: 0.15em solid #FFA500;
   height: 1.75em;
   font-size: 1.05em;
-  margin-bottom: 15%;
+  margin-bottom: 5%;
   text-align: center;
 }
 
