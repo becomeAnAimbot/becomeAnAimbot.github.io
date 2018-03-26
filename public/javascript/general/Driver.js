@@ -5,6 +5,8 @@ var onSignupScreen = false;
 var onStatScreen = false;
 var screenSwitch = true;
 
+var isLoggedIn = checkLoggedIn();
+
 var priSketch;
 var maiSketch;
 var logSketch;
@@ -129,49 +131,123 @@ function startStatScreen() {
 
 
 function createHeader(p, gameCont) {
-        mainHeader = p.createElement("div");
-        mainHeader.parent(gameCont);
-        mainHeader.addClass("mainHeader");
-        mainHeader.attribute("id","headerID");
+  checkLoggedIn();
+  if(!isLoggedIn) createdNotLoggedInHeader(p, gameCont);
+  else createLoggedInHeader(p, gameCont);
+}
 
-        leftHeader = p.createElement("div");
-        leftHeader.parent(mainHeader);
-        leftHeader.id("leftHeader");
+function createLoggedInHeader(p, gameCont) {
+  mainHeader = p.createElement("div");
+  mainHeader.parent(gameCont);
+  mainHeader.addClass("mainHeader");
+  mainHeader.attribute("id","headerID");
 
-        rightHeader = p.createElement("div");
-        rightHeader.parent(mainHeader);
-        rightHeader.id("rightHeader");
+  leftHeader = p.createElement("div");
+  leftHeader.parent(mainHeader);
+  leftHeader.id("leftHeader");
 
-        homeButton = p.createElement("button","Home");
-        homeButton.parent(leftHeader);
-        homeButton.id("homeButton");
-        homeButton.attribute("onclick","startMainScreen()");
+  rightHeader = p.createElement("div");
+  rightHeader.parent(mainHeader);
+  rightHeader.id("rightHeader");
 
-        searchBar = p.createInput();
-        searchBar.parent(leftHeader);
-        searchBar.id("searchBar");
+  homeButton = p.createElement("button","Home");
+  homeButton.parent(leftHeader);
+  homeButton.id("homeButton");
+  homeButton.attribute("onclick","startMainScreen()");
 
-        magGlass = p.createElement("img");
-        magGlass.attribute("src", "images/magnifyingGlass.png");
-        magGlass.style("width","25px");
-        magGlass.style("padding-left","0.5em")
-        magGlass.parent(leftHeader);
-        magGlass.id("magGlass");
+  searchBar = p.createInput();
+  searchBar.parent(leftHeader);
+  searchBar.id("searchBar");
 
-        signInButton = p.createElement("button","Sign in");
-        signInButton.parent(rightHeader);
-        signInButton.id("signIn");
-        signInButton.attribute("onclick","startLoginScreen()");
+  magGlass = p.createElement("img");
+  magGlass.attribute("src", "images/magnifyingGlass.png");
+  magGlass.style("width","25px");
+  magGlass.style("padding-left","0.5em");
+  magGlass.parent(leftHeader);
+  magGlass.id("magGlass");
 
-        signUpButton = p.createElement("button","Register");
-        signUpButton.parent(rightHeader);
-        signUpButton.id("signUp");
-        signUpButton.attribute("onclick","startSignupScreen()");
+  signInButton = p.createElement("button", "Hello, " + getUsername());
+  signInButton.parent(rightHeader);
+  signInButton.id("signIn");
+  signInButton.attribute("onclick","startLoginScreen()");
+}
 
-        statsButton = p.createElement("button", "Stats");
-        statsButton.parent(rightHeader);
-        statsButton.id("statsButton");
-        statsButton.attribute("onclick", "startStatScreen()");
+function createdNotLoggedInHeader(p, gameCont) {
+  mainHeader = p.createElement("div");
+  mainHeader.parent(gameCont);
+  mainHeader.addClass("mainHeader");
+  mainHeader.attribute("id","headerID");
+
+  leftHeader = p.createElement("div");
+  leftHeader.parent(mainHeader);
+  leftHeader.id("leftHeader");
+
+  rightHeader = p.createElement("div");
+  rightHeader.parent(mainHeader);
+  rightHeader.id("rightHeader");
+
+  homeButton = p.createElement("button","Home");
+  homeButton.parent(leftHeader);
+  homeButton.id("homeButton");
+  homeButton.attribute("onclick","startMainScreen()");
+
+  searchBar = p.createInput();
+  searchBar.parent(leftHeader);
+  searchBar.id("searchBar");
+
+  magGlass = p.createElement("img");
+  magGlass.attribute("src", "images/magnifyingGlass.png");
+  magGlass.style("width","25px");
+  magGlass.style("padding-left","0.5em");
+  magGlass.parent(leftHeader);
+  magGlass.id("magGlass");
+
+  signInButton = p.createElement("button","Sign in");
+  signInButton.parent(rightHeader);
+  signInButton.id("signIn");
+  signInButton.attribute("onclick","startLoginScreen()");
+
+  signUpButton = p.createElement("button","Register");
+  signUpButton.parent(rightHeader);
+  signUpButton.id("signUp");
+  signUpButton.attribute("onclick","startSignupScreen()");
+
+  statsButton = p.createElement("button", "Stats");
+  statsButton.parent(rightHeader);
+  statsButton.id("statsButton");
+  statsButton.attribute("onclick", "startStatScreen()");
+}
+
+function checkLoggedIn() {
+  if(checkCookie("aimbotUser")) isLoggedIn = true;
+  else isLoggedIn = false;
+}
+
+function checkCookie(cname) {
+    var username = getCookie(cname);
+    if (username != "") return true;
+    return false;
+}
+
+function getUsername() {
+  return getCookie("aimbotUser");
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+      }
+  }
+  return "";
 }
 
 masterFunction();
+
