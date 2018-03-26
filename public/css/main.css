@@ -40,7 +40,7 @@
     outline:none;
 }
 
-#homeButton, #signIn, #signUp, #statsButton {
+.headerButton {
     font-family: 'Oswald', sans-serif;
     text-decoration: none;
     text-align: center;
@@ -54,39 +54,12 @@
     transition: background-color 0.5s ease-out;
 }
 
-#signIn:hover {
+.headerButton:hover {
     background-color: #FFA500;
     cursor: pointer;
 }
 
-#signUp:hover {
-    background-color: #FFA500;
-    cursor: pointer;
-}
-
-#homeButton:hover {
-    background-color: #FFA500;
-    cursor: pointer;
-}
-
-#statsButton:hover {
-    cursor: pointer;    
-    background-color: #FFA500;
-}
-
-#homeButton:focus {
-    outline:none;
-}
-
-#statsButton:focus {
-    outline:none;
-}
-
-#signUp:focus {
-    outline:none;
-}
-
-#signIn:focus {
+.headerButton:focus {
     outline:none;
 }
 

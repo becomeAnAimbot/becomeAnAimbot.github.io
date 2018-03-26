@@ -154,6 +154,7 @@ function createLoggedInHeader(p, gameCont) {
   homeButton.parent(leftHeader);
   homeButton.id("homeButton");
   homeButton.attribute("onclick","startMainScreen()");
+  homeButton.attribute("class","headerButton");
 
   searchBar = p.createInput();
   searchBar.parent(leftHeader);
@@ -166,10 +167,11 @@ function createLoggedInHeader(p, gameCont) {
   magGlass.parent(leftHeader);
   magGlass.id("magGlass");
 
-  signInButton = p.createElement("button", "Hello, " + getUsername());
-  signInButton.parent(rightHeader);
-  signInButton.id("signIn");
-  signInButton.attribute("onclick","startLoginScreen()");
+  userButton = p.createElement("button", "Hello, " + getUsername());
+  userButton.parent(rightHeader);
+  userButton.id("signIn");
+  userButton.attribute("onclick","startLoginScreen()");
+  userButton.attribute("class","headerButton");
 }
 
 function createdNotLoggedInHeader(p, gameCont) {
@@ -190,6 +192,7 @@ function createdNotLoggedInHeader(p, gameCont) {
   homeButton.parent(leftHeader);
   homeButton.id("homeButton");
   homeButton.attribute("onclick","startMainScreen()");
+  homeButton.attribute("class","headerButton");
 
   searchBar = p.createInput();
   searchBar.parent(leftHeader);
@@ -206,16 +209,20 @@ function createdNotLoggedInHeader(p, gameCont) {
   signInButton.parent(rightHeader);
   signInButton.id("signIn");
   signInButton.attribute("onclick","startLoginScreen()");
+  signInButton.attribute("class","headerButton");
+
 
   signUpButton = p.createElement("button","Register");
   signUpButton.parent(rightHeader);
   signUpButton.id("signUp");
   signUpButton.attribute("onclick","startSignupScreen()");
+  signUpButton.attribute("class","headerButton");
 
   statsButton = p.createElement("button", "Stats");
   statsButton.parent(rightHeader);
   statsButton.id("statsButton");
   statsButton.attribute("onclick", "startStatScreen()");
+  statsButton.attribute("class","headerButton");
 }
 
 function checkLoggedIn() {
