@@ -31,11 +31,27 @@ var profileSketch = function(p) {
     }
   };
 
+  p.chooseRandomColor = function() {
+    return randomColors[p.getRandomInt(randomColors.length)];
+  }
+
+  p.getRandomInt = function(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
   p.profileScreenHtml = function() {
     gameCont = p.createElement("div","");
     gameCont.id("bodyContainer");
 
     createHeader(p, gameCont);
+  }
+
+  p.windowResized = function() {
+      p.resizeCanvas(p.windowWidth, p.windowHeight);
+      for(let i = 0; i< ambientTargets.length; i++) {
+          ambientTargets[i].updateTargetBounds(p.windowWidth, p.windowHeight);
+          ambientTargets[i].height = p.windowWidth/50;
+          ambientTargets[i].width = p.windowWidth/50;        }
   }
 
 }
