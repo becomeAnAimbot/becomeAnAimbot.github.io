@@ -3,6 +3,7 @@ var onPriorityPractice = false;
 var onLoginScreen = false;
 var onSignupScreen = false;
 var onStatScreen = false;
+var onProfileScreen = false;
 var screenSwitch = true;
 
 var isLoggedIn = checkLoggedIn();
@@ -12,6 +13,7 @@ var maiSketch;
 var logSketch;
 var sigSketch;
 var staSketch;
+var proSketch;
 
 function masterFunction() {
     let cd = setInterval(function() {
@@ -41,6 +43,11 @@ function masterFunction() {
                staSketch = new p5(statsSketch);
                screenSwitch = false;
            }
+       } else if(onProfileScreen) {
+         if(checkScreenSwitch()) {
+           proSketch = new p5(profileSketch);
+           screenSwitch = false;
+         }
        }
     }, 10);
 }
@@ -64,6 +71,7 @@ function clearAllSketches() {
     priSketch = null;
     maiSketch = null;
     staSketch = null;
+    proSketch = null;
 }
 
 function removeAllSketches() {
@@ -72,6 +80,7 @@ function removeAllSketches() {
   if(priSketch != null) priSketch.remove();
   if(maiSketch != null) maiSketch.remove();
   if(staSketch != null) staSketch.remove();
+  if(proSketch != null) proSketch.remove();
 }
 
 function startPriorityGame() {
@@ -80,6 +89,7 @@ function startPriorityGame() {
     onMainScreen = false;
     onLoginScreen = false;
     onSignupScreen = false;
+    onProfileScreen = false;
     screenSwitch = true;
     onPriorityPractice = true;
     onStatScreen = false;
@@ -93,6 +103,7 @@ function startMainScreen() {
     onSignupScreen = false;
     screenSwitch = true;
     onMainScreen = true;
+    onProfileScreen = false;
     onStatScreen = false;
 }
 
@@ -104,6 +115,7 @@ function startLoginScreen() {
   screenSwitch = true;
   onLoginScreen = true;
   onSignupScreen = false;
+  onProfileScreen = false;
   onStatScreen = false;
 }
 
@@ -115,6 +127,7 @@ function startSignupScreen() {
   screenSwitch = true;
   onLoginScreen = false;
   onSignupScreen = true;
+  onProfileScreen = false;
   onStatScreen = false;
 }
 
@@ -126,7 +139,20 @@ function startStatScreen() {
     screenSwitch = true;
     onLoginScreen = false;
     onSignupScreen = false;
+    onProfileScreen = false;
     onStatScreen = true;
+}
+
+function startProfileScreen() {
+    clearBody();
+    removeAllSketches();
+    onMainScreen = false;
+    onLoginScreen = false;
+    onSignupScreen = false;
+    screenSwitch = true;
+    onPriorityPractice = false;
+    onStatScreen = false;
+    onProfileScreen = true;
 }
 
 
@@ -187,6 +213,7 @@ function createLoggedInHeader(p, gameCont) {
 
   dropdownListItemTwo = p.createElement("p","My Dashboard");
   dropdownListItemTwo.parent(dropdown);
+  dropdownListItemTwo.attribute("onclick","startProfileScreen()");
 
   dropdownListItemThree = p.createElement("p","Sign Out");
   dropdownListItemThree.parent(dropdown);
@@ -275,4 +302,3 @@ function signUserOut() {
 }
 
 masterFunction();
-
