@@ -96,15 +96,32 @@
 }
 
 .dropdownMenu {
-  position: absolute;
-  right: 7em;
-  width: 2em;
   display: none;
+  position: absolute;
+  right: 0em;
+  box-shadow: -0.1em 0.1em 0.2em #AAAAAA;
 }
 
-#userDropdownButton:hover {
-
+.dropdownMenu p {
+  margin: 0;
+  background-color: #FFFFFF;
+  display: block;
+  padding: 0.5em 4em 0.5em 0.5em;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
 }
+
+.dropdownMenu p:hover {
+  cursor: pointer;
+  background-color: #FFA500;
+}
+
+#dropdownContainer:hover .dropdownMenu {
+  display: block;
+}
+
 
 ::-webkit-scrollbar {
     width: 1em;

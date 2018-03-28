@@ -167,26 +167,30 @@ function createLoggedInHeader(p, gameCont) {
   magGlass.parent(leftHeader);
   magGlass.id("magGlass");
 
+  dropdownContainer = p.createElement("div","");
+  dropdownContainer.attribute("id","dropdownContainer");
+  dropdownContainer.parent(rightHeader);
+
   userButton = p.createElement("button", "Hello, " + getUsername());
-  userButton.parent(rightHeader);
+  userButton.parent(dropdownContainer);
   userButton.id("userDropdownButton");
   userButton.attribute("onclick","startLoginScreen()");
   userButton.attribute("class","headerButton");
 
   dropdown = p.createElement("div","");
   dropdown.attribute("class","dropdownMenu");
-  dropdown.parent(gameCont);
+  dropdown.parent(dropdownContainer);
 
-  dropdownList = p.createElement("ul","");
-  dropdownList.parent(dropdown);
+  dropdownListItemOne = p.createElement("p", "Stats");
+  dropdownListItemOne.parent(dropdown);
+  dropdownListItemOne.attribute("onclick","startStatScreen()");
 
-  dropdownListItemOne = p.createElement("li","ONE");
-  dropdownListItemOne.parent(dropdownList);
-  dropdownListItemTwo = p.createElement("li","TWO");
-  dropdownListItemTwo.parent(dropdownList);
-  dropdownListItemThree = p.createElement("li","THREE");
-  dropdownListItemThree.parent(dropdownList);
+  dropdownListItemTwo = p.createElement("p","My Dashboard");
+  dropdownListItemTwo.parent(dropdown);
 
+  dropdownListItemThree = p.createElement("p","Sign Out");
+  dropdownListItemThree.parent(dropdown);
+  dropdownListItemThree.attribute("onclick","signUserOut()");
 }
 
 function createdNotLoggedInHeader(p, gameCont) {
@@ -232,12 +236,6 @@ function createdNotLoggedInHeader(p, gameCont) {
   signUpButton.id("signUp");
   signUpButton.attribute("onclick","startSignupScreen()");
   signUpButton.attribute("class","headerButton");
-
-  statsButton = p.createElement("button", "Stats");
-  statsButton.parent(rightHeader);
-  statsButton.id("statsButton");
-  statsButton.attribute("onclick", "startStatScreen()");
-  statsButton.attribute("class","headerButton");
 }
 
 function checkLoggedIn() {
@@ -269,6 +267,11 @@ function getCookie(cname) {
       }
   }
   return "";
+}
+
+function signUserOut() {
+  document.cookie = "aimbotUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  startMainScreen();
 }
 
 masterFunction();
