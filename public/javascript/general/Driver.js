@@ -169,9 +169,24 @@ function createLoggedInHeader(p, gameCont) {
 
   userButton = p.createElement("button", "Hello, " + getUsername());
   userButton.parent(rightHeader);
-  userButton.id("signIn");
+  userButton.id("userDropdownButton");
   userButton.attribute("onclick","startLoginScreen()");
   userButton.attribute("class","headerButton");
+
+  dropdown = p.createElement("div","");
+  dropdown.attribute("class","dropdownMenu");
+  dropdown.parent(gameCont);
+
+  dropdownList = p.createElement("ul","");
+  dropdownList.parent(dropdown);
+
+  dropdownListItemOne = p.createElement("li","ONE");
+  dropdownListItemOne.parent(dropdownList);
+  dropdownListItemTwo = p.createElement("li","TWO");
+  dropdownListItemTwo.parent(dropdownList);
+  dropdownListItemThree = p.createElement("li","THREE");
+  dropdownListItemThree.parent(dropdownList);
+
 }
 
 function createdNotLoggedInHeader(p, gameCont) {
