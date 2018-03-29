@@ -4,6 +4,7 @@ var onLoginScreen = false;
 var onSignupScreen = false;
 var onStatScreen = false;
 var onProfileScreen = false;
+var onGuideScreen = false;
 var screenSwitch = true;
 
 var isLoggedIn = checkLoggedIn();
@@ -14,6 +15,7 @@ var logSketch;
 var sigSketch;
 var staSketch;
 var proSketch;
+var guiSketch;
 
 function masterFunction() {
     let cd = setInterval(function() {
@@ -48,6 +50,11 @@ function masterFunction() {
            proSketch = new p5(profileSketch);
            screenSwitch = false;
          }
+       } else if(onGuideScreen) {
+         if(checkScreenSwitch()) {
+           guiSketch = new p5(guideSketch);
+           screenSwitch = false;
+         }
        }
     }, 10);
 }
@@ -72,6 +79,7 @@ function clearAllSketches() {
     maiSketch = null;
     staSketch = null;
     proSketch = null;
+    guiSketch = null;
 }
 
 function removeAllSketches() {
@@ -81,6 +89,7 @@ function removeAllSketches() {
   if(maiSketch != null) maiSketch.remove();
   if(staSketch != null) staSketch.remove();
   if(proSketch != null) proSketch.remove();
+  if(guiSketch != null) guiSketch.remove();
 }
 
 function startPriorityGame() {
@@ -93,6 +102,7 @@ function startPriorityGame() {
     screenSwitch = true;
     onPriorityPractice = true;
     onStatScreen = false;
+    onGuideScreen = false;
 }
 
 function startMainScreen() {
@@ -105,30 +115,33 @@ function startMainScreen() {
     onMainScreen = true;
     onProfileScreen = false;
     onStatScreen = false;
+    onGuideScreen = false;
 }
 
 function startLoginScreen() {
-  clearBody();
-  removeAllSketches();
-  onPriorityPractice = false;
-  onMainScreen = false;
-  screenSwitch = true;
-  onLoginScreen = true;
-  onSignupScreen = false;
-  onProfileScreen = false;
-  onStatScreen = false;
+    clearBody();
+    removeAllSketches();
+    onPriorityPractice = false;
+    onMainScreen = false;
+    screenSwitch = true;
+    onLoginScreen = true;
+    onSignupScreen = false;
+    onProfileScreen = false;
+    onStatScreen = false;
+    onGuideScreen = false;
 }
 
 function startSignupScreen() {
-  clearBody();
-  removeAllSketches();
-  onPriorityPractice = false;
-  onMainScreen = false;
-  screenSwitch = true;
-  onLoginScreen = false;
-  onSignupScreen = true;
-  onProfileScreen = false;
-  onStatScreen = false;
+    clearBody();
+    removeAllSketches();
+    onPriorityPractice = false;
+    onMainScreen = false;
+    screenSwitch = true;
+    onLoginScreen = false;
+    onSignupScreen = true;
+    onProfileScreen = false;
+    onStatScreen = false;
+    onGuideScreen = false;
 }
 
 function startStatScreen() {
@@ -141,6 +154,7 @@ function startStatScreen() {
     onSignupScreen = false;
     onProfileScreen = false;
     onStatScreen = true;
+    onGuideScreen = false;
 }
 
 function startProfileScreen() {
@@ -153,6 +167,20 @@ function startProfileScreen() {
     onPriorityPractice = false;
     onStatScreen = false;
     onProfileScreen = true;
+    onGuideScreen = false;
+}
+
+function startGuideScreen() {
+    clearBody();
+    removeAllSketches();
+    onMainScreen = false;
+    onLoginScreen = false;
+    onSignupScreen = false;
+    screenSwitch = true;
+    onPriorityPractice = false;
+    onStatScreen = false;
+    onProfileScreen = false;
+    onGuideScreen = true;
 }
 
 
@@ -206,7 +234,7 @@ function createLoggedInHeader(p, gameCont) {
   dropdown = p.createElement("div","");
   dropdown.attribute("class","dropdownMenu");
   dropdown.parent(dropdownContainer);
-
+    
   dropdownListItemOne = p.createElement("p", "Stats");
   dropdownListItemOne.parent(dropdown);
   dropdownListItemOne.attribute("onclick","startStatScreen()");
@@ -215,9 +243,13 @@ function createLoggedInHeader(p, gameCont) {
   dropdownListItemTwo.parent(dropdown);
   dropdownListItemTwo.attribute("onclick","startProfileScreen()");
 
-  dropdownListItemThree = p.createElement("p","Sign Out");
+  dropdownListItemThree = p.createElement("p","Guide");
   dropdownListItemThree.parent(dropdown);
-  dropdownListItemThree.attribute("onclick","signUserOut()");
+  dropdownListItemThree.attribute("onclick","startGuideScreen()");
+    
+  dropdownListItemFour = p.createElement("p","Sign Out");
+  dropdownListItemFour.parent(dropdown);
+  dropdownListItemFour.attribute("onclick","signUserOut()");
 }
 
 function createdNotLoggedInHeader(p, gameCont) {
@@ -251,12 +283,17 @@ function createdNotLoggedInHeader(p, gameCont) {
   magGlass.parent(leftHeader);
   magGlass.id("magGlass");
 
+  guideButton = p.createElement("button", "Guide");
+  guideButton.parent(rightHeader);
+  guideButton.id("guideButton");
+  guideButton.attribute("onclick","startGuideScreen()");
+  guideButton.attribute("class","headerButton");
+    
   signInButton = p.createElement("button","Sign in");
   signInButton.parent(rightHeader);
   signInButton.id("signIn");
   signInButton.attribute("onclick","startLoginScreen()");
   signInButton.attribute("class","headerButton");
-
 
   signUpButton = p.createElement("button","Register");
   signUpButton.parent(rightHeader);
