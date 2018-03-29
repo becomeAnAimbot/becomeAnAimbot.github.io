@@ -44,6 +44,40 @@ var profileSketch = function(p) {
     gameCont.id("bodyContainer");
 
     createHeader(p, gameCont);
+
+    mainTitle = p.createElement("img");
+    mainTitle.attribute("src", "images/small_title.png");
+    mainTitle.parent(gameCont);
+    mainTitle.addClass("mainTitle");
+
+
+    profileCont = p.createElement("div","");
+    profileCont.parent(gameCont);
+    profileCont.attribute("id","profileContainer");
+
+    profileImage = p.createElement("img","");
+    profileImage.attribute("src","images/profile.jpg");
+    profileImage.parent(profileCont);
+
+    profileMessage = p.createElement("p","Looking good " + getUsername() + "!");
+    profileMessage.parent(profileCont);
+    profileMessage.attribute("class", "profileMessage");
+
+    changePic = p.createElement("p", "Upload Profile Picture");
+    changePic.parent(profileCont);
+    changePic.attribute("class","accountButton");
+    changePic.attribute("onclick","showChangePicture()");
+
+    changePass = p.createElement("p", "Change Password");
+    changePass.parent(profileCont);
+    changePass.attribute("class","accountButton");
+    changePass.attribute("onclick","showChangePassword()");
+
+    deleteAccount = p.createElement("p","Delete Account");
+    deleteAccount.parent(profileCont);
+    deleteAccount.attribute("class","accountButton");
+    deleteAccount.attribute("onclick","showDeleteAccount()");
+
   }
 
   p.windowResized = function() {
@@ -53,5 +87,17 @@ var profileSketch = function(p) {
           ambientTargets[i].height = p.windowWidth/50;
           ambientTargets[i].width = p.windowWidth/50;        }
   }
+
+}
+
+function showDeleteAccount() {
+
+}
+
+function showChangePassword() {
+
+}
+
+function showChangePicture() {
 
 }

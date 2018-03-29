@@ -1,0 +1,33 @@
+#profileContainer {
+  position: fixed;
+  left: 0;
+  background-color: #FFFFFF;
+  box-shadow: 0.6em 0.6em 0.7em #CCCCCC;
+  margin-top: 2%
+}
+
+#profileContainer img {
+  margin: 0;
+  padding: 0;
+}
+
+.accountButton {
+  width: 94%;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+  margin: 0;
+  padding: 1em 0em;
+  padding-left: 6%;
+}
+
+.accountButton:hover {
+  cursor: pointer;
+  background-color: #FFA500 
+}
+
+.profileMessage {
+  text-align: center;
+  width: 100%;
+}

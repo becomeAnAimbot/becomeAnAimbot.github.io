@@ -234,7 +234,7 @@ function createLoggedInHeader(p, gameCont) {
   dropdown = p.createElement("div","");
   dropdown.attribute("class","dropdownMenu");
   dropdown.parent(dropdownContainer);
-    
+
   dropdownListItemOne = p.createElement("p", "Stats");
   dropdownListItemOne.parent(dropdown);
   dropdownListItemOne.attribute("onclick","startStatScreen()");
@@ -246,7 +246,7 @@ function createLoggedInHeader(p, gameCont) {
   dropdownListItemThree = p.createElement("p","Guide");
   dropdownListItemThree.parent(dropdown);
   dropdownListItemThree.attribute("onclick","startGuideScreen()");
-    
+
   dropdownListItemFour = p.createElement("p","Sign Out");
   dropdownListItemFour.parent(dropdown);
   dropdownListItemFour.attribute("onclick","signUserOut()");
