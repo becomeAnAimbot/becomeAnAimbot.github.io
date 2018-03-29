@@ -121,9 +121,32 @@ var loginSketch = function(p) {
 }
 
 function checkLogin() {
+  createLoginFeedback();
   let cd = setTimeout(function() {
     checkLoginStatus();
   }, 3000);
+}
+
+function createLoginFeedback() {
+  ele = document.getElementById("bodyContainer");
+
+  progress = document.createElement("div");
+  ele.appendChild(progress);
+  progress.setAttribute("id", "progressContainer")
+
+  bar = document.createElement("div");
+  progress.appendChild(bar);
+  bar.setAttribute("id", "progressBar");
+
+  let op = 1;
+  let cd = setInterval(function() {
+    if(op >= 99) {
+      clearInterval(cd);
+    } else {
+      op += 1.5;
+      bar.style.width = op + "%";
+    }
+  }, 30);
 }
 
 function checkLoginStatus() {

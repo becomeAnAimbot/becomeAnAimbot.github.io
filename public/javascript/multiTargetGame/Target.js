@@ -16,12 +16,12 @@ function Target(p, widthBound, heightBound) {
     this.ySpeed;
 
     this.show = function() {
-        if(this.color == undefined) p.fill(0);
+        if(this.color == undefined) p.fill('#32A8E9');
         else if(this.color != "Random") p.fill(this.color);
         else this.assignRandomColor();
         p.noStroke();
         if(this.isCurrentTarget) {
-            p.fill(0, 255, 0);
+            p.fill('#FFA500');
         }
         p.ellipse(this.x, this.y, this.width, this.height);
         this.shot = false;

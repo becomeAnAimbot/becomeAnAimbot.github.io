@@ -228,7 +228,7 @@ function createLoggedInHeader(p, gameCont) {
   userButton = p.createElement("button", "Hello, " + getUsername());
   userButton.parent(dropdownContainer);
   userButton.id("userDropdownButton");
-  userButton.attribute("onclick","startLoginScreen()");
+  userButton.style("cursor", "default");
   userButton.attribute("class","headerButton");
 
   dropdown = p.createElement("div","");
