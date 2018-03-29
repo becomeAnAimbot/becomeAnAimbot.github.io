@@ -40,6 +40,11 @@ var prioritySketch = function(p) {
             p.noLoop();
             return;
         } else {
+            if(p.mouseY < 0 || p.mouseY > p.windowHeight/1.5) {
+              p.background('#f2f2f2');
+              p.moveTargets();
+              return;
+            }
             if(p.priorityVariables.alreadyShooting && !p.mouseIsPressed) {
                     p.priorityVariables.alreadyShooting = false;
             }

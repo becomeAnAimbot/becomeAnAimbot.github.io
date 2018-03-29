@@ -49,6 +49,7 @@ body {
   color: #FFFFFF;
   order: none;
   box-shadow: 0.3em 0.3em 0.2em #999999;
+  font-weight: normal;
 }
 
 .instructionsButton:hover {
@@ -64,6 +65,7 @@ body {
   color: #FFFFFF;
 	display: none;
   box-shadow: 0.3em 0.3em 0.2em #999999;
+  font-weight: normal;
 }
 
 .hideInstructionsButton:hover {
@@ -78,6 +80,7 @@ body {
 }
 
 .priorityTargetButton {
+    font-family: 'Oswald', sans-serif;
 	  padding: 1em 1em;
     margin: 0;
     font-size: 1.5em;

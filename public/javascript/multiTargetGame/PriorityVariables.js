@@ -5,6 +5,6 @@ function PriorityVariables() {
 	this.totalShots = 0.0;
 	this.shotsHit = 0.0;
 	this.alreadyShooting = false;
-    this.canvHeight;
-    this.canvWidth;
+  this.canvHeight;
+  this.canvWidth;
 }
