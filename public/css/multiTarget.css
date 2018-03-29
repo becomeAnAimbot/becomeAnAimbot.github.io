@@ -1,0 +1,116 @@
+body {
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#gameContainer {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameContainer:hover {
+	cursor: crosshair;
+}
+
+.gameHeader {
+    text-align: center;
+}
+
+#gameTimer {
+    visibility: hidden;
+    text-align: center;
+}
+
+.statsContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.statsContainer h2 {
+    padding: 1%;
+    visibility: hidden;
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.instructionsButton {
+	padding: 0em 1em;
+  background-color: #32A8E9;
+  color: #FFFFFF;
+  order: none;
+  box-shadow: 0.3em 0.3em 0.2em #999999;
+}
+
+.instructionsButton:hover {
+	background-color: #FFA500;
+  color: #000000;
+	cursor: pointer;
+  box-shadow: 0.3em 0.3em 0.6em #999999;
+}
+
+.hideInstructionsButton {
+	padding: 0em 1em;
+  background-color: #32A8E9;
+  color: #FFFFFF;
+	display: none;
+  box-shadow: 0.3em 0.3em 0.2em #999999;
+}
+
+.hideInstructionsButton:hover {
+	background-color: #FFA500;
+  color: #000000;
+	cursor: pointer;
+  box-shadow: 0.3em 0.3em 0.6em #999999;
+}
+
+.instructionsList {
+	display: none;
+}
+
+.priorityTargetButton {
+	  padding: 1em 1em;
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: #32A8E9;
+    color: #FFFFFF;
+    border: none;
+    box-shadow: 0.3em 0.3em 0.2em #999999;
+}
+
+.priorityTargetButton:hover {
+    background-color: #FFA500;
+    color: #000000;
+	  cursor: pointer;
+    box-shadow: 0.3em 0.3em 0.6em #999999;
+}
+
+.countDown {
+    font-size: 10em;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+#endButtons {
+    display: flex;
+    justify-content: center;
+}
+
+#endButtons button {
+    margin: 1em;
+}
+
+.hiddenIFrame {
+    display: none;
+}

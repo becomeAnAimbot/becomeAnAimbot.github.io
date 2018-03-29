@@ -1,10 +1,10 @@
 var prioritySketch = function(p) {
-    
+
     var hitSound;
     var missSounds;
-    
+
     p.priorityVariables = new PriorityVariables();
-    
+
     p.preload = function() {
         hitSound = p.loadSound("sounds/hitmarker.mp3");
         missSound1 = p.loadSound("sounds/Wall-Hit6.wav");
@@ -12,7 +12,7 @@ var prioritySketch = function(p) {
         missSound3 = p.loadSound("sounds/Wall-Hit8.wav");
         missSounds = [missSound1, missSound2, missSound3];
     }
-    
+
     p.setup = function() {
         p.priorityVariables.canvHeight = p.windowHeight/1.5;
         p.priorityVariables.canvWidth = p.windowWidth;
@@ -20,7 +20,7 @@ var prioritySketch = function(p) {
         canv = p.createCanvas(p.priorityVariables.canvWidth, p.priorityVariables.canvHeight);
         canv.parent("gameContainer");
         canv.id("targetGameCanvas");
-        p.background(150);
+        p.background('#f2f2f2');
         startButton = p.createButton("START GAME");
         startButton.addClass("priorityTargetButton");
         startButton.id("priorityStartButton");
@@ -32,10 +32,10 @@ var prioritySketch = function(p) {
 
     p.draw = function() {
         if(!p.priorityVariables.gameStarted) {
-            return;      
+            return;
         } else if(p.priorityVariables.gameOver) {
             p.clear();
-            p.background(150);
+            p.background('#f2f2f2');
             p.showEndButtons();
             p.noLoop();
             return;
@@ -55,7 +55,7 @@ var prioritySketch = function(p) {
                         p.priorityVariables.shotsHit++;
                         hitSound.play();
                         p.clear();
-                        p.background(150);
+                        p.background('#f2f2f2');
                         p.priorityVariables.targets[i].isCurrentTarget = false;
                         p.priorityVariables.targets[(i+1)%p.priorityVariables.targets.length].isCurrentTarget = true;
                         p.priorityVariables.targets[i].shootTarget();
@@ -73,18 +73,18 @@ var prioritySketch = function(p) {
                 str = "Accuracy: " + per.toFixed(2) + "%";
                 percentEle.html(str);
             }
-            p.background(150);
+            p.background('#f2f2f2');
             p.moveTargets();
         }
     };
-    
+
     p.drawAllTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
             p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
         }
     };
-    
+
     p.moveTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
             p.priorityVariables.targets[i].checkBoundaryHits();
@@ -92,14 +92,14 @@ var prioritySketch = function(p) {
             p.priorityVariables.targets[i].show();
         }
     };
-    
+
     p.reAssignAllSpeeds = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
             if(!p.priorityVariables.targets[i].isCurrentTarget) p.priorityVariables.targets[i].assignRandomSpeed(-10,10);
             else p.priorityVariables.targets[i].assignRandomSpeed(-5,5);
         }
     }
-    
+
     p.createTargets = function() {
         for(let i=0; i<20; i++) {
             p.priorityVariables.targets[i] = new Target(p, p.windowWidth, p.windowHeight/1.5);
@@ -110,14 +110,14 @@ var prioritySketch = function(p) {
             p.priorityVariables.targets[i].isForGame = true;
         }
     };
-    
+
     p.startGame = function() {
         startButton.hide();
         countDown = p.createElement("p", 3);
         countDown.addClass("countDown");
         countDown.parent("#gameContainer");
         countDown.position(p.select("#targetGameCanvas").position());
-        
+
         let counter = 2;
         let cd = setInterval(function() {
             if(counter === 0) {
@@ -132,7 +132,7 @@ var prioritySketch = function(p) {
             }
         }, 1000);
     };
-    
+
     p.startTimer = function() {
         p.select("#gameTimer").style("visibility", "visible");
         p.select("#accuracyPercent").style("visibility", "visible");
@@ -146,49 +146,49 @@ var prioritySketch = function(p) {
                 p.priorityVariables.targets = [];
             } else {
                 p.select("#gameTimer").html(counter.toFixed(1));
-                counter = counter - 0.1;   
+                counter = counter - 0.1;
             }
         }, 100);
     };
-    
+
     p.showEndButtons = function() {
         p.select("#endButtons").style("display","flex");
     };
-    
+
     p.restartGame = function() {
         p.priorityVariables = new PriorityVariables();
         p.priorityVariables.canvHeight = p.windowHeight/1.5;
         p.priorityVariables.canvWidth = p.windowWidth;
         p.select("#endButtons").hide();
-        
+
         let shotsEle = p.select("#accuracyShots");
         let percentEle = p.select("#accuracyPercent");
-        
+
         p.select("#gameTimer").html("Get Ready!");
         let str = "Shots: " + p.priorityVariables.shotsHit + "/" + p.priorityVariables.totalShots;
         shotsEle.html(str);
         let per = 100.0;
         str = "Accuracy: " + per.toFixed(2) + "%";
         percentEle.html(str);
-        
+
         p.startGame();
         p.loop();
     };
-    
+
     p.goHome = function() {
         startMainScreen();
     }
-    
+
     p.windowResized = function() {
         p.resizeCanvas(p.windowWidth, p.windowHeight/1.5);
     };
-    
+
     p.createPriorityHtml = function () {
         bodyCont = p.createElement("div", "");
         bodyCont.id("bodyContainer");
 
         createHeader(p, bodyCont);
-        
+
         gameTitle = p.createElement("h1", "Target Priority Practice");
         gameTitle.addClass("gameHeader");
         gameTitle.parent(bodyCont);
@@ -212,17 +212,17 @@ var prioritySketch = function(p) {
         gameCont = p.createElement("div", "");
         gameCont.id("gameContainer");
         gameCont.parent(bodyCont);
-        
+
         endButtons = p.createElement("div","");
         endButtons.id("endButtons");
         endButtons.parent(bodyCont);
         endButtons.hide();
-        
+
         retryButton = p.createButton("PLAY AGAIN");
         retryButton.addClass("priorityTargetButton");
         retryButton.parent("#endButtons");
         retryButton.mousePressed(p.restartGame);
-        
+
         mainMenuButton = p.createButton("MAIN MENU");
         mainMenuButton.addClass("priorityTargetButton");
         mainMenuButton.parent("#endButtons");
@@ -247,10 +247,10 @@ var prioritySketch = function(p) {
         liOne = p.createElement("li", "Click the start button to begin the game");
         liOne.parent(insList);
 
-        liOne = p.createElement("li", "Hover your mouse over the green target and click");
+        liOne = p.createElement("li", "Hover your mouse over the orange target and click");
         liOne.parent(insList);
 
-        liOne = p.createElement("li", "All targets will be shifting around except for the green one");
+        liOne = p.createElement("li", "All targets will be shifting around continuously");
         liOne.parent(insList);
 
         liOne = p.createElement("li", "Your score will be based on your accuracy and the amount of hits in the given minute");
