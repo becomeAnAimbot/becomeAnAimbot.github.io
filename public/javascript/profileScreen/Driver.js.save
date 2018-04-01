@@ -79,61 +79,10 @@ var profileSketch = function(p) {
     deleteAccount.attribute("onclick","showDeleteAccount()");
 
     deleteAccountBox = p.createElement("div","");
-    deleteAccountBox.parent(gameCont);
+    deleteAbbountBox.parent(gameCont);
     deleteAccountBox.attribute("id","deleteAccountCont");
-    deleteAccountBox.attribute("class","accountCont");
 
-    goodbyeMessage = p.createElement("p","Sorry to see you go, " + getUsername() + ".<br>Please enter your password to verify your identity.");
-    goodbyeMessage.parent(deleteAccountBox);
-    goodbyeMessage.attribute("id","goodbyeMessage");
-
-    deleteForm = p.createElement("form","");
-    deleteForm.attribute("id","deleteForm");
-    deleteForm.attribute("target","hiddenIFrame");
-    deleteForm.attribute("method","post");
-    deleteForm.attribute("action","http://167.99.105.82:6969");
-    deleteForm.parent(deleteAccountBox);
-
-    passLabel = p.createElement("label","Password");
-    passLabel.parent(deleteForm);
-    passLabel.attribute("for","pass");
-    passLabel.attribute("id","passwordLabelDelete");
-    passLabel.attribute("class","profileLabel");
-
-    passwordInput = p.createElement("input", "");
-    passwordInput.attribute("type", "password");
-    passwordInput.attribute("name", "pass");
-    passwordInput.attribute("id", "passwordFieldDelete");
-    passwordInput.attribute("class", "loginText");
-    passwordInput.parent(deleteForm);
-
-    delLabel = p.createElement("label","Please type 'DELETE' (Case sensitive)");
-    delLabel.parent(deleteForm);
-    delLabel.attribute("for","del");
-    delLabel.attribute("id","deleteLabelProfile");
-    delLabel.attribute("class","profileLabel");
-
-    delInput = p.createElement("input", "");
-    delInput.attribute("type", "text");
-    delInput.attribute("name", "del");
-    delInput.attribute("id", "deleteFieldDelete");
-    delInput.attribute("class", "loginText");
-    delInput.parent(deleteForm);
-
-    delButton = p.createElement("input","submit");
-    delButton.attribute("type","submit");
-    delButton.attribute("id","delButton");
-    delButton.attribute("class","loginButton");
-    delButton.attribute("value","Delete Account");
-    delButton.attribute("onClick","deleteAccount");
-    delButton.parent(deleteForm);
-
-    hiddenIFrame = p.createElement("iframe", "");
-    hiddenIFrame.attribute("name","hiddenIFrame");
-    hiddenIFrame.attribute("id","hiddenIFrame");
-    hiddenIFrame.attribute("class","hiddenIFrame");
-    hiddenIFrame.attribute("src","");
-    hiddenIFrame.parent(gameCont);
+    
 
   }
 
