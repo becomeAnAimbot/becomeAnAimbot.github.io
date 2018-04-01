@@ -210,14 +210,24 @@ var profileSketch = function(p) {
 }
 
 function showDeleteAccount() {
+  clearProfileBoxes();
   ele = document.getElementById('deleteAccountCont');
-  ele.style.display('block');
+  ele.style.display = 'block';
 }
 
 function showChangePassword() {
-
+  clearProfileBoxes();
+  ele = document.getElementById('pictureAccountCont');
+  ele.style.display = 'block';
 }
 
 function showChangePicture() {
+  clearProfileBoxes();
+}
 
+function clearProfileBoxes() {
+  ele = document.getElementById('deleteAccountCont');
+  ele.style.display = 'none';
+  ele = document.getElementById('pictureAccountCont');
+  ele.style.display = 'none';
 }
