@@ -133,9 +133,9 @@ var profileSketch = function(p) {
     pictureAccountBox.attribute("id","pictureAccountCont");
     pictureAccountBox.attribute("class","accountCont");
 
-    goodbyeMessage = p.createElement("p","Please fill in the fields to change your password, " + getUsername() + ".");
-    goodbyeMessage.parent(pictureAccountBox);
-    goodbyeMessage.attribute("class","profileBoxMessage");
+    changeMessage = p.createElement("p","Please fill in the fields to change your password, " + getUsername() + ".");
+    changeMessage.parent(pictureAccountBox);
+    changeMessage.attribute("class","profileBoxMessage");
 
     pictureForm = p.createElement("form","");
     pictureForm.attribute("id","pictureForm");
@@ -210,7 +210,8 @@ var profileSketch = function(p) {
 }
 
 function showDeleteAccount() {
-  document.getElementById('deleteAccountCont').style.display('block');
+  ele = document.getElementById('deleteAccountCont');
+  ele.style.display('block');
 }
 
 function showChangePassword() {

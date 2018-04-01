@@ -15,6 +15,10 @@
   display: none;
 }
 
+#pictureAccountCont {
+  display: none;
+}
+
 .accountButton {
   width: 94%;
   -webkit-transition: background-color 0.5s ease-out;
@@ -28,7 +32,7 @@
 
 .accountButton:hover {
   cursor: pointer;
-  background-color: #FFA500 
+  background-color: #FFA500
 }
 
 .profileMessage {
@@ -54,6 +58,6 @@
 .profileLabel {
   width: 100%;
   text-align: center;
-  display: block;  
+  display: block;
   margin-top: 5%;
 }
