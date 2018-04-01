@@ -58,3 +58,9 @@
 #hiddenInput {
   display:none;
 }
+
+#signupMessage {
+  display: none;
+  width: 100%;
+  text-align: center;
+}

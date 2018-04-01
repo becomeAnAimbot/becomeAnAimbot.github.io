@@ -1,3 +1,5 @@
+var attemptingSignup = false;
+
 var signupSketch = function(p) {
 
     var ambientTargets = [];
@@ -127,6 +129,20 @@ var signupSketch = function(p) {
         submitButton.attribute("class","signupButton");
         submitButton.attribute("onClick","checkSignup()");
 
+        ele = document.getElementById("bodyContainer");
+        progress = document.createElement("div");
+        ele.appendChild(progress);
+        progress.setAttribute("id", "progressContainer")
+
+        bar = document.createElement("div");
+        progress.appendChild(bar);
+        bar.setAttribute("id", "progressBar");
+
+        mes = document.createElement("p");
+        ele.appendChild(mes);
+        mes.setAttribute("id","signupMessage");
+        mes.innerHTML = "";
+
         signupIFrame = p.createElement("iframe", "");
         signupIFrame.attribute("name","signupIFrame");
         signupIFrame.attribute("id","signupIFrame");
@@ -145,7 +161,14 @@ var signupSketch = function(p) {
 }
 
 function checkSignup() {
+  if(attemptingSignup) return;
+  attemptingSignup = true;
+
+  document.getElementById('progressBar').style.background = '#BBBBBB';
+  document.getElementById("signupMessage").style.display = "none";
+  createCheckFeedback();
   let cd = setTimeout(function() {
+    attemptingSignup = false;
     checkSignupStatus();
   }, 3000);
 }
@@ -161,18 +184,29 @@ function checkSignupStatus() {
   } else if(x[0].innerHTML === "Duplicate User") {
     userNotCreated();
   } else {
-    connFailed();
+    connFailed(document.getElementById("signupMessage"));
   }
 }
 
 function userCreated() {
-  document.getElementById("usernameField").value = "SUCCESS";
+  document.getElementById("signupMessage").innerHTML = "User creation success";
+  document.getElementById("signupMessage").style.display = "block";
+  document.getElementById('progressBar').style.background = '#009944';
+  let cd = setTimeout(function() {
+    let x = document.getElementById("usernameField").value;
+    document.cookie = `aimbotUser=${x}; expires=Thu, 18 Dec 2030 12:00:00 UTC`;
+    startMainScreen();
+  }, 400);
 }
 
 function userNotCreated() {
-  document.getElementById("usernameField").value = "DUPLICATE";
+  document.getElementById("signupMessage").innerHTML = "Username not available";
+  document.getElementById("signupMessage").style.display = "block";
+  document.getElementById('progressBar').style.background = '#CF000F';
 }
 
-function connFailed() {
-  document.getElementById("usernameField").value = "CONN FAIL";
+function connFailed(ele) {
+  ele.innerHTML = "Connection to server not available";
+  ele.style.display = "block";
+  document.getElementById('progressBar').style.background = '#CF000F';
 }

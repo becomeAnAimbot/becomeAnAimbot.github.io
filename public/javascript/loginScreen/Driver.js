@@ -172,7 +172,7 @@ function checkLoginStatus() {
   } else if(x[0].innerHTML === "Login Failed") {
     notLoggedIn();
   } else {
-    connFailed();
+    connFailed(document.getElementById("loginMessage"));
   }
 }
 
