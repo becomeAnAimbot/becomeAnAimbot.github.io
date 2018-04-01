@@ -85,7 +85,7 @@ var profileSketch = function(p) {
 
     goodbyeMessage = p.createElement("p","Sorry to see you go, " + getUsername() + ".<br>Please enter your password to verify your identity.");
     goodbyeMessage.parent(deleteAccountBox);
-    goodbyeMessage.attribute("id","goodbyeMessage");
+    goodbyeMessage.attribute("class","profileBoxMessage");
 
     deleteForm = p.createElement("form","");
     deleteForm.attribute("id","deleteForm");
@@ -133,6 +133,10 @@ var profileSketch = function(p) {
     pictureAccountBox.attribute("id","pictureAccountCont");
     pictureAccountBox.attribute("class","accountCont");
 
+    goodbyeMessage = p.createElement("p","Please fill in the fields to change your password, " + getUsername() + ".");
+    goodbyeMessage.parent(pictureAccountBox);
+    goodbyeMessage.attribute("class","profileBoxMessage");
+
     pictureForm = p.createElement("form","");
     pictureForm.attribute("id","pictureForm");
     pictureForm.attribute("target","hiddenIFrame");
@@ -141,7 +145,7 @@ var profileSketch = function(p) {
     pictureForm.parent(pictureAccountBox);
 
     passLabel = p.createElement("label","Old Password");
-    passLabel.parent(deleteForm);
+    passLabel.parent(pictureForm);
     passLabel.attribute("for","oldpass");
     passLabel.attribute("id","passwordOldLabelChange");
     passLabel.attribute("class","profileLabel");
