@@ -128,13 +128,71 @@ var profileSketch = function(p) {
     delButton.attribute("onClick","deleteAccount");
     delButton.parent(deleteForm);
 
+    pictureAccountBox = p.createElement("div","");
+    pictureAccountBox.parent(gameCont);
+    pictureAccountBox.attribute("id","pictureAccountCont");
+    pictureAccountBox.attribute("class","accountCont");
+
+    pictureForm = p.createElement("form","");
+    pictureForm.attribute("id","pictureForm");
+    pictureForm.attribute("target","hiddenIFrame");
+    pictureForm.attribute("method","post");
+    pictureForm.attribute("action","http://167.99.105.82:6969");
+    pictureForm.parent(pictureAccountBox);
+
+    passLabel = p.createElement("label","Old Password");
+    passLabel.parent(deleteForm);
+    passLabel.attribute("for","oldpass");
+    passLabel.attribute("id","passwordOldLabelChange");
+    passLabel.attribute("class","profileLabel");
+
+    passwordOldInput = p.createElement("input", "");
+    passwordOldInput.attribute("type", "password");
+    passwordOldInput.attribute("name", "oldpass");
+    passwordOldInput.attribute("id", "passwordOldFieldChange");
+    passwordOldInput.attribute("class", "loginText");
+    passwordOldInput.parent(pictureForm);
+
+    passNewLabel = p.createElement("label","New Password");
+    passNewLabel.parent(pictureForm);
+    passNewLabel.attribute("for","newpass");
+    passNewLabel.attribute("id","passwordNewLabelChange");
+    passNewLabel.attribute("class","profileLabel");
+
+    passwordNewInput = p.createElement("input", "");
+    passwordNewInput.attribute("type", "password");
+    passwordNewInput.attribute("name", "newpass");
+    passwordNewInput.attribute("id", "passwordNewFieldChange");
+    passwordNewInput.attribute("class", "loginText");
+    passwordNewInput.parent(pictureForm);
+
+    passLabel = p.createElement("label","Repeat New Password");
+    passLabel.parent(pictureForm);
+    passLabel.attribute("for","newrepass");
+    passLabel.attribute("id","passwordNewRepeatLabelChange");
+    passLabel.attribute("class","profileLabel");
+
+    passwordOldInput = p.createElement("input", "");
+    passwordOldInput.attribute("type", "password");
+    passwordOldInput.attribute("name", "newrepass");
+    passwordOldInput.attribute("id", "passwordNewRepeatFieldChange");
+    passwordOldInput.attribute("class", "loginText");
+    passwordOldInput.parent(pictureForm);
+
+    changePassButton = p.createElement("input","submit");
+    changePassButton.attribute("type","submit");
+    changePassButton.attribute("id","changeButton");
+    changePassButton.attribute("class","loginButton");
+    changePassButton.attribute("value","Change Password");
+    changePassButton.attribute("onclick","changePassword()");
+    changePassButton.parent(pictureForm);
+
     hiddenIFrame = p.createElement("iframe", "");
     hiddenIFrame.attribute("name","hiddenIFrame");
     hiddenIFrame.attribute("id","hiddenIFrame");
     hiddenIFrame.attribute("class","hiddenIFrame");
     hiddenIFrame.attribute("src","");
     hiddenIFrame.parent(gameCont);
-
   }
 
   p.windowResized = function() {
@@ -148,7 +206,7 @@ var profileSketch = function(p) {
 }
 
 function showDeleteAccount() {
-
+  document.getElementById('deleteAccountCont').style.display('block');
 }
 
 function showChangePassword() {
