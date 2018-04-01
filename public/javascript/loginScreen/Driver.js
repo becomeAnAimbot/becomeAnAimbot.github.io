@@ -186,5 +186,5 @@ function loggedIn() {
 function notLoggedIn() {
   document.getElementById("loginMessage").innerHTML = "Verification Failed, Incorrect username or password";
   document.getElementById("loginMessage").style.display = "block";
-  document.getElementById('progressBar').style.background-color = '#E6030C';
+  document.getElementById('progressBar').style.background = '#E6030C';
 }
