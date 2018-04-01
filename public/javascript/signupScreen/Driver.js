@@ -193,7 +193,7 @@ function userCreated() {
   document.getElementById("signupMessage").style.display = "block";
   document.getElementById('progressBar').style.background = '#009944';
   let cd = setTimeout(function() {
-    let x = document.getElementById("usernameField").value;
+    let x = document.getElementById("usernameSignupField").value;
     document.cookie = `aimbotUser=${x}; expires=Thu, 18 Dec 2030 12:00:00 UTC`;
     startMainScreen();
   }, 400);
