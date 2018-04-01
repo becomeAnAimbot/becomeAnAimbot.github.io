@@ -1,3 +1,5 @@
+var attemptingLogIn = false;
+
 var loginSketch = function(p) {
 
     var ambientTargets = [];
@@ -109,6 +111,15 @@ var loginSketch = function(p) {
         loginIFrame.attribute("class","hiddenIFrame");
         loginIFrame.attribute("src","");
         loginIFrame.parent(gameCont);
+
+        ele = document.getElementById("bodyContainer");
+        progress = document.createElement("div");
+        ele.appendChild(progress);
+        progress.setAttribute("id", "progressContainer")
+
+        bar = document.createElement("div");
+        progress.appendChild(bar);
+        bar.setAttribute("id", "progressBar");
     }
 
     p.windowResized = function() {
@@ -121,23 +132,17 @@ var loginSketch = function(p) {
 }
 
 function checkLogin() {
+  if(attemptingLogIn) return;
+  attemptingLogIn = true;
   createLoginFeedback();
   let cd = setTimeout(function() {
+    attemptingLogIn = false;
     checkLoginStatus();
   }, 3000);
 }
 
 function createLoginFeedback() {
-  ele = document.getElementById("bodyContainer");
-
-  progress = document.createElement("div");
-  ele.appendChild(progress);
-  progress.setAttribute("id", "progressContainer")
-
-  bar = document.createElement("div");
-  progress.appendChild(bar);
-  bar.setAttribute("id", "progressBar");
-
+  document.getElementById('progressContainer').style.display = 'block';
   let op = 1;
   let cd = setInterval(function() {
     if(op >= 99) {

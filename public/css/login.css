@@ -64,6 +64,7 @@
 }
 
 #progressContainer {
+  display: none;
   width: 25%;
   margin-left: 37.5%;
   background-color: #DFDFDF;
@@ -72,5 +73,5 @@
 #progressBar {
   width: 1%;
   height: 1em;
-  background-color: #4CAF50;
+  background-color: #BBBBBB;
 }
