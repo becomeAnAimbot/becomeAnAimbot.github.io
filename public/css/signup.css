@@ -11,6 +11,7 @@
 }
 
 .signupText {
+  color: #FFFFFF;
   width: 80%;
   margin-left: 10%;
   display: block;
@@ -57,4 +58,3 @@
 #hiddenInput {
   display:none;
 }
-

@@ -45,7 +45,7 @@ input:focus {
 }
 
 .headerButton {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Play', sans-serif;
     text-decoration: none;
     text-align: center;
     font-size: 1.5em;
@@ -143,5 +143,3 @@ input:focus {
 ::-webkit-scrollbar-thumb:hover {
     background: #E2E3E3;
 }
-
-

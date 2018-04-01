@@ -142,14 +142,14 @@ function checkLogin() {
 
   document.getElementById('progressBar').style.background = '#BBBBBB';
   document.getElementById("loginMessage").style.display = "none";
-  createLoginFeedback();
+  createCheckFeedback();
   let cd = setTimeout(function() {
     attemptingLogIn = false;
     checkLoginStatus();
   }, 3000);
 }
 
-function createLoginFeedback() {
+function createCheckFeedback() {
   document.getElementById('progressContainer').style.display = 'block';
   let op = 1;
   let cd = setInterval(function() {
