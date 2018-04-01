@@ -120,6 +120,11 @@ var loginSketch = function(p) {
         bar = document.createElement("div");
         progress.appendChild(bar);
         bar.setAttribute("id", "progressBar");
+
+        mes = document.createElement("p");
+        ele.appendChild(mes);
+        mes.setAttribute("id","loginMessage");
+        mes.innerHTML = "";
     }
 
     p.windowResized = function() {
@@ -134,6 +139,8 @@ var loginSketch = function(p) {
 function checkLogin() {
   if(attemptingLogIn) return;
   attemptingLogIn = true;
+
+  document.getElementById("loginMessage").style.display = "none";
   createLoginFeedback();
   let cd = setTimeout(function() {
     attemptingLogIn = false;
@@ -161,7 +168,7 @@ function checkLoginStatus() {
   let x = iframeDocument.getElementsByTagName("pre");
   if(x[0].innerHTML === "Login Success") {
     loggedIn();
-  } else if(x[0].innerHTML === "Login Failure") {
+  } else if(x[0].innerHTML === "Login Failed") {
     notLoggedIn();
   } else {
     connFailed();
@@ -169,7 +176,15 @@ function checkLoginStatus() {
 }
 
 function loggedIn() {
+  document.getElementById("loginMessage").innerHTML = "Verification Success";
+  document.getElementById("loginMessage").style.display = "block";
   let x = document.getElementById("usernameField").value;
   document.cookie = `aimbotUser=${x}; expires=Thu, 18 Dec 2030 12:00:00 UTC`;
   startMainScreen();
+}
+
+function notLoggedIn() {
+  document.getElementById("loginMessage").innerHTML = "Verification Failed, Incorrect username or password";
+  document.getElementById("loginMessage").style.display = "block";
+  document.getElementById('progressBar').style.background-color = '#E6030C';
 }

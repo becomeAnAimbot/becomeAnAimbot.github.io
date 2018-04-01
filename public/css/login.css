@@ -75,3 +75,9 @@
   height: 1em;
   background-color: #BBBBBB;
 }
+
+#loginMessage {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
