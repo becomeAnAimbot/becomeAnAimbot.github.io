@@ -140,6 +140,7 @@ function checkLogin() {
   if(attemptingLogIn) return;
   attemptingLogIn = true;
 
+  document.getElementById('progressBar').style.background = '#BBBBBB';
   document.getElementById("loginMessage").style.display = "none";
   createLoginFeedback();
   let cd = setTimeout(function() {
@@ -178,9 +179,11 @@ function checkLoginStatus() {
 function loggedIn() {
   document.getElementById("loginMessage").innerHTML = "Verification Success";
   document.getElementById("loginMessage").style.display = "block";
-  let x = document.getElementById("usernameField").value;
-  document.cookie = `aimbotUser=${x}; expires=Thu, 18 Dec 2030 12:00:00 UTC`;
-  startMainScreen();
+  let cd = setTimeout(function() {
+    let x = document.getElementById("usernameField").value;
+    document.cookie = `aimbotUser=${x}; expires=Thu, 18 Dec 2030 12:00:00 UTC`;
+    startMainScreen();
+  }, 400);
 }
 
 function notLoggedIn() {
