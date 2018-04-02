@@ -17,6 +17,8 @@ app.post('/', function (req, res){
     addUser(req.body, res);
   } else if(req.body.func == 'loginUser') {
     loginUser(req.body, res);
+  } else if(req.body.func == 'deleteUser') {
+    delUser(req.body, res);
   } else {
     res.end("Undefined Function Error");
   }
@@ -43,6 +45,19 @@ function loginUser(data, res) {
         if (err) {res.end("Query Error"); conn.end(); return;}
         if(result.length === 1) {res.end("Login Success"); conn.end(); return;}
         else {res.end("Login Failed"); conn.end(); return;}
+      });
+  });
+}
+
+function delUser(data, res) {
+  let conn = createDBConn();
+  conn.connect(function(err){
+    if(err) {res.end("Connection Error"); conn.end(); return;};
+      var sql = `DELETE * FROM users WHERE username='${data.user}' AND password='${data.pass}';`;
+      conn.query(sql, function (err, result) {
+        if (err) {res.end("Query Error"); conn.end(); return;}
+        if(result.length === 1) {res.end("Delete Success"); conn.end(); return;}
+        else {res.end("Delete Failed"); conn.end(); return;}
       });
   });
 }

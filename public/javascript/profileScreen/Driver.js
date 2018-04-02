@@ -1,3 +1,5 @@
+var attemptingAction = false;
+
 var profileSketch = function(p) {
 
   var ambientTargets = [];
@@ -49,7 +51,6 @@ var profileSketch = function(p) {
     mainTitle.attribute("src", "images/small_title.png");
     mainTitle.parent(gameCont);
     mainTitle.addClass("mainTitle");
-
 
     profileCont = p.createElement("div","");
     profileCont.parent(gameCont);
@@ -120,32 +121,44 @@ var profileSketch = function(p) {
     delInput.attribute("class", "loginText");
     delInput.parent(deleteForm);
 
+    hiddenDeleteInput = p.createElement("input", "");
+    hiddenDeleteInput.parent(deleteForm);
+    hiddenDeleteInput.attribute("id", "hiddenInput");
+    hiddenDeleteInput.attribute("name", "func");
+    hiddenDeleteInput.attribute("value", "deleteAccount");
+
+    usernameDelInput = p.createElement("input","");
+    usernameDelInput.parent(deleteForm);
+    usernameDelInput.attribute("name","user");
+    usernameDelInput.attribute("value",getUsername());
+    usernameDelInput.attribute("style","display:none;");
+
     delButton = p.createElement("input","submit");
     delButton.attribute("type","submit");
     delButton.attribute("id","delButton");
     delButton.attribute("class","loginButton");
     delButton.attribute("value","Delete Account");
-    delButton.attribute("onClick","deleteAccount");
+    delButton.attribute("onclick","deleteAccount()");
     delButton.parent(deleteForm);
 
-    pictureAccountBox = p.createElement("div","");
-    pictureAccountBox.parent(gameCont);
-    pictureAccountBox.attribute("id","pictureAccountCont");
-    pictureAccountBox.attribute("class","accountCont");
+    deleteAccountBox = p.createElement("div","");
+    deleteAccountBox.parent(gameCont);
+    deleteAccountBox.attribute("id","deleteAccountCont");
+    deleteAccountBox.attribute("class","accountCont");
 
     changeMessage = p.createElement("p","Please fill in the fields to change your password, " + getUsername() + ".");
-    changeMessage.parent(pictureAccountBox);
+    changeMessage.parent(deleteAccountBox);
     changeMessage.attribute("class","profileBoxMessage");
 
-    pictureForm = p.createElement("form","");
-    pictureForm.attribute("id","pictureForm");
-    pictureForm.attribute("target","hiddenIFrame");
-    pictureForm.attribute("method","post");
-    pictureForm.attribute("action","http://167.99.105.82:6969");
-    pictureForm.parent(pictureAccountBox);
+    changePassForm = p.createElement("form","");
+    changePassForm.attribute("id","changePassForm");
+    changePassForm.attribute("target","hiddenIFrame");
+    changePassForm.attribute("method","post");
+    changePassForm.attribute("action","http://167.99.105.82:6969");
+    changePassForm.parent(deleteAccountBox);
 
     passLabel = p.createElement("label","Old Password");
-    passLabel.parent(pictureForm);
+    passLabel.parent(changePassForm);
     passLabel.attribute("for","oldpass");
     passLabel.attribute("id","passwordOldLabelChange");
     passLabel.attribute("class","profileLabel");
@@ -155,10 +168,10 @@ var profileSketch = function(p) {
     passwordOldInput.attribute("name", "oldpass");
     passwordOldInput.attribute("id", "passwordOldFieldChange");
     passwordOldInput.attribute("class", "loginText");
-    passwordOldInput.parent(pictureForm);
+    passwordOldInput.parent(changePassForm);
 
     passNewLabel = p.createElement("label","New Password");
-    passNewLabel.parent(pictureForm);
+    passNewLabel.parent(changePassForm);
     passNewLabel.attribute("for","newpass");
     passNewLabel.attribute("id","passwordNewLabelChange");
     passNewLabel.attribute("class","profileLabel");
@@ -168,10 +181,10 @@ var profileSketch = function(p) {
     passwordNewInput.attribute("name", "newpass");
     passwordNewInput.attribute("id", "passwordNewFieldChange");
     passwordNewInput.attribute("class", "loginText");
-    passwordNewInput.parent(pictureForm);
+    passwordNewInput.parent(changePassForm);
 
     passLabel = p.createElement("label","Repeat New Password");
-    passLabel.parent(pictureForm);
+    passLabel.parent(changePassForm);
     passLabel.attribute("for","newrepass");
     passLabel.attribute("id","passwordNewRepeatLabelChange");
     passLabel.attribute("class","profileLabel");
@@ -181,7 +194,20 @@ var profileSketch = function(p) {
     passwordOldInput.attribute("name", "newrepass");
     passwordOldInput.attribute("id", "passwordNewRepeatFieldChange");
     passwordOldInput.attribute("class", "loginText");
-    passwordOldInput.parent(pictureForm);
+    passwordOldInput.parent(changePassForm);
+
+    hiddenPasswordInput = p.createElement("input", "");
+    hiddenPasswordInput.parent(changePassForm);
+    hiddenPasswordInput.attribute("id", "hiddenInput");
+    hiddenPasswordInput.attribute("type", "text");
+    hiddenPasswordInput.attribute("name", "func");
+    hiddenPasswordInput.attribute("value", "changePassword");
+
+    usernamePassInput = p.createElement("input","");
+    usernamePassInput.parent(changePassForm);
+    usernamePassInput.attribute("name","user");
+    usernamePassInput.attribute("value",getUsername());
+    usernamePassInput.attribute("style","display:none;");
 
     changePassButton = p.createElement("input","submit");
     changePassButton.attribute("type","submit");
@@ -189,7 +215,21 @@ var profileSketch = function(p) {
     changePassButton.attribute("class","loginButton");
     changePassButton.attribute("value","Change Password");
     changePassButton.attribute("onclick","changePassword()");
-    changePassButton.parent(pictureForm);
+    changePassButton.parent(changePassForm);
+
+    ele = document.getElementById("bodyContainer");
+    progress = document.createElement("div");
+    ele.appendChild(progress);
+    progress.setAttribute("id", "progressContainer")
+
+    bar = document.createElement("div");
+    progress.appendChild(bar);
+    bar.setAttribute("id", "progressBar");
+
+    mes = document.createElement("p");
+    ele.appendChild(mes);
+    mes.setAttribute("id","profileMessage");
+    mes.innerHTML = "";
 
     hiddenIFrame = p.createElement("iframe", "");
     hiddenIFrame.attribute("name","hiddenIFrame");
@@ -217,7 +257,7 @@ function showDeleteAccount() {
 
 function showChangePassword() {
   clearProfileBoxes();
-  ele = document.getElementById('pictureAccountCont');
+  ele = document.getElementById('deleteAccountCont');
   ele.style.display = 'block';
 }
 
@@ -228,6 +268,58 @@ function showChangePicture() {
 function clearProfileBoxes() {
   ele = document.getElementById('deleteAccountCont');
   ele.style.display = 'none';
-  ele = document.getElementById('pictureAccountCont');
+  ele = document.getElementById('deleteAccountCont');
   ele.style.display = 'none';
+}
+
+function changePassword() {
+
+}
+
+function deleteAccount() {
+  if(attemptingAction) return;
+  attemptingAction = true;
+
+  document.getElementById('progressBar').style.background = '#BBBBBB';
+  document.getElementById("profileMessage").style.display = "none";
+  createCheckFeedback();
+  document.getElementById('progressContainer').style.margin = "0 0 3% 37.5%";
+  window.scrollTo(0,document.body.scrollHeight)
+  let cd = setTimeout(function() {
+    attemptingSignup = false;
+    checkDeleteStatus();
+  }, 3000);
+}
+
+function checkDeleteStatus() {
+  var myIframe= document.getElementById("signupIFrame");
+  var iframeDocument = (myIframe.contentWindow || myIframe.contentDocument);
+  iframeDocument = iframeDocument.document;
+  let x = iframeDocument.getElementsByTagName("pre");
+
+  if(x[0].innerHTML === "Delete Success") {
+    userCreated();
+  } else if(x[0].innerHTML === "Delete Failed") {
+    userNotCreated();
+  } else {
+    connFailed(document.getElementById("profileMessage"));
+  }
+}
+
+function userDeleted() {
+  document.getElementById("profileMessage").innerHTML = "Account has been deleted";
+  document.getElementById("profileMessage").style.display = "block";
+  document.getElementById('progressContainer').style.margin = "0 0 0 37.5%";
+  document.getElementById('progressBar').style.background = '#009944';
+  window.scrollTo(0,document.body.scrollHeight)
+  let cd = setTimeout(function() {
+    signUserOut();
+    startMainScreen();
+  }, 400);
+}
+
+function userNotDeleted() {
+  document.getElementById("signupMessage").innerHTML = "User information not correct";
+  document.getElementById("signupMessage").style.display = "block";
+  document.getElementById('progressBar').style.background = '#CF000F';
 }
