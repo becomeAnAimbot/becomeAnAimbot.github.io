@@ -122,11 +122,9 @@ var signupSketch = function(p) {
         hiddenInput.attribute("name", "func");
         hiddenInput.attribute("value", "addUser");
 
-        errorMessage = p.createElement("p", "");
+        errorMessage = p.createElement("p", "RAWR");
         errorMessage.parent(signupForm);
-        errorMessage.attribute("style","visibility: hidden");
-        errorMessage.attribute("style","width: 100%");
-        errorMessage.attribute("style","text-align: center");
+        errorMessage.attribute("style","visibility: hidden; text-align: center; width: 100%;");
         errorMessage.attribute("id","signupErrorMessage");
 
         submitButton = p.createElement("input", "Sign Up!");
@@ -169,6 +167,7 @@ var signupSketch = function(p) {
 }
 
 function verifyRegisterValues() {
+  document.getElementById('signupErrorMessage').style.visibility = 'hidden';
   if(!passwordsMatch()) {
     ele = document.getElementById('signupErrorMessage');
     ele.style.visibility = 'visible';
@@ -194,7 +193,7 @@ function emailIsValid() {
 function checkSignup() {
   if(attemptingSignup) return;
   attemptingSignup = true;
-  if(!passwordsMatch() || !emailIsValid()) return;
+  if(!passwordsMatch() || !emailIsValid()) { attemptingSignup = false; return;}
 
   document.getElementById('progressBar').style.background = '#BBBBBB';
   document.getElementById("signupMessage").style.display = "none";
