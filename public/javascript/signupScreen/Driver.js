@@ -63,6 +63,7 @@ var signupSketch = function(p) {
         signupForm.attribute("target","signupIFrame");
         signupForm.attribute("method","post");
         signupForm.attribute("action","http://167.99.105.82:6969");
+        signupForm.attribute("onsubmit", "return verifyRegisterValues()")
         signupForm.parent(signupBox);
 
         nameLabel = p.createElement("label","Username");
@@ -121,6 +122,13 @@ var signupSketch = function(p) {
         hiddenInput.attribute("name", "func");
         hiddenInput.attribute("value", "addUser");
 
+        errorMessage = p.createElement("p", "");
+        errorMessage.parent(signupForm);
+        errorMessage.attribute("style","visibility: hidden");
+        errorMessage.attribute("style","width: 100%");
+        errorMessage.attribute("style","text-align: center");
+        errorMessage.attribute("id","signupErrorMessage");
+
         submitButton = p.createElement("input", "Sign Up!");
         submitButton.parent(signupForm);
         submitButton.attribute("value","Sign Up!");
@@ -158,6 +166,20 @@ var signupSketch = function(p) {
             ambientTargets[i].height = p.windowWidth/50;
             ambientTargets[i].width = p.windowWidth/50;        }
     }
+}
+
+function verifyRegisterValues() {
+  if(!passwordsMatch) {
+    ele = document.getElementById('signupErrorMessage');
+    ele.style.visibility = 'visible';
+    ele.innerHTML = 'Password do not match!'
+    return false;
+  }
+  if(!emailIsValid) {
+    //DISPLAY MESSAGE TO User
+    return false;
+  }
+  return true;
 }
 
 function checkSignup() {
