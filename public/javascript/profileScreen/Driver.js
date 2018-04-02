@@ -320,7 +320,7 @@ function userDeleted() {
 }
 
 function userNotDeleted() {
-  document.getElementById("signupMessage").innerHTML = "User information not correct";
-  document.getElementById("signupMessage").style.display = "block";
+  document.getElementById("profileMessage").innerHTML = "User information not correct";
+  document.getElementById("profileMessage").style.display = "block";
   document.getElementById('progressBar').style.background = '#CF000F';
 }
