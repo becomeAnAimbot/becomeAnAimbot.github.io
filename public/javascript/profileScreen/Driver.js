@@ -125,6 +125,7 @@ var profileSketch = function(p) {
     hiddenDeleteInput.parent(deleteForm);
     hiddenDeleteInput.attribute("style","display:none;");
     hiddenDeleteInput.attribute("name", "func");
+    hiddenDeleteInput.attribute("type", "text");
     hiddenDeleteInput.attribute("value", "deleteUser");
 
     usernameDelInput = p.createElement("input","");
