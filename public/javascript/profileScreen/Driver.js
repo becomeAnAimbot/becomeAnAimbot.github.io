@@ -299,9 +299,9 @@ function checkDeleteStatus() {
   let x = iframeDocument.getElementsByTagName("pre");
 
   if(x[0].innerHTML === "Delete Success") {
-    userCreated();
+    userDeleted();
   } else if(x[0].innerHTML === "Delete Failed") {
-    userNotCreated();
+    userNotDeleted();
   } else {
     connFailed(document.getElementById("profileMessage"));
   }
