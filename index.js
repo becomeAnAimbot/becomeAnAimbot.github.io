@@ -56,7 +56,7 @@ function delUser(data, res) {
       var sql = `DELETE FROM users WHERE username='${data.user}' AND password='${data.pass}';`;
       conn.query(sql, function (err, result) {
         if (err) {res.end("Query Error"); conn.end(); return;}
-        if(result.length === 1) {res.end("Delete Success"); conn.end(); return;}
+        if(result.affectedRows === 1) {res.end("Delete Success"); conn.end(); return;}
         else {res.end("Delete Failed"); conn.end(); return;}
       });
   });
