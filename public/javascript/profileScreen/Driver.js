@@ -284,7 +284,7 @@ function startDeleteAccount() {
   document.getElementById('progressBar').style.background = '#BBBBBB';
   document.getElementById("profileMessage").style.display = "none";
   createCheckFeedback();
-  document.getElementById('progressContainer').style.margin = "0 0 3% 37.5%";
+  document.getElementById('progressContainer').style.margin = "2% 0 2% 37.5%";
   window.scrollTo(0,document.body.scrollHeight)
   let cd = setTimeout(function() {
     attemptingAction = false;
@@ -309,9 +309,9 @@ function checkDeleteStatus() {
 
 function userDeleted() {
   document.getElementById("profileMessage").innerHTML = "Account has been deleted";
-  document.getElementById("profileMessage").style.display = "block";
-  document.getElementById('progressContainer').style.margin = "0 0 0 37.5%";
-  document.getElementById('progressBar').style.background = '#009944';
+  document.getElementById("profileMessage").style.display = "block;";
+  document.getElementById('progressContainer').style.margin = "0 0 0 37.5%;";
+  document.getElementById('progressBar').style.background = '#009944;';
   window.scrollTo(0,document.body.scrollHeight)
   let cd = setTimeout(function() {
     signUserOut();
@@ -321,6 +321,6 @@ function userDeleted() {
 
 function userNotDeleted() {
   document.getElementById("profileMessage").innerHTML = "User information not correct";
-  document.getElementById("profileMessage").style.display = "block";
-  document.getElementById('progressBar').style.background = '#CF000F';
+  document.getElementById("profileMessage").style.display = "block;";
+  document.getElementById('progressBar').style.background = '#CF000F;';
 }
