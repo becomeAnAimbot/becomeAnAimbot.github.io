@@ -168,6 +168,7 @@ function checkSignup() {
   document.getElementById("signupMessage").style.display = "none";
   createCheckFeedback();
   document.getElementById('progressContainer').style.margin = "0 0 3% 37.5%";
+  window.scrollTo(0,document.body.scrollHeight)
   let cd = setTimeout(function() {
     attemptingSignup = false;
     checkSignupStatus();
@@ -194,6 +195,7 @@ function userCreated() {
   document.getElementById("signupMessage").style.display = "block";
   document.getElementById('progressContainer').style.margin = "0 0 0 37.5%";
   document.getElementById('progressBar').style.background = '#009944';
+  window.scrollTo(0,document.body.scrollHeight)
   let cd = setTimeout(function() {
     let x = document.getElementById("usernameSignupField").value;
     document.cookie = `aimbotUser=${x}; expires=Thu, 18 Dec 2030 12:00:00 UTC`;
