@@ -18,7 +18,7 @@ app.post('/', function (req, res){
   } else if(req.body.func == 'loginUser') {
     loginUser(req.body, res);
   } else if(req.body.func == 'deleteUser') {
-    delUser(req.body, res);
+     delUser(req.body, res);
   } else {
     res.end("Undefined Function Error");
   }
@@ -53,7 +53,7 @@ function delUser(data, res) {
   let conn = createDBConn();
   conn.connect(function(err){
     if(err) {res.end("Connection Error"); conn.end(); return;};
-      var sql = `DELETE * FROM users WHERE username='${data.user}' AND password='${data.pass}';`;
+      var sql = `DELETE FROM users WHERE username='${data.user}' AND password='${data.pass}';`;
       conn.query(sql, function (err, result) {
         if (err) {res.end("Query Error"); conn.end(); return;}
         if(result.length === 1) {res.end("Delete Success"); conn.end(); return;}
