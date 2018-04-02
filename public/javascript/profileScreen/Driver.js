@@ -287,7 +287,7 @@ function startDeleteAccount() {
   document.getElementById('progressContainer').style.margin = "0 0 3% 37.5%";
   window.scrollTo(0,document.body.scrollHeight)
   let cd = setTimeout(function() {
-    attemptingSignup = false;
+    attemptingAction = false;
     checkDeleteStatus();
   }, 3000);
 }
