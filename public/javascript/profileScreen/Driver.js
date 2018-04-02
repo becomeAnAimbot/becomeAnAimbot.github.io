@@ -198,7 +198,7 @@ var profileSketch = function(p) {
 
     hiddenPasswordInput = p.createElement("input", "");
     hiddenPasswordInput.parent(changePassForm);
-    hiddenPasswordInput.attribute("style" "display:none");
+    hiddenPasswordInput.attribute("style", "display:none");
     hiddenPasswordInput.attribute("type", "text");
     hiddenPasswordInput.attribute("name", "func");
     hiddenPasswordInput.attribute("value", "changePassword");
