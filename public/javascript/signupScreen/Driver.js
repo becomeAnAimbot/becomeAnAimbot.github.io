@@ -172,7 +172,7 @@ function verifyRegisterValues() {
   if(!passwordsMatch()) {
     ele = document.getElementById('signupErrorMessage');
     ele.style.visibility = 'visible';
-    ele.innerHTML = 'Password do not match!'
+    ele.innerHTML = 'Passwords do not match!'
     return false;
   }
   if(!emailIsValid()) {
@@ -194,6 +194,7 @@ function emailIsValid() {
 function checkSignup() {
   if(attemptingSignup) return;
   attemptingSignup = true;
+  if(!passwordsMatch() || !emailIsValid()) return;
 
   document.getElementById('progressBar').style.background = '#BBBBBB';
   document.getElementById("signupMessage").style.display = "none";
