@@ -167,6 +167,7 @@ function checkSignup() {
   document.getElementById('progressBar').style.background = '#BBBBBB';
   document.getElementById("signupMessage").style.display = "none";
   createCheckFeedback();
+  document.getElementById('progressContainer').style.margin = "0 0 0 3%";
   let cd = setTimeout(function() {
     attemptingSignup = false;
     checkSignupStatus();
@@ -191,6 +192,7 @@ function checkSignupStatus() {
 function userCreated() {
   document.getElementById("signupMessage").innerHTML = "User creation success";
   document.getElementById("signupMessage").style.display = "block";
+  document.getElementById('progressContainer').style.margin = "0 0 0 0";
   document.getElementById('progressBar').style.background = '#009944';
   let cd = setTimeout(function() {
     let x = document.getElementById("usernameSignupField").value;
