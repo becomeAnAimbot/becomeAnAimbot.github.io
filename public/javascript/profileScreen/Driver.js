@@ -123,7 +123,7 @@ var profileSketch = function(p) {
 
     hiddenDeleteInput = p.createElement("input", "");
     hiddenDeleteInput.parent(deleteForm);
-    hiddenDeleteInput.style.display = "none";
+    hiddenDeleteInput.attribute("style","display:none;");
     hiddenDeleteInput.attribute("name", "func");
     hiddenDeleteInput.attribute("value", "deleteAccount");
 
@@ -198,7 +198,7 @@ var profileSketch = function(p) {
 
     hiddenPasswordInput = p.createElement("input", "");
     hiddenPasswordInput.parent(changePassForm);
-    hiddenPasswordInput.style.display = "none";
+    hiddenPasswordInput.attribute("style" "display:none");
     hiddenPasswordInput.attribute("type", "text");
     hiddenPasswordInput.attribute("name", "func");
     hiddenPasswordInput.attribute("value", "changePassword");
