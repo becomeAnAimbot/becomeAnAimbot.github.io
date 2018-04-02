@@ -35,9 +35,10 @@
   background-color: #FFA500
 }
 
-.profileMessage {
+#profileMessage {
   text-align: center;
   width: 100%;
+  display: none;
 }
 
 .accountCont {
