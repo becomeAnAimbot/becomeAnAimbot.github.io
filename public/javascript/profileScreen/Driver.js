@@ -138,7 +138,7 @@ var profileSketch = function(p) {
     delButton.attribute("id","delButton");
     delButton.attribute("class","loginButton");
     delButton.attribute("value","Delete Account");
-    delButton.attribute("onclick","deleteAccount()");
+    delButton.attribute("onclick","startDeleteAccount()");
     delButton.parent(deleteForm);
 
     changePassBox = p.createElement("div","");
@@ -247,7 +247,6 @@ var profileSketch = function(p) {
           ambientTargets[i].height = p.windowWidth/50;
           ambientTargets[i].width = p.windowWidth/50;        }
   }
-
 }
 
 function showDeleteAccount() {
@@ -277,7 +276,7 @@ function changePassword() {
 
 }
 
-function deleteAccount() {
+function startDeleteAccount() {
   if(attemptingAction) return;
   attemptingAction = true;
 
