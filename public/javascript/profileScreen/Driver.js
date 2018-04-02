@@ -145,6 +145,7 @@ var profileSketch = function(p) {
     changePassBox.parent(gameCont);
     changePassBox.attribute("id","changePassCont");
     changePassBox.attribute("class","accountCont");
+    changePassBox.attribute("style","display: none");
 
     changeMessage = p.createElement("p","Please fill in the fields to change your password, " + getUsername() + ".");
     changeMessage.parent(changePassBox);
@@ -257,7 +258,7 @@ function showDeleteAccount() {
 
 function showChangePassword() {
   clearProfileBoxes();
-  ele = document.getElementById('deleteAccountCont');
+  ele = document.getElementById('changePassCont');
   ele.style.display = 'block';
 }
 
@@ -266,7 +267,7 @@ function showChangePicture() {
 }
 
 function clearProfileBoxes() {
-  ele = document.getElementById('deleteAccountCont');
+  ele = document.getElementById('changePassCont');
   ele.style.display = 'none';
   ele = document.getElementById('deleteAccountCont');
   ele.style.display = 'none';
