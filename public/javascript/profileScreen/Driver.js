@@ -292,7 +292,7 @@ function startDeleteAccount() {
 }
 
 function checkDeleteStatus() {
-  var myIframe= document.getElementById("signupIFrame");
+  var myIframe= document.getElementById("hiddenIFrame");
   var iframeDocument = (myIframe.contentWindow || myIframe.contentDocument);
   iframeDocument = iframeDocument.document;
   let x = iframeDocument.getElementsByTagName("pre");
