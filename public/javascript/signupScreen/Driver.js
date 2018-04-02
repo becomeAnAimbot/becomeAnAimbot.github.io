@@ -169,16 +169,25 @@ var signupSketch = function(p) {
 }
 
 function verifyRegisterValues() {
-  if(!passwordsMatch) {
+  if(!passwordsMatch()) {
     ele = document.getElementById('signupErrorMessage');
     ele.style.visibility = 'visible';
     ele.innerHTML = 'Password do not match!'
     return false;
   }
-  if(!emailIsValid) {
+  if(!emailIsValid()) {
     //DISPLAY MESSAGE TO User
     return false;
   }
+  return true;
+}
+
+function passwordsMatch() {
+  if(document.getElementById('passwordSignupField').value != document.getElementById('passwordRepField').value) return false;
+  return true;
+}
+
+function emailIsValid() {
   return true;
 }
 
