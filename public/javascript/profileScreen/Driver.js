@@ -141,13 +141,13 @@ var profileSketch = function(p) {
     delButton.attribute("onclick","deleteAccount()");
     delButton.parent(deleteForm);
 
-    deleteAccountBox = p.createElement("div","");
-    deleteAccountBox.parent(gameCont);
-    deleteAccountBox.attribute("id","deleteAccountCont");
-    deleteAccountBox.attribute("class","accountCont");
+    changePassBox = p.createElement("div","");
+    changePassBox.parent(gameCont);
+    changePassBox.attribute("id","changePassCont");
+    changePassBox.attribute("class","accountCont");
 
     changeMessage = p.createElement("p","Please fill in the fields to change your password, " + getUsername() + ".");
-    changeMessage.parent(deleteAccountBox);
+    changeMessage.parent(changePassBox);
     changeMessage.attribute("class","profileBoxMessage");
 
     changePassForm = p.createElement("form","");
@@ -155,7 +155,7 @@ var profileSketch = function(p) {
     changePassForm.attribute("target","hiddenIFrame");
     changePassForm.attribute("method","post");
     changePassForm.attribute("action","http://167.99.105.82:6969");
-    changePassForm.parent(deleteAccountBox);
+    changePassForm.parent(changePassBox);
 
     passLabel = p.createElement("label","Old Password");
     passLabel.parent(changePassForm);
