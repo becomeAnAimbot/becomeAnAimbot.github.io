@@ -294,9 +294,9 @@ function checkPasswordChangeStatus() {
   iframeDocument = iframeDocument.document;
   let x = iframeDocument.getElementsByTagName("pre");
 
-  if(x[0].innerHTML === "Delete Success") {
+  if(x[0].innerHTML === "Password Updated") {
     passwordChanged();
-  } else if(x[0].innerHTML === "Delete Failed") {
+  } else if(x[0].innerHTML === "Password Update Failed") {
     passwordNotChanged();
   } else {
     connFailed(document.getElementById("profileMessage"));
