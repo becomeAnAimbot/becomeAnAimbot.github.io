@@ -1,0 +1,46 @@
+#guideWindow {
+    display: none;
+    position: absolute;
+    width: 50%;
+    background-color: aqua;
+}
+
+
+#topicsPane {
+    position: fixed;
+    left: 0;
+    width: 10%;
+    box-shadow: 0.6em 0.6em 0.7em #CCCCCC;
+    background-color: #FFFFFF;
+    margin-top: 2%
+}
+
+.topic {
+  width: 94%;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+  margin: 0;
+  padding: 1em 0em;
+  padding-left: 6%;
+}
+
+.topic:hover {
+  cursor: pointer;
+  background-color: #FFA500
+}
+
+#contentPane {
+    width: 50%;
+    margin-left: 25%;
+}
+
+#guideContent {
+    width: 100%;
+    font-size: 1.4em;
+    margin-top: 8%;
+    padding: 2%;
+    background-color: #FFFFFF;
+    box-shadow: 0.6em 0.6em 0.7em #CCCCCC;
+}
