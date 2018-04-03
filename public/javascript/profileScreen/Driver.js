@@ -62,7 +62,7 @@ var profileSketch = function(p) {
 
     profileMessage = p.createElement("p","Looking good " + getUsername() + "!");
     profileMessage.parent(profileCont);
-    profileMessage.attribute("class", "profileMessage");
+    profileMessage.attribute("class", "profileBarMessage");
 
     changePic = p.createElement("p", "Upload Profile Picture");
     changePic.parent(profileCont);
@@ -274,7 +274,51 @@ function clearProfileBoxes() {
 }
 
 function changePassword() {
+  if(attemptingAction) return;
+  attemptingAction = true;
 
+  document.getElementById('progressBar').style.background = '#BBBBBB';
+  document.getElementById("profileMessage").style.display = "none";
+  createCheckFeedback();
+  document.getElementById('progressContainer').style.margin = "2% 0 2% 37.5%";
+  window.scrollTo(0,document.body.scrollHeight)
+  let cd = setTimeout(function() {
+    attemptingAction = false;
+    checkPasswordChangeStatus();
+  }, 3000);
+}
+
+function checkPasswordChangeStatus() {
+  var myIframe= document.getElementById("hiddenIFrame");
+  var iframeDocument = (myIframe.contentWindow || myIframe.contentDocument);
+  iframeDocument = iframeDocument.document;
+  let x = iframeDocument.getElementsByTagName("pre");
+
+  if(x[0].innerHTML === "Delete Success") {
+    passwordChanged();
+  } else if(x[0].innerHTML === "Delete Failed") {
+    passwordNotChanged();
+  } else {
+    connFailed(document.getElementById("profileMessage"));
+  }
+}
+
+function passwordChanged() {
+  document.getElementById("profileMessage").innerHTML = "Your password has been changed!";
+  document.getElementById("profileMessage").style.display = "block";
+  document.getElementById('progressBar').style.background = '#009944';
+  window.scrollTo(0,document.body.scrollHeight)
+  let cd = setTimeout(function() {
+    document.getElementById("profileMessage").innerHTML = "";
+    document.getElementById("profileMessage").style.display = "none";
+    document.getElementById('progressBar').style.display = 'none';
+  }, 400);
+}
+
+function passwordNotChanged() {
+  document.getElementById("profileMessage").innerHTML = "User information not correct";
+  document.getElementById("profileMessage").style.display = "block";
+  document.getElementById('progressBar').style.background = '#CF000F';
 }
 
 function startDeleteAccount() {

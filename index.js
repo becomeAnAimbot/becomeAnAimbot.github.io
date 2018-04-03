@@ -19,6 +19,8 @@ app.post('/', function (req, res){
     loginUser(req.body, res);
   } else if(req.body.func == 'deleteUser') {
      delUser(req.body, res);
+  } else if(req.body.func == 'changePassword') {
+     changePass(req.body, res);
   } else {
     res.end("Undefined Function Error");
   }
@@ -58,6 +60,19 @@ function delUser(data, res) {
         if (err) {res.end("Query Error"); conn.end(); return;}
         if(result.affectedRows === 1) {res.end("Delete Success"); conn.end(); return;}
         else {res.end("Delete Failed"); conn.end(); return;}
+      });
+  });
+}
+
+function changePass(data, res) {
+  let conn = createDBConn();
+  conn.connect(function(err){
+    if(err) {res.end("Connection Error"); conn.end(); return;};
+      var sql = `UPDATE users SET password='${data.newpass}' WHERE username='${data.user}' AND password='${data.pass}';`;
+      conn.query(sql, function (err, result) {
+        if (err) {res.end("Query Error"); conn.end(); return;}
+        if(result.affectedRows === 1) {res.end("Password Updated"); conn.end(); return;}
+        else {res.end("Password Update Failed"); conn.end(); return;}
       });
   });
 }
