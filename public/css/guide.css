@@ -28,7 +28,11 @@
 
 .topic:hover {
   cursor: pointer;
-  background-color: #FFA500
+  background-color: #FFA500;
+}
+
+.topicFocused {
+    background-color: #FFA500;
 }
 
 #contentPane {
