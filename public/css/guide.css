@@ -31,6 +31,10 @@
   background-color: #FFA500;
 }
 
+.topic:focus {
+    outline: none;
+}
+
 .topicFocused {
     background-color: #FFA500;
 }
