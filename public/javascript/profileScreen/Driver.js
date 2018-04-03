@@ -167,7 +167,7 @@ var profileSketch = function(p) {
 
     passwordOldInput = p.createElement("input", "");
     passwordOldInput.attribute("type", "password");
-    passwordOldInput.attribute("name", "oldpass");
+    passwordOldInput.attribute("name", "pass");
     passwordOldInput.attribute("id", "passwordOldFieldChange");
     passwordOldInput.attribute("class", "loginText");
     passwordOldInput.parent(changePassForm);
