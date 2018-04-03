@@ -27,11 +27,25 @@ body {
 .statsContainer {
     display: flex;
     justify-content: center;
+    background-color: #FFA500;
 }
 
 .statsContainer h2 {
     padding: 1%;
     visibility: hidden;
+    text-align: center;
+}
+
+.endGameContainer {
+    display: none;
+    justify-content: center;
+    background-color: #FFA500;
+    box-shadow: 0.3em 0.3em 0.2em #999999;
+}
+
+.endGameContainer h1 {
+    padding: 1%;
+    text-align: center;
 }
 
 .instructions {

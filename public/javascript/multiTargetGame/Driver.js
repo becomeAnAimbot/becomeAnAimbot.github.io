@@ -142,13 +142,22 @@ var prioritySketch = function(p) {
         p.select("#gameTimer").style("visibility", "visible");
         p.select("#accuracyPercent").style("visibility", "visible");
         p.select("#accuracyShots").style("visibility", "visible");
-        let counter = 59.9;
+        let counter = 0.2;
         let cd = setInterval(function() {
             if(counter <= 0) {
                 clearInterval(cd);
                 p.select("#gameTimer").html("Time's up!");
                 p.priorityVariables.gameOver = true;
                 p.priorityVariables.targets = [];
+
+                endShotStat.html("Shots: " + p.priorityVariables.shotsHit + "/" + p.priorityVariables.totalShots);
+                let per = ((p.priorityVariables.shotsHit/p.priorityVariables.totalShots)) * 100.0;
+                str = "Accuracy: " + per.toFixed(2) + "%";
+                endAccStat.html(str);
+                endGameStats.position(p.select("#targetGameCanvas").position());
+
+                endGameStats.show();
+                statsCont.hide();
             } else {
                 p.select("#gameTimer").html(counter.toFixed(1));
                 counter = counter - 0.1;
@@ -165,6 +174,8 @@ var prioritySketch = function(p) {
         p.priorityVariables.canvHeight = p.windowHeight/1.5;
         p.priorityVariables.canvWidth = p.windowWidth;
         p.select("#endButtons").hide();
+        endGameStats.hide();
+        statsCont.style("display","flex");
 
         let shotsEle = p.select("#accuracyShots");
         let percentEle = p.select("#accuracyPercent");
@@ -265,5 +276,19 @@ var prioritySketch = function(p) {
         showBut.addClass("hideInstructionsButton");
         showBut.parent(instrucs);
         showBut.attribute("onclick", "hideInstructions()");
+
+        // End Game Dialog
+        endGameStats = p.createElement("div", "");
+        endGameStats.addClass("endGameContainer");
+        endGameStats.parent("#gameContainer");
+
+        endGameTime = p.createElement("h1", "Time's Up!");
+        endGameTime.parent(endGameStats);
+
+        endShotStat = p.createElement("h1", "");
+        endShotStat.parent(endGameStats);
+
+        endAccStat = p.createElement("h1", "");
+        endAccStat.parent(endGameStats);
     };
 }
