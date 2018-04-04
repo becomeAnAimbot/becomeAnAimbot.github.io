@@ -41,15 +41,17 @@ var statsSketch = function(p) {
 
         lineChart = p.createElement("canvas","");
         lineChart.attribute("id","myChart");
-        lineChart.attribute("style","height: 400px; width: 400px");
+        lineChart.attribute("style","height: 400px; width: 400px;");
+        lineChart.parent(gameCont);
 
         p.samplebar(lineChart);
 
         p.generateLineGraph();
     };
 
-    p.samplebar = function(lineChart) {
-      var myChart = new Chart(lineChart, {
+    p.samplebar = function() {
+      cx = document.getElementById('myChart');
+      var myChart = new Chart(cx, {
         type: 'bar',
         data: {
           labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -85,7 +87,7 @@ var statsSketch = function(p) {
         }
        }
       });
-    }
+    };
 
     p.windowResized = function() {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
