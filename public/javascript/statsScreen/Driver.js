@@ -39,15 +39,16 @@ var statsSketch = function(p) {
         chart.addClass("chartHeight")
         chart.parent(statsBox);
 
+        lineParent = p.createElement("div", "");
+        lineParent.attribute("id","lineCont");
+        lineParent.parent(gameCont);
+
         lineChart = p.createElement("canvas","");
         lineChart.attribute("id","myChart");
-        lineChart.style.height = "400px";
-        lineChart.style.width = "400px";
-        lineChart.parent(gameCont);
+        lineChart.parent(lineParent);
 
         p.samplebar(lineChart);
-
-        p.generateLineGraph();
+        //p.generateLineGraph();
     };
 
     p.samplebar = function() {

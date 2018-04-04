@@ -10,3 +10,9 @@
 .chartHeight {
     height: 300px;
 }
+
+#lineCont {
+  height: 40%;
+  width: 70%;
+  margin-left: 15%;
+}
