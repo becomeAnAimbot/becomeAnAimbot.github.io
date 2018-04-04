@@ -41,7 +41,8 @@ var statsSketch = function(p) {
 
         lineChart = p.createElement("canvas","");
         lineChart.attribute("id","myChart");
-        lineChart.attribute("style","height: 400px; width: 400px;");
+        lineChart.style.height = "400px";
+        lineChart.style.width = "400px";
         lineChart.parent(gameCont);
 
         p.samplebar(lineChart);
