@@ -118,10 +118,9 @@ var prioritySketch = function(p) {
 
     p.startGame = function() {
         startButton.hide();
-        countDown = p.createElement("p", 3);
-        countDown.addClass("countDown");
-        countDown.parent("#gameContainer");
         countDown.position(p.select("#targetGameCanvas").position());
+        countDown.html(3);
+        countDown.show();
 
         let counter = 2;
         let cd = setInterval(function() {
@@ -143,7 +142,7 @@ var prioritySketch = function(p) {
         p.select("#gameTimer").style("visibility", "visible");
         p.select("#accuracyPercent").style("visibility", "visible");
         p.select("#accuracyShots").style("visibility", "visible");
-        let counter = 0.2;
+        let counter = 59.9;
         let cd = setInterval(function() {
             if(counter <= 0) {
                 clearInterval(cd);
@@ -278,6 +277,11 @@ var prioritySketch = function(p) {
         showBut.addClass("hideInstructionsButton");
         showBut.parent(instrucs);
         showBut.attribute("onclick", "hideInstructions()");
+
+        countDown = p.createElement("p", 3);
+        countDown.hide();
+        countDown.parent("#gameContainer");
+        countDown.addClass("countDown");
 
         // End Game Dialog
         endGameStats = p.createElement("div", "");
