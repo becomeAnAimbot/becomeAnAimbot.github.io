@@ -17,6 +17,8 @@ var staSketch;
 var proSketch;
 var guiSketch;
 
+var intervalList = [];
+
 function masterFunction() {
     let cd = setInterval(function() {
        if(onMainScreen) {
@@ -66,8 +68,9 @@ function clearBody() {
 
 function checkScreenSwitch() {
     if(screenSwitch) {
-        clearAllSketches();
-        return true;
+      clearAllIntervals();
+      clearAllSketches();
+      return true;
     }
     return false;
 }
@@ -288,7 +291,7 @@ function createdNotLoggedInHeader(p, gameCont) {
   guideButton.id("guideButton");
   guideButton.attribute("onclick","startGuideScreen()");
   guideButton.attribute("class","headerButton");
-    
+
   signInButton = p.createElement("button","Sign in");
   signInButton.parent(rightHeader);
   signInButton.id("signIn");
@@ -336,6 +339,13 @@ function getCookie(cname) {
 function signUserOut() {
   document.cookie = "aimbotUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   startMainScreen();
+}
+
+function clearAllIntervals() {
+  for(int of intervalList) {
+    clearInterval(int);
+  }
+  intervaList = [];
 }
 
 masterFunction();
