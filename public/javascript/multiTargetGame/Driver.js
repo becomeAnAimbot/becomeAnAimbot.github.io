@@ -194,10 +194,11 @@ var prioritySketch = function(p) {
     };
 
     p.sendGameStats = function() {
+      console.log("SENDING STATS");
       var xhttp = new XMLHttpRequest();
       xhttp.open("POST", "/", true);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      user = getUsername;
+      user = getUsername();
       hits = p.priorityVariables.shotsHit;
       misses = p.priorityVariables.totalShots - p.priorityVariables.shotsHit;
       xhttp.send(`func=priorityStats&user=${user}&hits=${hits}&misses=${misses}`);
