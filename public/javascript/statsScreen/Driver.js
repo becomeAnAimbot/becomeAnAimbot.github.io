@@ -10,24 +10,10 @@ var statsSketch = function(p) {
         canv.position(0,0);
 
         p.mainScreenHtml();
-
-        // for(let i = 0; i < 25; i++) {
-        //     t = new Target(p, p.windowWidth, p.windowHeight);
-        //     t.randomPlacement();
-        //     t.color = "Random";
-        //     t.show();
-        //     t.assignRandomSpeed(-10,10);
-        //     ambientTargets.push(t);
-        // }
     };
 
     p.draw = function() {
-        p.background("#FFFFFF");
-        for(let i = 0; i < ambientTargets.length; i++) {
-            ambientTargets[i].show();
-            ambientTargets[i].checkBoundaryHits(ambientTargets[i]);
-            ambientTargets[i].move();
-        }
+
     };
 
     p.mainScreenHtml = function(){
@@ -53,11 +39,53 @@ var statsSketch = function(p) {
         chart.addClass("chartHeight")
         chart.parent(statsBox);
 
+        lineChart = p.createElement("canvas","");
+        lineChart.attribute("id","myChart");
+        lineChart.attribute("style","height: 400px; width: 400px");
+
+        p.samplebar(lineChart);
+
         p.generateLineGraph();
-
-
-
     };
+
+    p.samplebar = function(lineChart) {
+      var myChart = new Chart(lineChart, {
+        type: 'bar',
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+       }
+      });
+    }
 
     p.windowResized = function() {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
