@@ -21,6 +21,8 @@ app.post('/', function (req, res){
      delUser(req.body, res);
   } else if(req.body.func == 'changePassword') {
      changePass(req.body, res);
+  } else if(req.body.func == 'priorityStats') {
+     addPriorityStats(req.body, res);
   } else {
     res.end("Undefined Function Error");
   }
@@ -77,8 +79,20 @@ function changePass(data, res) {
   });
 }
 
+function addPriorityStats(data, res) {
+  let conn = createDBConn();
+  conn.connect(function(err){
+    if(err) {res.end("Connection Error"); conn.end(); return;};
+      var sql = `INSERT INTO priorityTargets (username, hits, misses) VALUES ('${data.user}', '${data.hits}', '${data.misses}');`;
+      conn.query(sql, function (err, result) {
+        if (err) {res.end("Stats Fail"); conn.end(); return;}
+        if(result.affectedRows === 1) {res.end("User Created"); conn.end(); return;};
+      });
+  });
+}
+
 function createDBConn() {
-  return  mysql.createConnection({host: "localhost", user: "abymoen", password: "Thinkpad191.", database: "BecomeAnAimbot"});
+  return  mysql.createConnection({host: "localhost", user: "DBguy", password: ".1SuperRandomPassword1.", database: "BecomeAnAimbot"});
 }
 
 

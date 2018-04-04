@@ -158,6 +158,7 @@ var prioritySketch = function(p) {
 
                 endGameStats.show();
                 statsCont.hide();
+                if(isLoggedIn) {p.sendGameStats();}
             } else {
                 p.select("#gameTimer").html(counter.toFixed(1));
                 counter = counter - 0.1;
@@ -192,9 +193,19 @@ var prioritySketch = function(p) {
         p.loop();
     };
 
+    p.sendGameStats = function() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      user = getUsername;
+      hits = p.priorityVariables.shotsHit;
+      misses = p.priorityVariables.totalShots - p.priorityVariables.shotsHit;
+      xhttp.send(`func=priorityStats&user=${user}&hits=${hits}&misses=${misses}`);
+    }
+
     p.goHome = function() {
         startMainScreen();
-    }
+    };
 
     p.windowResized = function() {
         p.resizeCanvas(p.windowWidth, p.windowHeight/1.5);
