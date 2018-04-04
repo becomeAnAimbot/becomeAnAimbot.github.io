@@ -135,7 +135,7 @@ var prioritySketch = function(p) {
                 counter--;
             }
         }, 1000);
-        intervaList.push(cd);
+        intervalList.push(cd);
     };
 
     p.startTimer = function() {
@@ -163,7 +163,7 @@ var prioritySketch = function(p) {
                 counter = counter - 0.1;
             }
         }, 100);
-        intervaList.push(cd);
+        intervalList.push(cd);
     };
 
     p.showEndButtons = function() {
