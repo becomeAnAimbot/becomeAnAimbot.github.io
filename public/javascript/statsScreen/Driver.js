@@ -46,10 +46,11 @@ var statsSketch = function(p) {
     p.createLine = function() {
       cx = document.getElementById('myChart');
       accData = p.getUserAccuracy();
+      accTimes = p.getUserTimes();
       var myChart = new Chart(cx, {
         type: 'line',
         data: {
-          labels: ["Time Played At"],
+          labels: accTimes,
           datasets: [{
             label: 'Accuracy',
             data: accData,
@@ -87,9 +88,17 @@ var statsSketch = function(p) {
     p.getUserAccuracy = function() {
       acc = [];
       for(obs of userStats) {
-        acc.push((obs.hits / obs.misses).toFixed(1));
+        acc.push((obs.hits / (obs.hits + obs.misses))*100.toFixed(1));
       }
       return acc;
+    }
+
+    p.getUserTimes = function() {
+      times = [];
+      for(obs of userStats) {
+        times.push((obs.hits / (obs.hits + obs.misses))*100.toFixed(1));
+      }
+      return times;
     }
 
     p.queryStats = function() {
