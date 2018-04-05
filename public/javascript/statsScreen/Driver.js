@@ -29,7 +29,7 @@ var statsSketch = function(p, user) {
         mainTitle.parent(gameCont);
         mainTitle.addClass("mainTitle");
 
-        if(true) {
+        if(userStats.length >= 5) {
             p.displayStats();
         } else {
             statsBox = p.createElement("div","");
@@ -51,18 +51,18 @@ var statsSketch = function(p, user) {
         lineChart.attribute("id","myChart");
         lineChart.parent(lineParent);
 
-        p.samplebar(lineChart);
+        p.createLine(lineChart);
     };
 
-    p.samplebar = function() {
+    p.createLine = function() {
       cx = document.getElementById('myChart');
       var myChart = new Chart(cx, {
         type: 'line',
         data: {
-          labels: ["January", "February", "March", "April", "May", "June"],
+          labels: ["Time Played At"],
           datasets: [{
-            label: 'Temp',
-            data: [92, 94, 91, 96, 95, 89],
+            label: 'Accuracy',
+            data: p.getUserAccuracy();,
             fill: false,
             lineTension: 0,
             backgroundColor: "#EFEFEF",
@@ -86,12 +86,20 @@ var statsSketch = function(p, user) {
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+          if(this.responseText == "Not Enough Games") return;
           userStats = JSON.parse(this.responseText).stats;
-          console.log(userStats);
         }
       };
       user = getUsername();
       xhttp.send(`func=getPriorityStats&user=${user}`);
+    }
+
+    p.getUserAccuracy() {
+      acc = [];
+      for(obs of userStats) {
+        acc.push((obs.hits / obs.misses).toFixed(1));
+      }
+      return acc;
     }
 
 };
