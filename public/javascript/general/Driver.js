@@ -44,7 +44,7 @@ function masterFunction() {
          }
        } else if(onStatScreen) {
            if (checkScreenSwitch()) {
-               staSketch = new p5(statsSketch);
+               staSketch = new p5(statsSketch, getUsername());
                screenSwitch = false;
            }
        } else if(onProfileScreen) {
