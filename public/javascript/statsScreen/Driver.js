@@ -1,10 +1,10 @@
-var statsSketch = function(p, user) {
+var statsSketch = function(p) {
 
     ambientTargets = [];
     userStats = [];
 
     p.setup = function() {
-        p.getUserStats(user);
+        p.getUserStats(getUsername());
         canv = p.createCanvas(p.windowWidth, p.windowHeight);
         canv.style("z-index","-2");
         canv.addClass("mainScreenBackground");
@@ -90,8 +90,7 @@ var statsSketch = function(p, user) {
           userStats = JSON.parse(this.responseText).stats;
         }
       };
-      user = getUsername();
-      xhttp.send(`func=getPriorityStats&user=${user}`);
+      xhttp.send(`func=getPriorityStats&user=${username}`);
     }
 
     p.getUserAccuracy() {
