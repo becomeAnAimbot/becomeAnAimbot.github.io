@@ -4,7 +4,7 @@ var statsSketch = function(p, user) {
     userStats = [];
 
     p.setup = function() {
-        getUserStats(user);
+        p.getUserStats(user);
         canv = p.createCanvas(p.windowWidth, p.windowHeight);
         canv.style("z-index","-2");
         canv.addClass("mainScreenBackground");
