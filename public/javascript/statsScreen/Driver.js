@@ -62,7 +62,7 @@ var statsSketch = function(p) {
           labels: ["Time Played At"],
           datasets: [{
             label: 'Accuracy',
-            data: p.getUserAccuracy();,
+            data: p.getUserAccuracy(),
             fill: false,
             lineTension: 0,
             backgroundColor: "#EFEFEF",
@@ -93,7 +93,7 @@ var statsSketch = function(p) {
       xhttp.send(`func=getPriorityStats&user=${username}`);
     }
 
-    p.getUserAccuracy() {
+    p.getUserAccuracy = function() {
       acc = [];
       for(obs of userStats) {
         acc.push((obs.hits / obs.misses).toFixed(1));
