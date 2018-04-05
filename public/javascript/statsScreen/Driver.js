@@ -28,7 +28,7 @@ var statsSketch = function(p) {
         mainTitle.addClass("mainTitle");
 
         if(true) {
-            displayStats()
+            p.displayStats();
         } else {
             statsBox = p.createElement("div","");
             statsBox.parent(gameCont);
@@ -37,7 +37,7 @@ var statsSketch = function(p) {
             description = p.createElement("h3", "You need to play atleast five games");
             description.parent(statsBox);
         }
-        
+
     };
 
     p.displayStats = function() {
