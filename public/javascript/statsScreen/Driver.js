@@ -29,17 +29,6 @@ var statsSketch = function(p) {
         mainTitle.parent(gameCont);
         mainTitle.addClass("mainTitle");
 
-        if(userStats.length >= 5) {
-            p.displayStats();
-        } else {
-            statsBox = p.createElement("div","");
-            statsBox.parent(gameCont);
-            statsBox.addClass("statsBox");
-
-            description = p.createElement("h3", "You need to play atleast five games");
-            description.parent(statsBox);
-        }
-
     };
 
     p.displayStats = function() {
@@ -89,6 +78,7 @@ var statsSketch = function(p) {
         if (this.readyState == 4 && this.status == 200) {
           if(this.responseText == "Not Enough Games") return;
           userStats = JSON.parse(this.responseText).stats;
+          p.queryStats();
         }
       };
       xhttp.send(`func=getPriorityStats&user=${username}`);
@@ -102,4 +92,16 @@ var statsSketch = function(p) {
       return acc;
     }
 
+    p.queryStats = function() {
+      if(userStats.length >= 5) {
+        p.displayStats();
+      } else {
+        statsBox = p.createElement("div","");
+        statsBox.parent(gameCont);
+        statsBox.addClass("statsBox");
+
+        description = p.createElement("h3", "You need to play atleast five games");
+        description.parent(statsBox);
+      }
+    }
 };
