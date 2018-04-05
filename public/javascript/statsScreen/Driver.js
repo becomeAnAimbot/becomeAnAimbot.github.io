@@ -37,16 +37,43 @@ var statsSketch = function(p) {
         lineParent.parent(gameCont);
 
         lineChart = p.createElement("canvas","");
-        lineChart.attribute("id","myChart");
+        lineChart.attribute("id","tpLineChart");
         lineChart.parent(lineParent);
 
-        p.createLine(lineChart);
+        p.createLineChart();
+
+        pieParent = p.createElement("div","");
+        pieParent.attribute("id","pieCont");
+        pieParent.parent(gameCont);
+
+        pieChart = p.createElement("canvas","");
+        pieChart.attribute("id","tpPieChart");
+        pieChart.parent(pieParent);
+
+        p.createPieChart();
     };
 
-    p.createLine = function() {
-      cx = document.getElementById('myChart');
+    p.createPieChart = function() {
+      cx = document.getElementById('tpPieChart');
+      pieData = p.getUserHitMiss();
+      var myChart = new Chart(cx, {
+        type: 'doughnut',
+        data: {
+          labels: ["Total Hits","Total Misses"],
+          datasets: [{
+            data: pieData,
+            backgroundColor: ["#FFA500","#32A8E9"],
+            borderColor: "#FFFFFF",
+          }]
+        }
+      });
+    };
+
+    p.createLineChart = function() {
+      cx = document.getElementById('tpLineChart');
       accData = p.getUserAccuracy();
       accTimes = p.getUserTimes();
+      aveAccData = p.getUserAveAccuracy();
       var myChart = new Chart(cx, {
         type: 'line',
         data: {
@@ -56,8 +83,19 @@ var statsSketch = function(p) {
             data: accData,
             fill: false,
             lineTension: 0,
-            backgroundColor: "#EFEFEF",
-            borderColor: "#000000",
+            backgroundColor: "#FFFFFF",
+            borderColor: "#FFA500",
+          },
+
+          {
+            label: 'Average Accuracy',
+            data: aveAccData,
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFFFFF",
+            borderColor: "#32A8E9",
+            pointRadius: 0,
+            borderDash: [10,10],
           }]
         }
       });
@@ -77,28 +115,41 @@ var statsSketch = function(p) {
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          if(this.responseText == "Not Enough Games") return;
+          if(this.responseText == "Not Enough Games") {p.queryStats(); return;}
           userStats = JSON.parse(this.responseText).stats;
           p.queryStats();
         }
       };
       xhttp.send(`func=getPriorityStats&user=${username}`);
-    }
+    };
 
     p.getUserAccuracy = function() {
       acc = [];
       for(obs of userStats) {
-        acc.push((obs.hits / (obs.hits + obs.misses)).toFixed(3));
+        acc.push((obs.hits*100 / (obs.hits + obs.misses)).toFixed(3));
       }
       return acc;
-    }
+    };
 
     p.getUserTimes = function() {
       times = [];
       for(obs of userStats) {
-        times.push(obs.timePlayed);
+        times.push(new Date(obs.timePlayed).getTime());
       }
       return times;
+    };
+
+    p.getUserAveAccuracy = function() {
+      ave = [];
+      count = 0;
+      for(obs of userStats) {
+        count += parseFloat((obs.hits*100 / (obs.hits + obs.misses)).toFixed(3));
+      }
+      calc = (count / userStats.length).toFixed(2);
+      for(obs of userStats) {
+        ave.push(calc);
+      }
+      return ave;
     }
 
     p.queryStats = function() {
@@ -109,8 +160,21 @@ var statsSketch = function(p) {
         statsBox.parent(gameCont);
         statsBox.addClass("statsBox");
 
-        description = p.createElement("h3", "You need to play atleast five games");
+        description = p.createElement("h3", "You need to play a minimum of five games to have statistics displayed");
         description.parent(statsBox);
       }
+    };
+
+    p.getUserHitMiss = function() {
+      hm = [];
+      hits = 0;
+      misses = 0;
+      for(obs of userStats) {
+        hits += obs.hits;
+        misses += obs.misses;
+      }
+      hm.push(hits);
+      hm.push(misses);
+      return hm;
     }
 };

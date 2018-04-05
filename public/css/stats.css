@@ -1,7 +1,17 @@
 #lineCont {
+  margin-top: 5%;
   height: 40%;
-  width: 70%;
-  margin-left: 15%;
+  width: 50%;
+  margin-left: 5%;
+  display: inline-block;
+}
+
+#pieCont {
+  display: inline-block;
+  margin-top: 5%;
+  margin-left: 5%;
+  width: 35%;
+  height: 35%;
 }
 
 .statsBox {
@@ -13,5 +23,5 @@
   text-align: center;
   box-shadow: 0.7em 0.7em 0.6em #999999;
   margin-bottom: 2%;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
 }
