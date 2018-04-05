@@ -49,9 +49,9 @@ var searchFailedSketch = function(p) {
         mainTitle.parent(gameCont);
         mainTitle.addClass("mainTitle");
 
-        searchFailedMsg = p.createElement("p","U fkn suk lol");
+        searchFailedMsg = p.createElement("p","User not found.");
         searchFailedMsg.parent(gameCont);
-        searchFailedMsg.id("guideContent");
+        searchFailedMsg.id("searchFailedMsg");
     }
 
     p.windowResized = function() {
