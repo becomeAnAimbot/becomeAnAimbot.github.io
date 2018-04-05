@@ -1,8 +1,10 @@
-var statsSketch = function(p) {
+var statsSketch = function(p, user) {
 
     ambientTargets = [];
+    userStats = [];
 
     p.setup = function() {
+        getUserStats(user);
         canv = p.createCanvas(p.windowWidth, p.windowHeight);
         canv.style("z-index","-2");
         canv.addClass("mainScreenBackground");
@@ -77,5 +79,19 @@ var statsSketch = function(p) {
             ambientTargets[i].height = p.windowWidth/50;
             ambientTargets[i].width = p.windowWidth/50;        }
     };
+
+    p.getUserStats(username) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "/", true);
+      xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          userStats = JSON.parse(this.responseText).stats;
+          console.log(userStats);
+        }
+      };
+      user = getUsername();
+      xhttp.send(`func=getPriorityStats&user=${user}`);
+    }
 
 };

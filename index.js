@@ -23,6 +23,8 @@ app.post('/', function (req, res){
      changePass(req.body, res);
   } else if(req.body.func == 'priorityStats') {
      addPriorityStats(req.body, res);
+  } else if(req.body.func == 'getPriorityStats') {
+     getPriorityStats(req.body, res);
   } else {
     res.end("Undefined Function Error");
   }
@@ -87,6 +89,19 @@ function addPriorityStats(data, res) {
       conn.query(sql, function (err, result) {
         if (err) {res.end("Stats Fail"); conn.end(); return;}
         if(result.affectedRows === 1) {res.end("User Created"); conn.end(); return;};
+      });
+  });
+}
+
+function getPriorityStats(data, res) {
+  let conn = createDBConn();
+  conn.connect(function(err){
+    if(err) {res.end("Connection Error"); conn.end(); return;};
+      var sql = `SELECT * FROM priorityTargets WHERE username='${data.user}';`;
+      conn.query(sql, function (err, result) {
+        if (err) {res.end("Query Error"); conn.end(); return;}
+        if(result.length < 5) {res.end("Not Enough Games"); conn.end(); return;}
+        else {res.end(JSON.stringify({'stats':result})); conn.end(); return;}
       });
   });
 }
