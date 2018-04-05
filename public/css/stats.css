@@ -3,3 +3,15 @@
   width: 70%;
   margin-left: 15%;
 }
+
+.statsBox {
+  margin-top: 5%;
+  width: 30%;
+  margin-left: 35%;
+  font-size: 125%;
+  display: block;
+  text-align: center;
+  box-shadow: 0.7em 0.7em 0.6em #999999;
+  margin-bottom: 2%;
+  color: #FFFFFF;
+}

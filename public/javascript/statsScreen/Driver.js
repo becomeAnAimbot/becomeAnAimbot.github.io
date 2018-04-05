@@ -27,6 +27,20 @@ var statsSketch = function(p) {
         mainTitle.parent(gameCont);
         mainTitle.addClass("mainTitle");
 
+        if(true) {
+            displayStats()
+        } else {
+            statsBox = p.createElement("div","");
+            statsBox.parent(gameCont);
+            statsBox.addClass("statsBox");
+
+            description = p.createElement("h3", "You need to play atleast five games");
+            description.parent(statsBox);
+        }
+        
+    };
+
+    p.displayStats = function() {
         lineParent = p.createElement("div", "");
         lineParent.attribute("id","lineCont");
         lineParent.parent(gameCont);
