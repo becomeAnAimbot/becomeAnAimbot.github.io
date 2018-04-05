@@ -18,10 +18,10 @@ var staSketch;
 var proSketch;
 var guiSketch;
 var shfSketch;
-var shsSketch;
 
 var intervalList = [];
 
+var searching = false;
 var searchedUser;
 
 function masterFunction() {
@@ -67,11 +67,6 @@ function masterFunction() {
            shfSketch = new p5(searchFailedSketch);
            screenSwitch = false;
          }
-       } else if(onSearchedStatsScreen) {
-         if(checkScreenSwitch()) {
-           shsSketch = new p5(searchedStatsSketch);
-           screenSwitch = false;
-         }
        }
     }, 10);
 }
@@ -99,7 +94,6 @@ function clearAllSketches() {
     proSketch = null;
     guiSketch = null;
     shfSketch = null;
-    shsSketch = null;
 }
 
 function removeAllSketches() {
@@ -111,7 +105,6 @@ function removeAllSketches() {
   if(proSketch != null) proSketch.remove();
   if(guiSketch != null) guiSketch.remove();
   if(shfSketch != null) shfSketch.remove();
-  if(shsSketch != null) shsSketch.remove();
 }
 
 function startPriorityGame() {
@@ -126,7 +119,6 @@ function startPriorityGame() {
     onStatScreen = false;
     onGuideScreen = false;
     onSearchFailedScreen = false;
-    onSearchedStatsScreen = false;
 }
 
 function startMainScreen() {
@@ -141,7 +133,6 @@ function startMainScreen() {
     onStatScreen = false;
     onGuideScreen = false;
     onSearchFailedScreen = false;
-    onSearchedStatsScreen = false;
 }
 
 function startLoginScreen() {
@@ -156,7 +147,6 @@ function startLoginScreen() {
     onStatScreen = false;
     onGuideScreen = false;
     onSearchFailedScreen = false;
-    onSearchedStatsScreen = false;
 }
 
 function startSignupScreen() {
@@ -171,7 +161,6 @@ function startSignupScreen() {
     onStatScreen = false;
     onGuideScreen = false;
     onSearchFailedScreen = false;
-    onSearchedStatsScreen = false;
 }
 
 function startStatScreen() {
@@ -186,7 +175,6 @@ function startStatScreen() {
     onStatScreen = true;
     onGuideScreen = false;
     onSearchFailedScreen = false;
-    onSearchedStatsScreen = false;
 }
 
 function startProfileScreen() {
@@ -201,7 +189,6 @@ function startProfileScreen() {
     onProfileScreen = true;
     onGuideScreen = false;
     onSearchFailedScreen = false;
-    onSearchedStatsScreen = false;
 }
 
 function startGuideScreen() {
@@ -216,7 +203,6 @@ function startGuideScreen() {
     onProfileScreen = false;
     onGuideScreen = true;
     onSearchFailedScreen = false;
-    onSearchedStatsScreen = false;
 }
 
 function startSearchFailedScreen() {
@@ -231,22 +217,6 @@ function startSearchFailedScreen() {
     onProfileScreen = false;
     onGuideScreen = false;
     onSearchFailedScreen = true;
-    onSearchedStatsScreen = false;
-}
-
-function startSearchedStatsScreen() {
-    clearBody();
-    removeAllSketches();
-    onMainScreen = false;
-    onLoginScreen = false;
-    onSignupScreen = false;
-    screenSwitch = true;
-    onPriorityPractice = false;
-    onStatScreen = false;
-    onProfileScreen = false;
-    onGuideScreen = false;
-    onSearchFailedScreen = false;
-    onSearchedStatsScreen = true;
 }
 
 function createHeader(p, gameCont) {
@@ -396,7 +366,8 @@ function searchUser() {
              startSearchFailedScreen();
          } else if(this.responseText == "User found") {
              searchedUser = user;
-             startSearchedStatsScreen();
+             searching = true;
+             startStatScreen();
          }
        }
      };

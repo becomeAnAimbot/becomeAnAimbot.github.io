@@ -4,7 +4,12 @@ var statsSketch = function(p) {
     userStats = [];
 
     p.setup = function() {
-        p.getUserStats(getUsername());
+        if(searching) {
+            p.getUserStats(searchedUser);
+            searching = false;
+        } else {
+            p.getUserStats(getUsername());
+        }
         canv = p.createCanvas(p.windowWidth, p.windowHeight);
         canv.style("z-index","-2");
         canv.addClass("mainScreenBackground");
@@ -28,7 +33,6 @@ var statsSketch = function(p) {
         mainTitle.attribute("src", "images/small_title.png");
         mainTitle.parent(gameCont);
         mainTitle.addClass("mainTitle");
-
     };
 
     p.displayStats = function() {
