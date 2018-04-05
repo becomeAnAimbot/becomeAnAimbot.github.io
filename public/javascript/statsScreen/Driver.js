@@ -80,7 +80,7 @@ var statsSketch = function(p, user) {
             ambientTargets[i].width = p.windowWidth/50;        }
     };
 
-    p.getUserStats(username) {
+    p.getUserStats = function(username) {
       var xhttp = new XMLHttpRequest();
       xhttp.open("POST", "/", true);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
