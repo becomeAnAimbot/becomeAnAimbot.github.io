@@ -99,7 +99,7 @@ var statsSketch = function(p) {
             borderDash: [10,10],
           },
           {
-            label: 'Accuracy',
+            label: 'Shots Taken',
             data: totalShots,
             fill: false,
             lineTension: 0,
@@ -192,5 +192,6 @@ var statsSketch = function(p) {
       for(obs of userStats) {
         shots.push(obs.hits + obs.misses);
       }
+      return shots;
     };
 };
