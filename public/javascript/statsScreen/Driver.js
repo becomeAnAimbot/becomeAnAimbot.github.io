@@ -74,6 +74,7 @@ var statsSketch = function(p) {
       accData = p.getUserAccuracy();
       accTimes = p.getUserTimes();
       aveAccData = p.getUserAveAccuracy();
+      totalShots = p.getUserShots();
       var myChart = new Chart(cx, {
         type: 'line',
         data: {
@@ -96,7 +97,15 @@ var statsSketch = function(p) {
             borderColor: "#32A8E9",
             pointRadius: 0,
             borderDash: [10,10],
-          }]
+          },
+          {
+            label: 'Accuracy',
+            data: totalShots,
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFFFFF",
+            borderColor: "#000000",
+          },]
         }
       });
     };
@@ -176,5 +185,12 @@ var statsSketch = function(p) {
       hm.push(hits);
       hm.push(misses);
       return hm;
-    }
+    };
+
+    p.getUserShots = function() {
+      shots = [];
+      for(obs of userStats) {
+        shots.push(obs.hits + obs.misses);
+      }
+    };
 };
