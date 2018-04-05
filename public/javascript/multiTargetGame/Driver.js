@@ -194,7 +194,6 @@ var prioritySketch = function(p) {
     };
 
     p.sendGameStats = function() {
-      console.log("SENDING STATS");
       var xhttp = new XMLHttpRequest();
       xhttp.open("POST", "/", true);
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

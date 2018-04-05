@@ -8,14 +8,14 @@ var statsSketch = function(p) {
         canv.addClass("mainScreenBackground");
         canv.position(0,0);
 
-        p.mainScreenHtml();
+        p.statsScreenHtml();
     };
 
     p.draw = function() {
 
     };
 
-    p.mainScreenHtml = function(){
+    p.statsScreenHtml = function(){
 
         gameCont = p.createElement("div","");
         gameCont.id("bodyContainer");
