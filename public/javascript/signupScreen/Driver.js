@@ -175,7 +175,9 @@ function verifyRegisterValues() {
     return false;
   }
   if(!emailIsValid()) {
-    //DISPLAY MESSAGE TO User
+    ele = document.getElementById('signupErrorMessage');
+    ele.style.visibility = 'visible';
+    ele.innerHTML = 'Email is not valid!'
     return false;
   }
   return true;
@@ -187,7 +189,8 @@ function passwordsMatch() {
 }
 
 function emailIsValid() {
-  return true;
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(document.getElementById('emailField').value);
 }
 
 function checkSignup() {
