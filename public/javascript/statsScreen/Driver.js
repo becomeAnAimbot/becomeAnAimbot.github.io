@@ -56,13 +56,14 @@ var statsSketch = function(p) {
 
     p.createLine = function() {
       cx = document.getElementById('myChart');
+      accData = p.getUserAccuracy();
       var myChart = new Chart(cx, {
         type: 'line',
         data: {
           labels: ["Time Played At"],
           datasets: [{
             label: 'Accuracy',
-            data: p.getUserAccuracy(),
+            data: accData,
             fill: false,
             lineTension: 0,
             backgroundColor: "#EFEFEF",
