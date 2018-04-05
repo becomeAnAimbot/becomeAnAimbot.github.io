@@ -75,6 +75,9 @@ var statsSketch = function(p) {
       accTimes = p.getUserTimes();
       aveAccData = p.getUserAveAccuracy();
       totalShots = p.getUserShots();
+      aveTotalShots = p.getAveTotalShots();
+      effectData = p.getEffectData();
+      aveEffectData = p.getAveEffectData();
       var myChart = new Chart(cx, {
         type: 'line',
         data: {
@@ -86,6 +89,7 @@ var statsSketch = function(p) {
             lineTension: 0,
             backgroundColor: "#FFFFFF",
             borderColor: "#FFA500",
+            borderWidth: 1,
           },
 
           {
@@ -94,9 +98,32 @@ var statsSketch = function(p) {
             fill: false,
             lineTension: 0,
             backgroundColor: "#FFFFFF",
-            borderColor: "#32A8E9",
+            borderColor: "rgba(255, 165, 0, 0.25)",
             pointRadius: 0,
             borderDash: [10,10],
+            hidden: true,
+          },
+          {
+            label: 'Average Shots Taken',
+            data: aveTotalShots,
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFFFFF",
+            borderColor: "rgba(0, 0, 0, 0.25)",
+            pointRadius: 0,
+            borderDash: [10,10],
+            hidden: true,
+          },
+          {
+            label: 'Average Effectivness',
+            data: aveEffectData,
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFFFFF",
+            borderColor: "rgba(178, 0, 152, 0.25)",
+            pointRadius: 0,
+            borderDash: [10,10],
+            hidden: true,
           },
           {
             label: 'Shots Taken',
@@ -105,6 +132,17 @@ var statsSketch = function(p) {
             lineTension: 0,
             backgroundColor: "#FFFFFF",
             borderColor: "#000000",
+            borderWidth: 1,
+          },
+
+          {
+            label: 'Effectivness',
+            data: effectData,
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFFFFF",
+            borderColor: "#B20098",
+            borderWidth: 1,
           },]
         }
       });
@@ -194,4 +232,39 @@ var statsSketch = function(p) {
       }
       return shots;
     };
+
+    p.getEffectData = function() {
+      data = [];
+      for(obs of userStats) {
+        data.push((obs.hits*obs.hits / (obs.hits+obs.misses)).toFixed(3));
+      }
+      return data;
+    };
+
+    p.getAveTotalShots = function() {
+      ave = [];
+      count = 0;
+      for(obs of userStats) {
+        count += (obs.hits + obs.misses);
+      }
+      calc = (count / userStats.length).toFixed(2);
+      for(obs of userStats) {
+        ave.push(calc);
+      }
+      return ave;
+
+    }
+
+    p.getAveEffectData = function() {
+      ave = [];
+      count = 0;
+      for(obs of userStats) {
+        count += obs.hits*obs.hits / (obs.hits+obs.misses).toFixed(3);
+      }
+      calc = (count / userStats.length).toFixed(2);
+      for(obs of userStats) {
+        ave.push(calc);
+      }
+      return ave;
+    }
 };
