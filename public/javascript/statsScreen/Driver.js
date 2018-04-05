@@ -88,7 +88,7 @@ var statsSketch = function(p) {
     p.getUserAccuracy = function() {
       acc = [];
       for(obs of userStats) {
-        acc.push((obs.hits / (obs.hits + obs.misses))*100.toFixed(1));
+        acc.push((obs.hits / (obs.hits + obs.misses)).toFixed(3));
       }
       return acc;
     }
@@ -96,7 +96,7 @@ var statsSketch = function(p) {
     p.getUserTimes = function() {
       times = [];
       for(obs of userStats) {
-        times.push((obs.hits / (obs.hits + obs.misses))*100.toFixed(1));
+        times.push(obs.timePlayed);
       }
       return times;
     }
