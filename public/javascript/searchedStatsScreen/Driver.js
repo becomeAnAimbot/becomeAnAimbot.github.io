@@ -1,4 +1,4 @@
-var statsSketch = function(p) {
+var searchedStatsSketch = function(p) {
 
     ambientTargets = [];
     userStats = [];
