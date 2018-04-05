@@ -31,7 +31,7 @@ input:focus {
     align-items: center;
 }
 
-#searchBar {
+#searchInput {
     background-color: white;
     border: none;
     border-bottom: 0.15em solid #FFA500;
@@ -39,9 +39,13 @@ input:focus {
     height: 1.75em;
 }
 
-#searchBar:focus {
-    border-bottom: 0.2em solid #FFA500;
+#searchInput:focus {
     outline:none;
+}
+
+#magGlass:hover {
+    transform: scale(1.35);
+    cursor: pointer;
 }
 
 .headerButton {
@@ -126,7 +130,6 @@ input:focus {
 #dropdownContainer:hover .dropdownMenu {
   display: block;
 }
-
 
 ::-webkit-scrollbar {
     width: 1em;

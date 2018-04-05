@@ -5,6 +5,7 @@ var onSignupScreen = false;
 var onStatScreen = false;
 var onProfileScreen = false;
 var onGuideScreen = false;
+var onSearchFailedScreen = false;
 var screenSwitch = true;
 
 var isLoggedIn = checkLoggedIn();
@@ -16,6 +17,7 @@ var sigSketch;
 var staSketch;
 var proSketch;
 var guiSketch;
+var shfSketch;
 
 var intervalList = [];
 
@@ -55,6 +57,11 @@ function masterFunction() {
        } else if(onGuideScreen) {
          if(checkScreenSwitch()) {
            guiSketch = new p5(guideSketch);
+           screenSwitch = false;
+         }
+       }  else if(onSearchFailedScreen) {
+         if(checkScreenSwitch()) {
+           shfSketch = new p5(searchFailedSketch);
            screenSwitch = false;
          }
        }
@@ -186,6 +193,20 @@ function startGuideScreen() {
     onGuideScreen = true;
 }
 
+function startSearchFailedScreen() {
+    clearBody();
+    removeAllSketches();
+    onMainScreen = false;
+    onLoginScreen = false;
+    onSignupScreen = false;
+    screenSwitch = true;
+    onPriorityPractice = false;
+    onStatScreen = false;
+    onProfileScreen = false;
+    onGuideScreen = false;
+    onSearchFailedScreen = true;
+}
+
 
 function createHeader(p, gameCont) {
   checkLoggedIn();
@@ -213,9 +234,9 @@ function createLoggedInHeader(p, gameCont) {
   homeButton.attribute("onclick","startMainScreen()");
   homeButton.attribute("class","headerButton");
 
-  searchBar = p.createInput();
-  searchBar.parent(leftHeader);
-  searchBar.id("searchBar");
+  searchInput = p.createInput();
+  searchInput.parent(leftHeader);
+  searchInput.id("searchInput");
 
   magGlass = p.createElement("img");
   magGlass.attribute("src", "images/magnifyingGlass.png");
@@ -223,6 +244,7 @@ function createLoggedInHeader(p, gameCont) {
   magGlass.style("padding-left","0.5em");
   magGlass.parent(leftHeader);
   magGlass.id("magGlass");
+  magGlass.attribute("onclick","searchUser()");
 
   dropdownContainer = p.createElement("div","");
   dropdownContainer.attribute("id","dropdownContainer");
@@ -275,9 +297,10 @@ function createdNotLoggedInHeader(p, gameCont) {
   homeButton.attribute("onclick","startMainScreen()");
   homeButton.attribute("class","headerButton");
 
-  searchBar = p.createInput();
-  searchBar.parent(leftHeader);
-  searchBar.id("searchBar");
+  searchInput = p.createInput();
+  searchInput.parent(leftHeader);
+  searchInput.id("searchInput");
+  searchInput.attribute("placeholder","Search for user");
 
   magGlass = p.createElement("img");
   magGlass.attribute("src", "images/magnifyingGlass.png");
@@ -285,6 +308,7 @@ function createdNotLoggedInHeader(p, gameCont) {
   magGlass.style("padding-left","0.5em");
   magGlass.parent(leftHeader);
   magGlass.id("magGlass");
+  magGlass.attribute("onclick","searchUser()");
 
   guideButton = p.createElement("button", "Guide");
   guideButton.parent(rightHeader);
@@ -318,6 +342,23 @@ function checkCookie(cname) {
 
 function getUsername() {
   return getCookie("aimbotUser");
+}
+
+function searchUser() {
+    user = document.getElementById("searchInput").value.trim();
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");   xhttp.send(`func=searchUser&user=${user}`);
+    xhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+         if(this.responseText == "User not found") {
+             startSearchFailedScreen();
+         } else if(this.responseText == "User found") {
+            // bring up user's stats screen
+            userStats = JSON.parse(this.responseText).stats;
+         }
+       }
+     };
 }
 
 function getCookie(cname) {

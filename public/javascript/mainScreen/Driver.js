@@ -90,7 +90,7 @@ var mainSketch = function(p) {
         gameSeven.addClass("listGame");
         gameSeven.attribute("onclick","startPriorityGame()");
 
-	gameEight = p.createElement("h2","Priority Target Practice");
+	    gameEight = p.createElement("h2","Priority Target Practice");
         gameEight.parent(gamesList);
         gameEight.addClass("listGame");
         gameEight.attribute("onclick","startPriorityGame()");
