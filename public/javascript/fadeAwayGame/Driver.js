@@ -75,13 +75,20 @@ var fadeAwaySketch = function(p) {
                 str = "Accuracy: " + per.toFixed(2) + "%";
                 percentEle.html(str);
             }
+            p.drawAllTargets();
             p.background('#f2f2f2');
+        }
+    };
+
+    p.drawAllTargetsRandom = function() {
+        for(let i=0; i<p.priorityVariables.targets.length; i++) {
+            p.priorityVariables.targets[i].randomPlacement();
+            p.priorityVariables.targets[i].show();
         }
     };
 
     p.drawAllTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
-            p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
         }
     };
@@ -89,7 +96,6 @@ var fadeAwaySketch = function(p) {
     p.createTargets = function() {
         for(let i=0; i<20; i++) {
             p.priorityVariables.targets[i] = new Target(p, p.windowWidth, p.windowHeight/1.5);
-            p.priorityVariables.targets[i].assignRandomSpeed();
             p.priorityVariables.targets[0].isCurrentTarget = true;
             p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
@@ -181,7 +187,7 @@ var fadeAwaySketch = function(p) {
       user = getUsername();
       hits = p.priorityVariables.shotsHit;
       misses = p.priorityVariables.totalShots - p.priorityVariables.shotsHit;
-      xhttp.send(`func=priorityStats&user=${user}&hits=${hits}&misses=${misses}`);
+      xhttp.send(`func=fadeAwayStats&user=${user}&hits=${hits}&misses=${misses}`);
     }
 
     p.goHome = function() {
