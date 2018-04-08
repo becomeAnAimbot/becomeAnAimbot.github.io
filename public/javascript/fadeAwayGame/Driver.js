@@ -96,7 +96,6 @@ var fadeAwaySketch = function(p) {
     p.createTargets = function() {
         for(let i=0; i<20; i++) {
             p.priorityVariables.targets[i] = new Target(p, p.windowWidth, p.windowHeight/1.5);
-            p.priorityVariables.targets[0].isCurrentTarget = true;
             p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
             p.priorityVariables.targets[i].isForGame = true;
