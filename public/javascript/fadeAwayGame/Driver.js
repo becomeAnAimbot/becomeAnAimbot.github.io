@@ -1,4 +1,4 @@
-var prioritySketch = function(p) {
+var fadeAwaySketch = function(p) {
 
     var hitSound;
     var missSounds;
@@ -54,15 +54,15 @@ var prioritySketch = function(p) {
                 p.priorityVariables.totalShots++;
                 let hit = false;
                 for(let i=0; i<p.priorityVariables.targets.length; i++) {
+                    if(p.priorityVariables.targets[i].hit) {continue;}
                     if(p.priorityVariables.targets[i].targetHit()) {
                         hit = true;
                         p.priorityVariables.shotsHit++;
                         hitSound.play();
                         p.clear();
                         p.background('#f2f2f2');
-                        p.priorityVariables.targets[i].isCurrentTarget = false;
-                        p.priorityVariables.targets[(i+1)%p.priorityVariables.targets.length].isCurrentTarget = true;
-                        p.priorityVariables.targets[i].shootTarget();
+                        p.priorityVariables.targets[i].hit = true;
+                        break;
                     }
                 }
                 if(!hit){
@@ -82,21 +82,29 @@ var prioritySketch = function(p) {
 
     p.showTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
-            if(this.width <= 10) {p.createTargets; break;}
-            this.width--;
-            this.height--;
+            if(p.priorityVariables.targets[i].width < 0) { p.restartTarget(i);}
+            p.priorityVariables.targets[i].width = p.priorityVariables.targets[i].width - p.priorityVariables.targets[i].shrinkRate;
+            p.priorityVariables.targets[i].height = p.priorityVariables.targets[i].height - p.priorityVariables.targets[i].shrinkRate;
+            if(p.priorityVariables.targets[i].hit) continue;
             p.priorityVariables.targets[i].show();
         }
     };
 
+    p.restartTarget = function(i) {
+        p.priorityVariables.targets[i].randomPlacement();
+        p.priorityVariables.targets[i].hit = false;
+        p.priorityVariables.targets[i].width = p.windowWidth/20;
+        p.priorityVariables.targets[i].height = p.windowWidth/20;
+        p.priorityVariables.targets[i].show();
+    };
+
     p.createTargets = function() {
-        for(let i=0; i<20; i++) {
+        for(let i=0; i<15; i++) {
             p.priorityVariables.targets[i] = new Target(p, p.windowWidth, p.windowHeight/1.5);
-            p.priorityVariables.targets[i].assignRandomSpeed();
-            p.priorityVariables.targets[0].isCurrentTarget = true;
             p.priorityVariables.targets[i].randomPlacement();
-            this.width = p.windowWidth/40;
-            this.height = p.windowWidth/40;
+            p.priorityVariables.targets[i].width = p.windowWidth/30;
+            p.priorityVariables.targets[i].height = p.windowWidth/30;
+            p.priorityVariables.targets[i].shrinkRate = p.random(0.1,0.5);
             p.priorityVariables.targets[i].show();
             p.priorityVariables.targets[i].isForGame = true;
         }
@@ -203,7 +211,7 @@ var prioritySketch = function(p) {
 
         createHeader(p, bodyCont);
 
-        gameTitle = p.createElement("h1", "Target Priority Practice");
+        gameTitle = p.createElement("h1", "Speed Aiming Practice");
         gameTitle.addClass("gameHeader");
         gameTitle.parent(bodyCont);
 
@@ -246,7 +254,7 @@ var prioritySketch = function(p) {
         instrucs.addClass("instructions");
         instrucs.parent(bodyCont);
 
-        descrip = p.createElement("h3", "Target Priority Practice is a simple game to help both your aim and your ability to pick the correct target from many distractions");
+        descrip = p.createElement("h3", "Speed aiming practice is a precision aim based game to improve your ability to quickly switch between targets after a hit");
         descrip.parent(instrucs);
 
         showBut = p.createElement("h2", "Show Instructions");
@@ -261,10 +269,10 @@ var prioritySketch = function(p) {
         liOne = p.createElement("li", "Click the start button to begin the game");
         liOne.parent(insList);
 
-        liOne = p.createElement("li", "Hover your mouse over the orange target and click");
+        liOne = p.createElement("li", "Hover your crosshair over any target and click");
         liOne.parent(insList);
 
-        liOne = p.createElement("li", "All targets will be shifting around continuously");
+        liOne = p.createElement("li", "All targets will be slowly shrinking");
         liOne.parent(insList);
 
         liOne = p.createElement("li", "Your score will be based on your accuracy and the amount of hits in the given minute");

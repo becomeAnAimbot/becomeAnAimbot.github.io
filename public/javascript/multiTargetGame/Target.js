@@ -8,9 +8,10 @@ function Target(p, widthBound, heightBound) {
     this.height = p.windowWidth/50;
     this.isCurrentTarget = false;
     this.isForGame = false;
-
+    this.hit = false;
     this.xBound = Math.round(widthBound*0.975);
     this.yBound = heightBound;
+    this.shrinkRate;
 
     this.xSpeed;
     this.ySpeed;
