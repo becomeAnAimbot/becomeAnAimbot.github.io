@@ -1,4 +1,4 @@
-var fadeAwaySketch = function(p) {
+var prioritySketch = function(p) {
 
     var hitSound;
     var missSounds;
@@ -15,7 +15,7 @@ var fadeAwaySketch = function(p) {
 
     p.setup = function() {
         p.priorityVariables.canvHeight = p.windowHeight/1.5;
-        p.priorityVariables.canvWidth = p.windowWidth;
+        p.priorityVariables.canvWidth = Math.round(p.windowWidth*0.975);
         p.createPriorityHtml();
         canv = p.createCanvas(p.priorityVariables.canvWidth, p.priorityVariables.canvHeight);
         canv.parent("gameContainer");
@@ -27,6 +27,7 @@ var fadeAwaySketch = function(p) {
         startButton.parent("#gameContainer");
         startButton.position(canv.position());
         startButton.mousePressed(p.startGame);
+        p.reAssignAllSpeeds();
     };
 
     p.draw = function() {
@@ -41,6 +42,7 @@ var fadeAwaySketch = function(p) {
         } else {
             if(p.mouseY < 0 || p.mouseY > p.windowHeight/1.5) {
               p.background('#f2f2f2');
+              p.moveTargets();
               return;
             }
             if(p.priorityVariables.alreadyShooting && !p.mouseIsPressed) {
@@ -62,6 +64,7 @@ var fadeAwaySketch = function(p) {
                         p.priorityVariables.targets[i].isCurrentTarget = false;
                         p.priorityVariables.targets[(i+1)%p.priorityVariables.targets.length].isCurrentTarget = true;
                         p.priorityVariables.targets[i].shootTarget();
+                        p.reAssignAllSpeeds();
                         p.drawAllTargets();
                     }
                 }
@@ -75,27 +78,38 @@ var fadeAwaySketch = function(p) {
                 str = "Accuracy: " + per.toFixed(2) + "%";
                 percentEle.html(str);
             }
-            p.drawAllTargets();
             p.background('#f2f2f2');
+            p.moveTargets();
         }
     };
 
-    p.drawAllTargetsRandom = function() {
+    p.drawAllTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
             p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
         }
     };
 
-    p.drawAllTargets = function() {
+    p.moveTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
+            p.priorityVariables.targets[i].checkBoundaryHits();
+            p.priorityVariables.targets[i].move();
             p.priorityVariables.targets[i].show();
         }
     };
 
+    p.reAssignAllSpeeds = function() {
+        for(let i=0; i<p.priorityVariables.targets.length; i++) {
+            if(!p.priorityVariables.targets[i].isCurrentTarget) p.priorityVariables.targets[i].assignRandomSpeed(-10,10);
+            else p.priorityVariables.targets[i].assignRandomSpeed(-5,5);
+        }
+    }
+
     p.createTargets = function() {
         for(let i=0; i<20; i++) {
             p.priorityVariables.targets[i] = new Target(p, p.windowWidth, p.windowHeight/1.5);
+            p.priorityVariables.targets[i].assignRandomSpeed();
+            p.priorityVariables.targets[0].isCurrentTarget = true;
             p.priorityVariables.targets[i].randomPlacement();
             p.priorityVariables.targets[i].show();
             p.priorityVariables.targets[i].isForGame = true;
