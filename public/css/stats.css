@@ -1,27 +1,20 @@
-#lineCont {
+.statsCont {
+  width: 100%;
   margin-top: 5%;
-  height: 40%;
-  width: 50%;
-  margin-left: 5%;
-  display: inline-block;
+}
+
+#lineCont {
+  width: 80%;
+  margin-left: 10%;
 }
 
 #pieCont {
-  display: inline-block;
-  margin-top: 5%;
-  margin-left: 5%;
-  width: 35%;
-  height: 35%;
+  width: 80%;
+  margin-left: 10%;
 }
 
-.statsBox {
-  margin-top: 5%;
-  width: 30%;
-  margin-left: 35%;
-  font-size: 125%;
-  display: block;
-  text-align: center;
-  box-shadow: 0.7em 0.7em 0.6em #999999;
-  margin-bottom: 2%;
-  background-color: #FFFFFF;
+#tpLineChart {
+}
+
+#tpPieChart {
 }

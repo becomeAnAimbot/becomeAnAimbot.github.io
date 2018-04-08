@@ -15,7 +15,7 @@ var prioritySketch = function(p) {
 
     p.setup = function() {
         p.priorityVariables.canvHeight = p.windowHeight/1.5;
-        p.priorityVariables.canvWidth = p.windowWidth;
+        p.priorityVariables.canvWidth = Math.round(p.windowWidth*0.975);
         p.createPriorityHtml();
         canv = p.createCanvas(p.priorityVariables.canvWidth, p.priorityVariables.canvHeight);
         canv.parent("gameContainer");

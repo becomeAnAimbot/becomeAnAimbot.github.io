@@ -9,7 +9,7 @@ function Target(p, widthBound, heightBound) {
     this.isCurrentTarget = false;
     this.isForGame = false;
 
-    this.xBound = widthBound;
+    this.xBound = Math.round(widthBound*0.975);
     this.yBound = heightBound;
 
     this.xSpeed;

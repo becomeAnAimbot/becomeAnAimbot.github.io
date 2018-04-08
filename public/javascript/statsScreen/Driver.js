@@ -10,7 +10,8 @@ var statsSketch = function(p) {
         } else {
             p.getUserStats(getUsername());
         }
-        canv = p.createCanvas(p.windowWidth, p.windowHeight);
+
+        canv = p.createCanvas(Math.round(p.windowWidth*0.975), p.windowHeight);
         canv.style("z-index","-2");
         canv.addClass("mainScreenBackground");
         canv.position(0,0);
@@ -36,29 +37,42 @@ var statsSketch = function(p) {
     };
 
     p.displayStats = function() {
-        lineParent = p.createElement("div", "");
-        lineParent.attribute("id","lineCont");
-        lineParent.parent(gameCont);
+
+        lineStatsCont = p.createElement("div","");
+        lineStatsCont.attribute("class","statsCont");
+        lineStatsCont.parent(gameCont);
+
+        lineCont = p.createElement("div","");
+        lineCont.attribute("id","lineCont");
+        lineCont.parent(lineStatsCont);
 
         lineChart = p.createElement("canvas","");
         lineChart.attribute("id","tpLineChart");
-        lineChart.parent(lineParent);
+        lineChart.parent(lineCont);
 
         p.createLineChart();
 
-        pieParent = p.createElement("div","");
-        pieParent.attribute("id","pieCont");
-        pieParent.parent(gameCont);
+        pieStatsCont = p.createElement("div","");
+        pieStatsCont.attribute("class","statsCont");
+        pieStatsCont.parent(gameCont);
+
+        pieCont = p.createElement("div","");
+        pieCont.attribute("id","pieCont");
+        pieCont.parent(pieStatsCont);
 
         pieChart = p.createElement("canvas","");
         pieChart.attribute("id","tpPieChart");
-        pieChart.parent(pieParent);
+        pieChart.parent(pieCont);
 
         p.createPieChart();
+
+       footer = p.createElement("p","&nbsp;");
+       footer.parent(gameCont);
     };
 
     p.createPieChart = function() {
       cx = document.getElementById('tpPieChart');
+
       pieData = p.getUserHitMiss();
       var myChart = new Chart(cx, {
         type: 'doughnut',
@@ -69,6 +83,10 @@ var statsSketch = function(p) {
             backgroundColor: ["#FFA500","#32A8E9"],
             borderColor: "#FFFFFF",
           }]
+        },
+        options: {
+          legend: {position: "bottom"},
+          title: {position: "top", text: "All Hits and Misses", display: "true", fontColor: "#000", fontFamily: "Play", fontSize: 20},
         }
       });
     };

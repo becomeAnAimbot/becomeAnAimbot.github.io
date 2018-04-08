@@ -433,4 +433,5 @@ function clearAllIntervals() {
   intervaList = [];
 }
 
+
 masterFunction();
