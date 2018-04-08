@@ -27,7 +27,6 @@ var prioritySketch = function(p) {
         startButton.parent("#gameContainer");
         startButton.position(canv.position());
         startButton.mousePressed(p.startGame);
-        p.reAssignAllSpeeds();
     };
 
     p.draw = function() {
@@ -55,7 +54,7 @@ var prioritySketch = function(p) {
                 p.priorityVariables.totalShots++;
                 let hit = false;
                 for(let i=0; i<p.priorityVariables.targets.length; i++) {
-                    if(p.priorityVariables.targets[i].targetHit() && p.priorityVariables.targets[i].isCurrentTarget) {
+                    if(p.priorityVariables.targets[i].targetHit()) {
                         hit = true;
                         p.priorityVariables.shotsHit++;
                         hitSound.play();
@@ -64,7 +63,6 @@ var prioritySketch = function(p) {
                         p.priorityVariables.targets[i].isCurrentTarget = false;
                         p.priorityVariables.targets[(i+1)%p.priorityVariables.targets.length].isCurrentTarget = true;
                         p.priorityVariables.targets[i].shootTarget();
-                        p.reAssignAllSpeeds();
                         p.drawAllTargets();
                     }
                 }
@@ -92,18 +90,9 @@ var prioritySketch = function(p) {
 
     p.moveTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
-            p.priorityVariables.targets[i].checkBoundaryHits();
-            p.priorityVariables.targets[i].move();
             p.priorityVariables.targets[i].show();
         }
     };
-
-    p.reAssignAllSpeeds = function() {
-        for(let i=0; i<p.priorityVariables.targets.length; i++) {
-            if(!p.priorityVariables.targets[i].isCurrentTarget) p.priorityVariables.targets[i].assignRandomSpeed(-10,10);
-            else p.priorityVariables.targets[i].assignRandomSpeed(-5,5);
-        }
-    }
 
     p.createTargets = function() {
         for(let i=0; i<20; i++) {
