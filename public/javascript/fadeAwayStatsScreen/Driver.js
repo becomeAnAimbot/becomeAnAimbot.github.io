@@ -192,7 +192,7 @@ var fadeStatsSketch = function(p) {
           p.queryStats();
         }
       };
-      xhttp.send(`func=getPriorityStats&user=${username}`);
+      xhttp.send(`func=getFadeAwayStats&user=${username}`);
     };
 
     p.getUserAccuracy = function() {

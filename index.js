@@ -27,7 +27,11 @@ app.post('/', function (req, res){
      getPriorityStats(req.body, res);
   } else if(req.body.func == 'searchUser') {
      searchForUser(req.body, res);
-  } else {
+  } else if(req.body.func == 'fadeAwayStats') {
+     addFadeAwayStats(req.body, res);
+  } else if(req.body.func == 'getFadeAwayStats') {
+     getFadeAwayStats(req.body, res);
+  }  else {
     res.end("Undefined Function Error");
   }
 });
@@ -95,6 +99,18 @@ function addPriorityStats(data, res) {
   });
 }
 
+function addFadeAwayStats(data, res) {
+  let conn = createDBConn();
+  conn.connect(function(err){
+    if(err) {res.end("Connection Error"); conn.end(); return;};
+      var sql = `INSERT INTO fadeAway (username, hits, misses) VALUES ('${data.user}', '${data.hits}', '${data.misses}');`;
+      conn.query(sql, function (err, result) {
+        if (err) {res.end("Stats Fail"); conn.end(); return;}
+        if(result.affectedRows === 1) {res.end("User Created"); conn.end(); return;};
+      });
+  });
+}
+
 function getPriorityStats(data, res) {
   let conn = createDBConn();
   conn.connect(function(err){
@@ -107,8 +123,21 @@ function getPriorityStats(data, res) {
       });
   });
 }
-                 
-                 
+
+function getFadeAwayStats(data, res) {
+  let conn = createDBConn();
+  conn.connect(function(err){
+    if(err) {res.end("Connection Error"); conn.end(); return;};
+      var sql = `SELECT * FROM fadeAway WHERE username='${data.user}';`;
+      conn.query(sql, function (err, result) {
+        if (err) {res.end("Query Error"); conn.end(); return;}
+        if(result.length < 5) {res.end("Not Enough Games"); conn.end(); return;}
+        else {res.end(JSON.stringify({'stats':result})); conn.end(); return;}
+      });
+  });
+}
+
+
 function searchForUser(data, res) {
   let conn = createDBConn();
   conn.connect(function(err){
