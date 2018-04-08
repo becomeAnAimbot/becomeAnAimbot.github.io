@@ -75,6 +75,7 @@ var statsSketch = function(p) {
 
     p.createLineChart = function() {
       cx = document.getElementById('tpLineChart');
+
       accData = p.getUserAccuracy();
       accTimes = p.getUserTimes();
       aveAccData = p.getUserAveAccuracy();
@@ -95,7 +96,24 @@ var statsSketch = function(p) {
             borderColor: "#FFA500",
             borderWidth: 1,
           },
-
+          {
+            label: 'Shots Taken',
+            data: totalShots,
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFFFFF",
+            borderColor: "#000000",
+            borderWidth: 1,
+          },
+          {
+            label: 'Effectiveness',
+            data: effectData,
+            fill: false,
+            lineTension: 0,
+            backgroundColor: "#FFFFFF",
+            borderColor: "#B20098",
+            borderWidth: 1,
+          },
           {
             label: 'Average Accuracy',
             data: aveAccData,
@@ -119,7 +137,7 @@ var statsSketch = function(p) {
             hidden: true,
           },
           {
-            label: 'Average Effectivness',
+            label: 'Average Effectiveness',
             data: aveEffectData,
             fill: false,
             lineTension: 0,
@@ -128,26 +146,11 @@ var statsSketch = function(p) {
             pointRadius: 0,
             borderDash: [10,10],
             hidden: true,
-          },
-          {
-            label: 'Shots Taken',
-            data: totalShots,
-            fill: false,
-            lineTension: 0,
-            backgroundColor: "#FFFFFF",
-            borderColor: "#000000",
-            borderWidth: 1,
-          },
-
-          {
-            label: 'Effectivness',
-            data: effectData,
-            fill: false,
-            lineTension: 0,
-            backgroundColor: "#FFFFFF",
-            borderColor: "#B20098",
-            borderWidth: 1,
           },]
+        },
+        options: {
+          legend: {position: "bottom"},
+          title: {position: "top", text: "Overall Effectiveness", display: "true", fontColor: "#000", fontFamily: "Play", fontSize: 20},
         }
       });
     };
@@ -185,7 +188,7 @@ var statsSketch = function(p) {
     p.getUserTimes = function() {
       times = [];
       for(obs of userStats) {
-        times.push(new Date(obs.timePlayed).getTime());
+        times.push(p.getDateFormated(new Date(obs.timePlayed).getTime()));
       }
       return times;
     };
@@ -270,5 +273,17 @@ var statsSketch = function(p) {
         ave.push(calc);
       }
       return ave;
+    }
+
+    p.getDateFormated = function(millis) {
+      current = new Date();
+      since = (current - millis);
+      if(since < 60000) return (Math.round(since/1000) + " Seconds ago");
+      if(since < 3600000) return (Math.round(since/60000) + " Minutes ago");
+      if(since < 86400000) return (Math.round(since/3600000) + " Hours ago");
+      if(since < 604800000) return(Math.round(since/86400000) + " Days ago");
+      if(since < 2629800000) return(Math.round(since/604800000) + " Weeks ago");
+      if(since < 31557600000) return(Math.round(since/2629800000) + " Months ago");
+      else return ("Over a year ago");
     }
 };
