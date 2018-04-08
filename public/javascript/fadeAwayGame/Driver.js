@@ -41,7 +41,7 @@ var prioritySketch = function(p) {
         } else {
             if(p.mouseY < 0 || p.mouseY > p.windowHeight/1.5) {
               p.background('#f2f2f2');
-              p.moveTargets();
+              p.showTargets();
               return;
             }
             if(p.priorityVariables.alreadyShooting && !p.mouseIsPressed) {
@@ -63,7 +63,6 @@ var prioritySketch = function(p) {
                         p.priorityVariables.targets[i].isCurrentTarget = false;
                         p.priorityVariables.targets[(i+1)%p.priorityVariables.targets.length].isCurrentTarget = true;
                         p.priorityVariables.targets[i].shootTarget();
-                        p.drawAllTargets();
                     }
                 }
                 if(!hit){
@@ -77,18 +76,11 @@ var prioritySketch = function(p) {
                 percentEle.html(str);
             }
             p.background('#f2f2f2');
-            p.moveTargets();
+            p.showTargets();
         }
     };
 
-    p.drawAllTargets = function() {
-        for(let i=0; i<p.priorityVariables.targets.length; i++) {
-            p.priorityVariables.targets[i].randomPlacement();
-            p.priorityVariables.targets[i].show();
-        }
-    };
-
-    p.moveTargets = function() {
+    p.showTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
             p.priorityVariables.targets[i].show();
         }
