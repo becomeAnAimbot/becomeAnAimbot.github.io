@@ -82,6 +82,9 @@ var prioritySketch = function(p) {
 
     p.showTargets = function() {
         for(let i=0; i<p.priorityVariables.targets.length; i++) {
+            if(this.width <= 10) {p.createTargets; break;}
+            this.width--;
+            this.height--;
             p.priorityVariables.targets[i].show();
         }
     };
@@ -92,6 +95,8 @@ var prioritySketch = function(p) {
             p.priorityVariables.targets[i].assignRandomSpeed();
             p.priorityVariables.targets[0].isCurrentTarget = true;
             p.priorityVariables.targets[i].randomPlacement();
+            this.width = p.windowWidth/40;
+            this.height = p.windowWidth/40;
             p.priorityVariables.targets[i].show();
             p.priorityVariables.targets[i].isForGame = true;
         }
