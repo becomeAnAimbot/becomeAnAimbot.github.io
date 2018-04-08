@@ -7,6 +7,8 @@ var onStatScreen = false;
 var onProfileScreen = false;
 var onGuideScreen = false;
 var onSearchFailedScreen = false;
+var onFadeAwayStats = false;
+var onPriorityStats = false;
 var screenSwitch = true;
 
 var isLoggedIn = checkLoggedIn();
@@ -20,6 +22,8 @@ var proSketch;
 var guiSketch;
 var shfSketch;
 var fadSketch;
+var fadStatsSketch;
+var priStatsSketch;
 
 var intervalList = [];
 
@@ -74,6 +78,16 @@ function masterFunction() {
            fadSketch = new p5(fadeAwaySketch);
            screenSwitch = false;
          }
+       } else if(onFadeAwayStats) {
+         if(checkScreenSwitch()) {
+           fadStatsSketch = new p5(fadeStatsSketch);
+           screenSwitch = false;
+         }
+       } else if(onPriorityStats) {
+         if(checkScreenSwitch()) {
+           priStatsSketch = new p5(priorStatsSketch);
+           screenSwitch = false;
+         }
        }
     }, 10);
 }
@@ -102,6 +116,8 @@ function clearAllSketches() {
     guiSketch = null;
     shfSketch = null;
     fadSketch = null;
+    fadStatsSketch = null;
+    priStatsSketch = null;
 }
 
 function removeAllSketches() {
@@ -114,141 +130,110 @@ function removeAllSketches() {
   if(guiSketch != null) guiSketch.remove();
   if(shfSketch != null) shfSketch.remove();
   if(fadSketch != null) fadSketch.remove();
+  if(priStatsSketch != null) priStatsSketch.remove();
+  if(fadStatsSketch != null) fadStatsSketch.remove();
+}
+
+function flipScreensOff() {
+  onMainScreen = false;
+  onLoginScreen = false;
+  onSignupScreen = false;
+  onProfileScreen = false;
+  onPriorityPractice = false;
+  onStatScreen = false;
+  onGuideScreen = false;
+  onSearchFailedScreen = false;
+  onFadeAway = false;
+  onFadeAwayStats = false;
+  onPriorityStats = false;
 }
 
 function startPriorityGame() {
     clearBody();
     removeAllSketches();
-    onMainScreen = false;
-    onLoginScreen = false;
-    onSignupScreen = false;
-    onProfileScreen = false;
+    flipScreensOff();
     screenSwitch = true;
     onPriorityPractice = true;
-    onStatScreen = false;
-    onGuideScreen = false;
-    onSearchFailedScreen = false;
-    onFadeAway = false;
 }
 
 function startMainScreen() {
     clearBody();
     removeAllSketches();
-    onPriorityPractice = false;
-    onLoginScreen = false;
-    onSignupScreen = false;
+    flipScreensOff();
     screenSwitch = true;
     onMainScreen = true;
-    onProfileScreen = false;
-    onStatScreen = false;
-    onGuideScreen = false;
-    onSearchFailedScreen = false;
-    onFadeAway = false;
 }
 
 function startLoginScreen() {
     clearBody();
     removeAllSketches();
-    onPriorityPractice = false;
-    onMainScreen = false;
+    flipScreensOff();
     screenSwitch = true;
     onLoginScreen = true;
-    onSignupScreen = false;
-    onProfileScreen = false;
-    onStatScreen = false;
-    onGuideScreen = false;
-    onSearchFailedScreen = false;
-    onFadeAway = false;
 }
 
 function startSignupScreen() {
     clearBody();
     removeAllSketches();
-    onPriorityPractice = false;
-    onMainScreen = false;
+    flipScreensOff();
     screenSwitch = true;
-    onLoginScreen = false;
     onSignupScreen = true;
-    onProfileScreen = false;
-    onStatScreen = false;
-    onGuideScreen = false;
-    onSearchFailedScreen = false;
-    onFadeAway = false;
 }
 
 function startStatScreen() {
     clearBody();
     removeAllSketches();
-    onPriorityPractice = false;
-    onMainScreen = false;
+    flipScreensOff();
     screenSwitch = true;
-    onLoginScreen = false;
-    onSignupScreen = false;
-    onProfileScreen = false;
     onStatScreen = true;
-    onGuideScreen = false;
-    onSearchFailedScreen = false;
-    onFadeAway = false;
 }
 
 function startProfileScreen() {
     clearBody();
     removeAllSketches();
-    onMainScreen = false;
-    onLoginScreen = false;
-    onSignupScreen = false;
+    flipScreensOff();
     screenSwitch = true;
-    onPriorityPractice = false;
-    onStatScreen = false;
     onProfileScreen = true;
-    onGuideScreen = false;
-    onSearchFailedScreen = false;
-    onFadeAway = false;
 }
 
 function startGuideScreen() {
     clearBody();
     removeAllSketches();
-    onMainScreen = false;
-    onLoginScreen = false;
-    onSignupScreen = false;
+    flipScreensOff();
     screenSwitch = true;
-    onPriorityPractice = false;
-    onStatScreen = false;
-    onProfileScreen = false;
     onGuideScreen = true;
-    onSearchFailedScreen = false;
-    onFadeAway = false;
 }
 
 function startSearchFailedScreen() {
     clearBody();
     removeAllSketches();
-    onMainScreen = false;
-    onLoginScreen = false;
-    onSignupScreen = false;
+    flipScreensOff();
     screenSwitch = true;
-    onPriorityPractice = false;
-    onStatScreen = false;
-    onProfileScreen = false;
-    onGuideScreen = false;
     onSearchFailedScreen = true;
-    onFadeAway = false;
 }
 
 function startFadeAwayScreen() {
     clearBody();
     removeAllSketches();
-    onMainScreen = false;
-    onLoginScreen = false;
-    onSignupScreen = false;
+    flipScreensOff();
     screenSwitch = true;
-    onPriorityPractice = false;
-    onStatScreen = false;
-    onProfileScreen = false;
-    onGuideScreen = false;
-    onSearchFailedScreen = false;
     onFadeAway = true;
+}
+
+function startFadeAwayStats() {
+  clearBody();
+  removeAllSketches();
+  flipScreensOff();
+  screenSwitch = true;
+  onFadeAwayStats = true;
+}
+
+function startPriorityStats() {
+  clearBody();
+  removeAllSketches();
+  flipScreensOff();
+  screenSwitch = true;
+  onPriorityStats = true;  
 }
 
 function createHeader(p, gameCont) {
