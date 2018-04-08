@@ -60,10 +60,10 @@ var mainSketch = function(p) {
         gameOne.addClass("listGame");
         gameOne.attribute("onclick","startPriorityGame()");
 
-        gameTwo = p.createElement("h2","Priority Target Practice");
+        gameTwo = p.createElement("h2","Speed Aim Game");
         gameTwo.parent(gamesList);
         gameTwo.addClass("listGame");
-        gameTwo.attribute("onclick","startPriorityGame()");
+        gameTwo.attribute("onclick","startFadeAwayScreen()");
 
         gameThree = p.createElement("h2","Priority Target Practice");
         gameThree.parent(gamesList);
