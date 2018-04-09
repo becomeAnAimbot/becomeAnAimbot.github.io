@@ -9,7 +9,7 @@ var leaderBoardSketch = function(p) {
     };
 
     p.draw = function() {
-      noLoop();
+      p.noLoop();
     };
 
 

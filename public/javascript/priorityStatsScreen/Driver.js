@@ -20,7 +20,7 @@ var priorStatsSketch = function(p) {
     };
 
     p.draw = function() {
-      noLoop();
+      p.noLoop();
     };
 
     p.statsScreenHtml = function(){
