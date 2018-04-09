@@ -56,7 +56,7 @@ var leaderBoardSketch = function(p) {
       for(i=0; i<gameBoards.boards.length; i++) {
         row = p.createElement("tr","");
         row.parent(fadeTable);
-        rank = p.createElement("td", i);
+        rank = p.createElement("td", i+1);
         rank.parent(row);
         name = p.createElement("td", gameBoards.boards[i].username);
         name.parent(row);
