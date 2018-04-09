@@ -163,6 +163,9 @@ function getLeadersboards(data, res) {
         addEffectiveness(result);
         sortEffectiveness(result);
         console.log(result);
+        res.end();
+        conn.end();
+        return;
       });
   });
 }
