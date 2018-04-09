@@ -9,7 +9,9 @@ var onGuideScreen = false;
 var onSearchFailedScreen = false;
 var onFadeAwayStats = false;
 var onPriorityStats = false;
+var onLeaderboard = false;
 var screenSwitch = true;
+
 
 var isLoggedIn = checkLoggedIn();
 
@@ -22,6 +24,7 @@ var proSketch;
 var guiSketch;
 var shfSketch;
 var fadSketch;
+var lbdSketch;
 var fadStatsSketch;
 var priStatsSketch;
 
@@ -88,6 +91,11 @@ function masterFunction() {
            priStatsSketch = new p5(priorStatsSketch);
            screenSwitch = false;
          }
+       } else if(onLeaderboard) {
+         if(checkScreenSwitch()) {
+           lbdSketch = new p5(leaderBoardSketch);
+           screenSwitch = false;
+         }
        }
     }, 10);
 }
@@ -118,6 +126,7 @@ function clearAllSketches() {
     fadSketch = null;
     fadStatsSketch = null;
     priStatsSketch = null;
+    lbdSketch = null;
 }
 
 function removeAllSketches() {
@@ -130,6 +139,7 @@ function removeAllSketches() {
   if(guiSketch != null) guiSketch.remove();
   if(shfSketch != null) shfSketch.remove();
   if(fadSketch != null) fadSketch.remove();
+  if(lbdSketch != null) lbdSketch.remove();
   if(priStatsSketch != null) priStatsSketch.remove();
   if(fadStatsSketch != null) fadStatsSketch.remove();
 }
@@ -146,6 +156,7 @@ function flipScreensOff() {
   onFadeAway = false;
   onFadeAwayStats = false;
   onPriorityStats = false;
+  onLeaderboard = false;
 }
 
 function startPriorityGame() {
@@ -233,7 +244,15 @@ function startPriorityStats() {
   removeAllSketches();
   flipScreensOff();
   screenSwitch = true;
-  onPriorityStats = true;  
+  onPriorityStats = true;
+}
+
+function startLeaderboardScreen() {
+  clearBody();
+  removeAllSketches();
+  flipScreensOff();
+  screenSwitch = true;
+  onLeaderboard = true;
 }
 
 function createHeader(p, gameCont) {
@@ -291,6 +310,10 @@ function createLoggedInHeader(p, gameCont) {
   dropdownListItemOne = p.createElement("p", "Stats");
   dropdownListItemOne.parent(dropdown);
   dropdownListItemOne.attribute("onclick","startStatScreen()");
+
+  dropdownListItemOne = p.createElement("p", "Leaderboards");
+  dropdownListItemOne.parent(dropdown);
+  dropdownListItemOne.attribute("onclick","startLeaderboardScreen()");
 
   dropdownListItemTwo = p.createElement("p","My Dashboard");
   dropdownListItemTwo.parent(dropdown);
