@@ -7,7 +7,6 @@ var leaderBoardSketch = function(p) {
       canv.position(0,0);
       p.leaderboardHtml();
       gameBoards = p.requestLeaderboards();
-      p.createLeaderboards(gameBoards);
     };
 
     p.draw = function() {
@@ -76,7 +75,7 @@ var leaderBoardSketch = function(p) {
       xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          return JSON.parse(this.responseText).boards;
+          p.createLeaderboards(JSON.parse(this.responseText).boards;
         }
       };
       xhttp.send(`func=getLeadersboards`);
