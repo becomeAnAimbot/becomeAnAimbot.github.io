@@ -20,7 +20,7 @@ var fadeStatsSketch = function(p) {
     };
 
     p.draw = function() {
-
+      noLoop();
     };
 
     p.statsScreenHtml = function(){
