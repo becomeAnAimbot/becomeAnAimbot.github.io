@@ -1,0 +1,33 @@
+#leaderboardTitle {
+  text-align: center;
+}
+
+.leaderboardCont table tr td {
+  text-align: center;
+}
+
+.leaderboardCont table tr {
+  line-height: 130%;
+}
+
+#fadeAwayTable {
+  width: 50%;
+  margin-left: 25%;
+  border-collpase: collapse;
+  border-spacing: 0;  
+}
+
+.evenTableRow {
+
+}
+
+.evenTableRow {
+}
+
+.oddTableRow {
+}
+
+.leaderboardHeaders {
+  line-height: 170%;
+  box-shadow: 0.2em 0 0.2 #999999;
+}

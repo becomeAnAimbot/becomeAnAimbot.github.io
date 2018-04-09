@@ -42,9 +42,10 @@ var leaderBoardSketch = function(p) {
 
       fadeHeaders = p.createElement("tr","");
       fadeHeaders.parent(fadeTable);
+      fadeHeaders.attribute("class","leaderboardHeaders");
 
       p.createElement("th","Rank").parent(fadeHeaders);
-      p.createElement("th","Name").parent(fadeHeaders);
+      p.createElement("th","User").parent(fadeHeaders);
       p.createElement("th","Effectiveness").parent(fadeHeaders);
       p.createElement("th","Accuracy").parent(fadeHeaders);
       p.createElement("th","Shots Taken").parent(fadeHeaders);
@@ -56,13 +57,14 @@ var leaderBoardSketch = function(p) {
       for(i=0; i<gameBoards.boards.length; i++) {
         row = p.createElement("tr","");
         row.parent(fadeTable);
+        (i%2 == 0 ? row.attribute("class","evenTableRow") : row.attribute("class","oddTableRow"));
         rank = p.createElement("td", i+1);
         rank.parent(row);
-        name = p.createElement("td", gameBoards.boards[i].username);
-        name.parent(row);
+        usernameB = p.createElement("td", gameBoards.boards[i].username);
+        usernameB.parent(row);
         effect = p.createElement("td", gameBoards.boards[i].effect);
         effect.parent(row);
-        acc = p.createElement("td", (gameBoards.boards[i].hits / (gameBoards.boards[i].hits + gameBoards.boards[i].misses)).toFixed(3));
+        acc = p.createElement("td", (gameBoards.boards[i].hits*100 / (gameBoards.boards[i].hits + gameBoards.boards[i].misses)).toFixed(1) + "%");
         acc.parent(row);
         taken = p.createElement("td", gameBoards.boards[i].hits + gameBoards.boards[i].misses);
         taken.parent(row);
