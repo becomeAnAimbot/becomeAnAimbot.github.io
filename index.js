@@ -162,8 +162,8 @@ function getLeadersboards(data, res) {
         if (err) {res.end("Query Error"); conn.end(); return;}
         addEffectiveness(result);
         sortEffectiveness(result);
-        console.log(result);
-        res.end();
+        topTen = getTopTen(result);
+        res.end(JSON.stringify({'boards': topTen}));
         conn.end();
         return;
       });
@@ -182,8 +182,16 @@ function addEffectiveness(result) {
 
 function sortEffectiveness(result) {
   result.sort(function(a,b){
-    return a.effect - b.effect;
+    return b.effect - a.effect;
   });
+}
+
+function getTopTen(result) {
+  top = [];
+  for(i=0; i<10; i++) {
+    top.push(result[i]);
+  }
+  return top;
 }
 
 http.listen(6969, function() {
