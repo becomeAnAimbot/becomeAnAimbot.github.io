@@ -57,15 +57,15 @@ var leaderBoardSketch = function(p) {
         row = p.createElement("tr","");
         row.parent(fadeTable);
         rank = p.createElement("td", i);
-        rank.parent(fadeTable);
+        rank.parent(row);
         name = p.createElement("td", gameBoards.boards[i].username);
-        name.parent(fadeTable);
+        name.parent(row);
         effect = p.createElement("td", gameBoards.boards[i].effect);
-        effect.parent(fadeTable);
+        effect.parent(row);
         acc = p.createElement("td", (gameBoards.boards[i].hits / (gameBoards.boards[i].hits + gameBoards.boards[i].misses)).toFixed(3));
-        acc.parent(fadeTable);
+        acc.parent(row);
         taken = p.createElement("td", gameBoards.boards[i].hits + gameBoards.boards[i].misses);
-        taken.parent(fadeTable);
+        taken.parent(row);
       }
     }
 
