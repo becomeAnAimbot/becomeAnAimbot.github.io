@@ -31,7 +31,9 @@ app.post('/', function (req, res){
      addFadeAwayStats(req.body, res);
   } else if(req.body.func == 'getFadeAwayStats') {
      getFadeAwayStats(req.body, res);
-  }  else {
+  } else if(req.body.func == 'getLeadersboards') {
+     getLeadersboards(req.body, res);
+  }    else {
     res.end("Undefined Function Error");
   }
 });
@@ -151,11 +153,35 @@ function searchForUser(data, res) {
   });
 }
 
+function getLeadersboards(data, res) {
+  let conn = createDBConn();
+  conn.connect(function(err){
+    if(err) {res.end("Connection Error"); conn.end(); return;};
+      var sql = `SELECT * FROM fadeAway;`;
+      conn.query(sql, function (err, result) {
+        if (err) {res.end("Query Error"); conn.end(); return;}
+        addEffectiveness(result);
+        sortEffectiveness(result);
+        console.log(result);
+      });
+  });
+}
+
 function createDBConn() {
   return  mysql.createConnection({host: "localhost", user: "DBguy", password: ".1SuperRandomPassword1.", database: "BecomeAnAimbot"});
 }
 
+function addEffectiveness(result) {
+  for(obs of result) {
+    obs.effect = (obs.hits*obs.hits / (obs.hits+obs.misses)).toFixed(3);
+  }
+}
 
+function sortEffectiveness(result) {
+  result.sort(function(a,b){
+    return a.effect - b.effect;
+  });
+}
 
 http.listen(6969, function() {
     console.log('listening on 167.99.105.82:6969:');
