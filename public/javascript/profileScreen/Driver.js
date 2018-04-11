@@ -165,26 +165,26 @@ var profileSketch = function(p) {
 
     passStatsLabel = p.createElement("label","Password");
     passStatsLabel.parent(deleteStatsForm);
-    passStatsLabel.attribute("for","passStats");
+    passStatsLabel.attribute("for","pass");
     passStatsLabel.attribute("id","passwordStatsLabelDelete");
     passStatsLabel.attribute("class","profileLabel");
 
     passwordStatsInput = p.createElement("input", "");
     passwordStatsInput.attribute("type", "password");
-    passwordStatsInput.attribute("name", "passStats");
+    passwordStatsInput.attribute("name", "pass");
     passwordStatsInput.attribute("id", "passwordStatsFieldDelete");
     passwordStatsInput.attribute("class", "loginText");
     passwordStatsInput.parent(deleteStatsForm);
 
     delStatsLabel = p.createElement("label","Please type 'DELETE' (Case sensitive)");
     delStatsLabel.parent(deleteStatsForm);
-    delStatsLabel.attribute("for","delStats");
+    delStatsLabel.attribute("for","del");
     delStatsLabel.attribute("id","deleteStatsLabelProfile");
     delStatsLabel.attribute("class","profileLabel");
 
     delStatsInput = p.createElement("input", "");
     delStatsInput.attribute("type", "text");
-    delStatsInput.attribute("name", "delStats");
+    delStatsInput.attribute("name", "del");
     delStatsInput.attribute("id", "deleteStatsFieldDelete");
     delStatsInput.attribute("class", "loginText");
     delStatsInput.parent(deleteStatsForm);
@@ -206,7 +206,7 @@ var profileSketch = function(p) {
     delStatsButton.attribute("type","submit");
     delStatsButton.attribute("id","delStatsButton");
     delStatsButton.attribute("class","loginButton");
-    delStatsButton.attribute("value","Delete Account");
+    delStatsButton.attribute("value","Delete Stats");
     delStatsButton.attribute("onclick","startDeleteStats()");
     delStatsButton.parent(deleteStatsForm);
 
@@ -347,6 +347,9 @@ function clearProfileBoxes() {
   ele.style.display = 'none';
   ele = document.getElementById('deleteStatsCont');
   ele.style.display = 'none';
+  document.getElementById("profileMessage").innerHTML = "";
+  document.getElementById("profileMessage").style.display = "none";
+  document.getElementById('progressContainer').style.display = 'none';
 }
 
 function changePassword() {
@@ -361,6 +364,9 @@ function changePassword() {
   let cd = setTimeout(function() {
     attemptingAction = false;
     checkPasswordChangeStatus();
+    document.getElementById('passwordOldFieldChange').value = "";
+    document.getElementById('passwordNewFieldChange').value = "";
+    document.getElementById('passwordNewRepeatFieldChange').value = "";
   }, 3000);
 }
 
@@ -387,7 +393,6 @@ function passwordChanged() {
   let cd = setTimeout(function() {
     document.getElementById("profileMessage").innerHTML = "";
     document.getElementById("profileMessage").style.display = "none";
-    document.getElementById('progressBar').style.display = 'none';
   }, 400);
 }
 
@@ -409,6 +414,8 @@ function startDeleteAccount() {
   let cd = setTimeout(function() {
     attemptingAction = false;
     checkDeleteStatus();
+    document.getElementById('passwordFieldDelete').value = "";
+    document.getElementById('deleteFieldDelete').value = "";
   }, 3000);
 }
 
@@ -456,6 +463,8 @@ function startDeleteStats() {
   let cd = setTimeout(function() {
     attemptingAction = false;
     checkDeleteStatsStatus();
+    document.getElementById('passwordStatsFieldDelete').value = "";
+    document.getElementById('deleteStatsFieldDelete').value = "";
   }, 3000);
 }
 
@@ -478,11 +487,7 @@ function userStatsDeleted() {
   document.getElementById("profileMessage").innerHTML = "Your stats have been deleted";
   document.getElementById("profileMessage").style.display = "block";
   document.getElementById('progressBar').style.background = '#009944';
-  window.scrollTo(0,document.body.scrollHeight)
-  let cd = setTimeout(function() {
-    signUserOut();
-    startMainScreen();
-  }, 400);
+  window.scrollTo(0,document.body.scrollHeight);
 }
 
 function userStatsNotDeleted() {

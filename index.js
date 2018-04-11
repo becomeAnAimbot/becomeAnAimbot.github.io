@@ -90,15 +90,25 @@ function deleteUserStats(username) {
   });
 }
 
-function delStats {
+function delStats(data, res) {
   let conn = createDBConn();
   conn.connect(function(err){
     if(err) {conn.end(); return;};
-      var sql = `DELETE FROM fadeAway WHERE username='${username}'; DELETE FROM priorityTargets WHERE username='${username}';`;
-      conn.query(sql, function (err, result) {
+      sql = `SELECT * FROM users WHERE username='${data.user}' AND password='${data.pass}'`;
+      conn.query(sql, function(err, nameResult){
         if (err) {res.end("Query Error"); conn.end(); return;}
-        if(result.affectedRows >== 1) {res.end("Delete Success"); conn.end(); return;}
-        else {res.end("Delete Failed"); conn.end(); return;}
+        if(nameResult.length === 1) {
+          conn.end();
+          conn = createDBConn();
+          conn.connect(function(err){
+            sql = `DELETE FROM fadeAway WHERE username='${data.user}'; DELETE FROM priorityTargets WHERE username='${data.user}';`;
+            conn.query(sql, function (err, result) {
+              if (err) {console.log(err);res.end("Query Error"); conn.end(); return;}
+              else {res.end("Delete Success"); conn.end(); return;}
+            });
+          });
+        }
+        else {console.log(nameResult);res.end("Delete Failed"); conn.end(); return;}
       });
   });
 }
