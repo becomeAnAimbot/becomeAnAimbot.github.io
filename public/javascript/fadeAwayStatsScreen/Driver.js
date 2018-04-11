@@ -11,7 +11,7 @@ var fadeStatsSketch = function(p) {
             p.getUserStats(getUsername());
         }
 
-        canv = p.createCanvas(Math.round(p.windowWidth*0.975), p.windowHeight);
+        canv = p.createCanvas(document.body.clientWidth, p.windowHeight);
         canv.style("z-index","-2");
         canv.addClass("mainScreenBackground");
         canv.position(0,0);
