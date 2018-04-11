@@ -74,6 +74,18 @@ function delUser(data, res) {
         else {res.end("Delete Failed"); conn.end(); return;}
       });
   });
+  deleteUserStats(data.user);
+}
+
+function deleteUserStats(username) {
+  let conn = createDBConn();
+  conn.connect(function(err){
+    if(err) {res.end("Connection Error"); conn.end(); return;};
+      var sql = `DELETE FROM fadeAway WHERE username='${username}'; DELETE FROM priorityTargets WHERE username='${username}';`;
+      conn.query(sql, function (err, result) {
+        return;
+      });
+  });
 }
 
 function changePass(data, res) {
@@ -158,20 +170,28 @@ function getLeadersboards(data, res) {
   conn.connect(function(err){
     if(err) {res.end("Connection Error"); conn.end(); return;};
       var sql = `SELECT * FROM fadeAway;`;
+      var ljson = {};
       conn.query(sql, function (err, result) {
         if (err) {res.end("Query Error"); conn.end(); return;}
         addEffectiveness(result);
         sortEffectiveness(result);
         topTen = getTopTen(result);
-        res.end(JSON.stringify({'boards': topTen}));
-        conn.end();
-        return;
+        ljson.fade = topTen;
+      });
+      var sql = `SELECT * FROM priorityTargets;`;
+      conn.query(sql, function (err, result) {
+        if (err) {res.end("Query Error"); conn.end(); return;}
+        addEffectiveness(result);
+        sortEffectiveness(result);
+        topTen = getTopTen(result);
+        ljson.priority = topTen;
+        res.end(JSON.stringify(ljson)); conn.end(); return;
       });
   });
 }
 
 function createDBConn() {
-  return  mysql.createConnection({host: "localhost", user: "DBguy", password: ".1SuperRandomPassword1.", database: "BecomeAnAimbot"});
+  return  mysql.createConnection({host: "localhost", user: "DBguy", password: ".1SuperRandomPassword1.", database: "BecomeAnAimbot", multipleStatements: true});
 }
 
 function addEffectiveness(result) {
