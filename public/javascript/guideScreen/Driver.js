@@ -103,10 +103,9 @@ var guideSketch = function(p) {
 
         createHeader(p, gameCont);
 
-        mainTitle = p.createElement("img");
-        mainTitle.attribute("src", "images/small_title.png");
-        mainTitle.parent(gameCont);
-        mainTitle.addClass("mainTitle");
+        guideTitle = p.createElement("h1", "Pro Tips");
+        guideTitle.parent(gameCont);
+        guideTitle.attribute("class","pageTitle");
 
         topicsPane = p.createElement("div");
         topicsPane.parent(gameCont);

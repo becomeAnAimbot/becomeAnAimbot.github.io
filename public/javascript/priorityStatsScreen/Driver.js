@@ -6,7 +6,6 @@ var priorStatsSketch = function(p) {
     p.setup = function() {
         if(searching) {
             p.getUserStats(searchedUser);
-            searching = false;
         } else {
             p.getUserStats(getUsername());
         }
@@ -29,6 +28,14 @@ var priorStatsSketch = function(p) {
         gameCont.id("bodyContainer");
 
         createHeader(p, gameCont);
+
+        user = "";
+        if(searching) user = searchedUser + "\'s Priority Target Statistics";
+        else user = "Your Priority Target Statistics";
+
+        statsTitle = p.createElement("h1", user);
+        statsTitle.parent(gameCont);
+        statsTitle.attribute("class","pageTitle");
 
         mainTitle = p.createElement("img");
         mainTitle.attribute("src", "images/small_title.png");

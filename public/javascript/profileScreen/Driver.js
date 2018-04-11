@@ -47,10 +47,9 @@ var profileSketch = function(p) {
 
     createHeader(p, gameCont);
 
-    mainTitle = p.createElement("img");
-    mainTitle.attribute("src", "images/small_title.png");
-    mainTitle.parent(gameCont);
-    mainTitle.addClass("mainTitle");
+    profileTitle = p.createElement("h1", "User Dashboard / Settings");
+    profileTitle.parent(gameCont);
+    profileTitle.attribute("class","pageTitle");
 
     profileCont = p.createElement("div","");
     profileCont.parent(gameCont);

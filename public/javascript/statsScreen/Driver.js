@@ -45,10 +45,10 @@ var statsSketch = function(p) {
       createHeader(p, gameCont);
 
       user = "";
-      if(searching) user = searchedUser;
-      else user = getUsername();
+      if(searching) user = searchedUser + "\'s Statistics Menu";
+      else user = "Your Statistics Menu";
 
-      statsTitle = p.createElement("h1", user + "\'s Statistics Menu");
+      statsTitle = p.createElement("h1", user);
       statsTitle.parent(gameCont);
       statsTitle.attribute("class","pageTitle");
 

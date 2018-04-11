@@ -6,7 +6,6 @@ var fadeStatsSketch = function(p) {
     p.setup = function() {
         if(searching) {
             p.getUserStats(searchedUser);
-            searching = false;
         } else {
             p.getUserStats(getUsername());
         }
@@ -30,10 +29,13 @@ var fadeStatsSketch = function(p) {
 
         createHeader(p, gameCont);
 
-        mainTitle = p.createElement("img");
-        mainTitle.attribute("src", "images/small_title.png");
-        mainTitle.parent(gameCont);
-        mainTitle.addClass("mainTitle");
+        user = "";
+        if(searching) user = searchedUser + "\'s Speed Aim Statistics";
+        else user = "Your Speed Aim Statistics";
+
+        statsTitle = p.createElement("h1", user);
+        statsTitle.parent(gameCont);
+        statsTitle.attribute("class","pageTitle");
     };
 
     p.displayStats = function() {
