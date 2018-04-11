@@ -199,6 +199,15 @@ function startStatScreen() {
     onStatScreen = true;
 }
 
+function startStatScreenOwn() {
+    searching = false;
+    clearBody();
+    removeAllSketches();
+    flipScreensOff();
+    screenSwitch = true;
+    onStatScreen = true;
+}
+
 function startProfileScreen() {
     clearBody();
     removeAllSketches();
@@ -313,7 +322,7 @@ function createLoggedInHeader(p, gameCont) {
 
   dropdownListItemTwo = p.createElement("p", "Stats");
   dropdownListItemTwo.parent(dropdown);
-  dropdownListItemTwo.attribute("onclick","startStatScreen()");
+  dropdownListItemTwo.attribute("onclick","startStatScreenOwn()");
 
   dropdownListItemThree = p.createElement("p", "Leaderboards");
   dropdownListItemThree.parent(dropdown);
