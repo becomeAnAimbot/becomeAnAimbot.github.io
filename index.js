@@ -19,6 +19,8 @@ app.post('/', function (req, res){
     loginUser(req.body, res);
   } else if(req.body.func == 'deleteUser') {
      delUser(req.body, res);
+  } else if(req.body.func == 'deleteStats') {
+     delStats(req.body, res);
   } else if(req.body.func == 'changePassword') {
      changePass(req.body, res);
   } else if(req.body.func == 'priorityStats') {
@@ -80,10 +82,23 @@ function delUser(data, res) {
 function deleteUserStats(username) {
   let conn = createDBConn();
   conn.connect(function(err){
-    if(err) {res.end("Connection Error"); conn.end(); return;};
+    if(err) {conn.end(); return;};
       var sql = `DELETE FROM fadeAway WHERE username='${username}'; DELETE FROM priorityTargets WHERE username='${username}';`;
       conn.query(sql, function (err, result) {
         return;
+      });
+  });
+}
+
+function delStats {
+  let conn = createDBConn();
+  conn.connect(function(err){
+    if(err) {conn.end(); return;};
+      var sql = `DELETE FROM fadeAway WHERE username='${username}'; DELETE FROM priorityTargets WHERE username='${username}';`;
+      conn.query(sql, function (err, result) {
+        if (err) {res.end("Query Error"); conn.end(); return;}
+        if(result.affectedRows >== 1) {res.end("Delete Success"); conn.end(); return;}
+        else {res.end("Delete Failed"); conn.end(); return;}
       });
   });
 }

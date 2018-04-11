@@ -74,6 +74,11 @@ var profileSketch = function(p) {
     changePass.attribute("class","accountButton");
     changePass.attribute("onclick","showChangePassword()");
 
+    deleteStats = p.createElement("p", "Delete All Stats");
+    deleteStats.parent(profileCont);
+    deleteStats.attribute("class","accountButton");
+    deleteStats.attribute("onclick","showDeleteStats()");
+
     deleteAccount = p.createElement("p","Delete Account");
     deleteAccount.parent(profileCont);
     deleteAccount.attribute("class","accountButton");
@@ -141,6 +146,69 @@ var profileSketch = function(p) {
     delButton.attribute("value","Delete Account");
     delButton.attribute("onclick","startDeleteAccount()");
     delButton.parent(deleteForm);
+
+    deleteStatsBox = p.createElement("div","");
+    deleteStatsBox.parent(gameCont);
+    deleteStatsBox.attribute("id","deleteStatsCont");
+    deleteStatsBox.attribute("class","accountCont");
+
+    warningMessage = p.createElement("p","WARNING, " + getUsername() + ".<br>ALL GAMES EVER PLAYED WILL BE CLEARED");
+    warningMessage.parent(deleteStatsBox);
+    warningMessage.attribute("class","profileBoxMessage");
+
+    deleteStatsForm = p.createElement("form","");
+    deleteStatsForm.attribute("id","deleteStatsForm");
+    deleteStatsForm.attribute("target","hiddenIFrame");
+    deleteStatsForm.attribute("method","post");
+    deleteStatsForm.attribute("action","http://167.99.105.82:6969");
+    deleteStatsForm.parent(deleteStatsBox);
+
+    passStatsLabel = p.createElement("label","Password");
+    passStatsLabel.parent(deleteStatsForm);
+    passStatsLabel.attribute("for","passStats");
+    passStatsLabel.attribute("id","passwordStatsLabelDelete");
+    passStatsLabel.attribute("class","profileLabel");
+
+    passwordStatsInput = p.createElement("input", "");
+    passwordStatsInput.attribute("type", "password");
+    passwordStatsInput.attribute("name", "passStats");
+    passwordStatsInput.attribute("id", "passwordStatsFieldDelete");
+    passwordStatsInput.attribute("class", "loginText");
+    passwordStatsInput.parent(deleteStatsForm);
+
+    delStatsLabel = p.createElement("label","Please type 'DELETE' (Case sensitive)");
+    delStatsLabel.parent(deleteStatsForm);
+    delStatsLabel.attribute("for","delStats");
+    delStatsLabel.attribute("id","deleteStatsLabelProfile");
+    delStatsLabel.attribute("class","profileLabel");
+
+    delStatsInput = p.createElement("input", "");
+    delStatsInput.attribute("type", "text");
+    delStatsInput.attribute("name", "delStats");
+    delStatsInput.attribute("id", "deleteStatsFieldDelete");
+    delStatsInput.attribute("class", "loginText");
+    delStatsInput.parent(deleteStatsForm);
+
+    hiddenDeleteStatsInput = p.createElement("input", "");
+    hiddenDeleteStatsInput.parent(deleteStatsForm);
+    hiddenDeleteStatsInput.attribute("style","display:none;");
+    hiddenDeleteStatsInput.attribute("name", "func");
+    hiddenDeleteStatsInput.attribute("type", "text");
+    hiddenDeleteStatsInput.attribute("value", "deleteStats");
+
+    usernameDelStatsInput = p.createElement("input","");
+    usernameDelStatsInput.parent(deleteStatsForm);
+    usernameDelStatsInput.attribute("name","user");
+    usernameDelStatsInput.attribute("value",getUsername());
+    usernameDelStatsInput.attribute("style","display:none;");
+
+    delStatsButton = p.createElement("input","submit");
+    delStatsButton.attribute("type","submit");
+    delStatsButton.attribute("id","delStatsButton");
+    delStatsButton.attribute("class","loginButton");
+    delStatsButton.attribute("value","Delete Account");
+    delStatsButton.attribute("onclick","startDeleteStats()");
+    delStatsButton.parent(deleteStatsForm);
 
     changePassBox = p.createElement("div","");
     changePassBox.parent(gameCont);
@@ -256,6 +324,12 @@ function showDeleteAccount() {
   ele.style.display = 'block';
 }
 
+function showDeleteStats() {
+  clearProfileBoxes();
+  ele = document.getElementById('deleteStatsCont');
+  ele.style.display = 'block';
+}
+
 function showChangePassword() {
   clearProfileBoxes();
   ele = document.getElementById('changePassCont');
@@ -270,6 +344,8 @@ function clearProfileBoxes() {
   ele = document.getElementById('changePassCont');
   ele.style.display = 'none';
   ele = document.getElementById('deleteAccountCont');
+  ele.style.display = 'none';
+  ele = document.getElementById('deleteStatsCont');
   ele.style.display = 'none';
 }
 
@@ -363,6 +439,53 @@ function userDeleted() {
 }
 
 function userNotDeleted() {
+  document.getElementById("profileMessage").innerHTML = "User information not correct";
+  document.getElementById("profileMessage").style.display = "block";
+  document.getElementById('progressBar').style.background = '#CF000F';
+}
+
+function startDeleteStats() {
+  if(attemptingAction) return;
+  attemptingAction = true;
+
+  document.getElementById('progressBar').style.background = '#BBBBBB';
+  document.getElementById("profileMessage").style.display = "none";
+  createCheckFeedback();
+  document.getElementById('progressContainer').style.margin = "2% 0 2% 37.5%";
+  window.scrollTo(0,document.body.scrollHeight)
+  let cd = setTimeout(function() {
+    attemptingAction = false;
+    checkDeleteStatsStatus();
+  }, 3000);
+}
+
+function checkDeleteStatsStatus() {
+  var myIframe= document.getElementById("hiddenIFrame");
+  var iframeDocument = (myIframe.contentWindow || myIframe.contentDocument);
+  iframeDocument = iframeDocument.document;
+  let x = iframeDocument.getElementsByTagName("pre");
+
+  if(x[0].innerHTML === "Delete Success") {
+    userStatsDeleted();
+  } else if(x[0].innerHTML === "Delete Failed") {
+    userStatsNotDeleted();
+  } else {
+    connFailed(document.getElementById("profileMessage"));
+  }
+}
+
+function userStatsDeleted() {
+  document.getElementById("profileMessage").innerHTML = "Your stats have been deleted";
+  document.getElementById("profileMessage").style.display = "block";
+  document.getElementById('progressBar').style.background = '#009944';
+  window.scrollTo(0,document.body.scrollHeight)
+  let cd = setTimeout(function() {
+    signUserOut();
+    startMainScreen();
+  }, 400);
+}
+
+function userStatsNotDeleted() {
   document.getElementById("profileMessage").innerHTML = "User information not correct";
   document.getElementById("profileMessage").style.display = "block";
   document.getElementById('progressBar').style.background = '#CF000F';

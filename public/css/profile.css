@@ -15,7 +15,7 @@
   display: none;
 }
 
-#deleteAccountCont {
+#deleteStatsCont {
   display: none;
 }
 
@@ -35,10 +35,8 @@
   background-color: #FFA500
 }
 
-#profileBarMessage {
+.profileBarMessage {
   text-align: center;
-  width: 100%;
-  display: none;
 }
 
 .accountCont {
@@ -61,4 +59,8 @@
   text-align: center;
   display: block;
   margin-top: 5%;
+}
+
+#profileMessage {
+  text-align: center;
 }
