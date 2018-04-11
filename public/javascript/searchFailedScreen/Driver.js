@@ -44,14 +44,13 @@ var searchFailedSketch = function(p) {
 
         createHeader(p, gameCont);
 
-        mainTitle = p.createElement("img");
-        mainTitle.attribute("src", "images/small_title.png");
-        mainTitle.parent(gameCont);
-        mainTitle.addClass("mainTitle");
+      profileTitle = p.createElement("h1", "You Don Messed Up!");
+      profileTitle.parent(gameCont);
+      profileTitle.attribute("class","pageTitle");
 
-        searchFailedMsg = p.createElement("p","User not found.");
+        searchFailedMsg = p.createElement("p","That user does not exist.");
         searchFailedMsg.parent(gameCont);
-        searchFailedMsg.id("searchFailedMsg");
+        searchFailedMsg.attribute("class","genericErrorMessage");
     }
 
     p.windowResized = function() {

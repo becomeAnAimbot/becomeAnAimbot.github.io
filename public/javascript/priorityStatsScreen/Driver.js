@@ -37,10 +37,6 @@ var priorStatsSketch = function(p) {
         statsTitle.parent(gameCont);
         statsTitle.attribute("class","pageTitle");
 
-        mainTitle = p.createElement("img");
-        mainTitle.attribute("src", "images/small_title.png");
-        mainTitle.parent(gameCont);
-        mainTitle.addClass("mainTitle");
     };
 
     p.displayStats = function() {
@@ -239,8 +235,9 @@ var priorStatsSketch = function(p) {
         statsBox.parent(gameCont);
         statsBox.addClass("statsBox");
 
-        description = p.createElement("h3", "You need to play a minimum of five games to have statistics displayed");
+        description = p.createElement("h3", "Not enough game data.<br> Must have at least 5 plays to display stats and trends.");
         description.parent(statsBox);
+        description.attribute("class","genericErrorMessage");
       }
     };
 

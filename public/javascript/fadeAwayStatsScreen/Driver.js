@@ -1,7 +1,8 @@
 var fadeStatsSketch = function(p) {
 
-    ambientTargets = [];
     userStats = [];
+    var ambientTargets = [];
+    var randomColors = ["#BE0000", "#003AFF", "#007800", "#EA006E", "#A461D7", "#D14200", "#00B3F3"];
 
     p.setup = function() {
         if(searching) {
@@ -16,10 +17,16 @@ var fadeStatsSketch = function(p) {
         canv.position(0,0);
 
         p.statsScreenHtml();
+        p.noLoop();
     };
 
     p.draw = function() {
-      p.noLoop();
+      p.background("#FFFFFF");
+      for(let i = 0; i < ambientTargets.length; i++) {
+          ambientTargets[i].show();
+          ambientTargets[i].checkBoundaryHits(ambientTargets[i]);
+          ambientTargets[i].move();
+      }
     };
 
     p.statsScreenHtml = function(){
@@ -234,10 +241,32 @@ var fadeStatsSketch = function(p) {
         statsBox.parent(gameCont);
         statsBox.addClass("statsBox");
 
-        description = p.createElement("h3", "You need to play a minimum of five games to have statistics displayed");
+        description = p.createElement("h3", "Not enough game data.<br> Must have at least 5 plays to display stats and trends.");
         description.parent(statsBox);
+        description.attribute("class","genericErrorMessage");
+        p.startBalls();
       }
     };
+
+    p.startBalls = function() {
+      for(let i = 0; i < 25; i++) {
+          t = new Target(p, p.windowWidth, p.windowHeight);
+          t.randomPlacement();
+          t.color = p.chooseRandomColor();
+          t.show();
+          t.assignRandomSpeed(-10,10);
+          ambientTargets.push(t);
+      }
+      p.loop();
+    }
+
+    p.chooseRandomColor = function() {
+      return randomColors[p.getRandomInt(randomColors.length)];
+    }
+
+    p.getRandomInt = function(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
 
     p.getUserHitMiss = function() {
       hm = [];

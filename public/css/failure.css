@@ -1,8 +1,11 @@
-#searchFailedMsg {
-    width: 70%;
-    font-size: 1.4em;
-    margin-top: 8%;
-    padding: 2%;
-    background-color: #E2E3E3;
-    box-shadow: 0.6em 0.6em 0.7em #CCCCCC;
+.genericErrorMessage {
+  text-align: center;
+  box-shadow: 0.6em 0.6em 0.7em #CCCCCC;
+  font-size: 1.7em;
+  margin: 10% 0;
+  background-color: #32A8E9;
+  color: #FFFFFF;
+  padding: 2% 0;
+  width: 40%;
+  margin-left: 30%;
 }
