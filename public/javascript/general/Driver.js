@@ -307,25 +307,29 @@ function createLoggedInHeader(p, gameCont) {
   dropdown.attribute("class","dropdownMenu");
   dropdown.parent(dropdownContainer);
 
-  dropdownListItemOne = p.createElement("p", "Stats");
+  dropdownListItemOne = p.createElement("p", "Game Menu");
   dropdownListItemOne.parent(dropdown);
-  dropdownListItemOne.attribute("onclick","startStatScreen()");
+  dropdownListItemOne.attribute("onclick","startMainScreen()");
 
-  dropdownListItemOne = p.createElement("p", "Leaderboards");
-  dropdownListItemOne.parent(dropdown);
-  dropdownListItemOne.attribute("onclick","startLeaderboardScreen()");
-
-  dropdownListItemTwo = p.createElement("p","My Dashboard");
+  dropdownListItemTwo = p.createElement("p", "Stats");
   dropdownListItemTwo.parent(dropdown);
-  dropdownListItemTwo.attribute("onclick","startProfileScreen()");
+  dropdownListItemTwo.attribute("onclick","startStatScreen()");
 
-  dropdownListItemThree = p.createElement("p","Guide");
+  dropdownListItemThree = p.createElement("p", "Leaderboards");
   dropdownListItemThree.parent(dropdown);
-  dropdownListItemThree.attribute("onclick","startGuideScreen()");
+  dropdownListItemThree.attribute("onclick","startLeaderboardScreen()");
 
-  dropdownListItemFour = p.createElement("p","Sign Out");
+  dropdownListItemFour = p.createElement("p","My Dashboard");
   dropdownListItemFour.parent(dropdown);
-  dropdownListItemFour.attribute("onclick","signUserOut()");
+  dropdownListItemFour.attribute("onclick","startProfileScreen()");
+
+  dropdownListItemFive = p.createElement("p","Guide");
+  dropdownListItemFive.parent(dropdown);
+  dropdownListItemFive.attribute("onclick","startGuideScreen()");
+
+  dropdownListItemSix = p.createElement("p","Sign Out");
+  dropdownListItemSix.parent(dropdown);
+  dropdownListItemSix.attribute("onclick","signUserOut()");
 }
 
 function createdNotLoggedInHeader(p, gameCont) {

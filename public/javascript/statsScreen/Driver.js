@@ -44,10 +44,13 @@ var statsSketch = function(p) {
 
       createHeader(p, gameCont);
 
-      mainTitle = p.createElement("img");
-      mainTitle.attribute("src", "images/small_title.png");
-      mainTitle.parent(gameCont);
-      mainTitle.addClass("mainTitle");
+      user = "";
+      if(searching) user = searchedUser;
+      else user = getUsername();
+
+      statsTitle = p.createElement("h1", user + "\'s Statistics Menu");
+      statsTitle.parent(gameCont);
+      statsTitle.attribute("class","pageTitle");
 
       gamesList = p.createElement("div","");
       gamesList.parent(gameCont);
