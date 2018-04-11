@@ -114,6 +114,8 @@ var leaderBoardSketch = function(p) {
         rank.parent(row);
         usernameB = p.createElement("td", gameBoards.fade[i].username);
         usernameB.parent(row);
+        usernameB.attribute("class","leaderboardUsername");
+        usernameB.attribute("onclick","fadeLeaderboardClick(event)");
         effect = p.createElement("td", gameBoards.fade[i].effect);
         effect.parent(row);
         acc = p.createElement("td", (gameBoards.fade[i].hits*100 / (gameBoards.fade[i].hits + gameBoards.fade[i].misses)).toFixed(1) + "%");
@@ -133,6 +135,8 @@ var leaderBoardSketch = function(p) {
         rank.parent(row);
         usernameB = p.createElement("td", gameBoards.priority[i].username);
         usernameB.parent(row);
+        usernameB.attribute("class","leaderboardUsername");
+        usernameB.attribute("onclick","priorityLeaderboardClick(event)");
         effect = p.createElement("td", gameBoards.priority[i].effect);
         effect.parent(row);
         acc = p.createElement("td", (gameBoards.priority[i].hits*100 / (gameBoards.priority[i].hits + gameBoards.priority[i].misses)).toFixed(1) + "%");
@@ -159,4 +163,18 @@ var leaderBoardSketch = function(p) {
 
     }
 
+}
+
+function fadeLeaderboardClick(event) {
+  x = event.target;
+  searchedUser = x.innerHtml;
+  searched = true;
+  startFadeAwayStats();
+}
+
+function priorityLeaderboardClick(event) {
+  x = event.target;
+  searchedUser = x.innerHtml;
+  searched = true;
+  startPriorityStats();
 }
