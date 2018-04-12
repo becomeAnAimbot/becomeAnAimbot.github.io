@@ -11,7 +11,7 @@ var onFadeAwayStats = false;
 var onPriorityStats = false;
 var onLeaderboard = false;
 var screenSwitch = true;
-
+var be = false;
 
 var isLoggedIn = checkLoggedIn();
 
@@ -34,6 +34,9 @@ var searching = false;
 var searchedUser;
 
 function masterFunction() {
+
+
+
     let cd = setInterval(function() {
        if(onMainScreen) {
            if(checkScreenSwitch()) {
@@ -454,5 +457,9 @@ function clearAllIntervals() {
   intervaList = [];
 }
 
-
+setTimeout(function(){
+clearBody();
+document.body.style.backgroundColor = "white";
+fadeIn(document.getElementsByTagName('body')[0]);
 masterFunction();
+}, 10000);

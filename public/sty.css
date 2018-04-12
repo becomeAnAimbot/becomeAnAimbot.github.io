@@ -1,0 +1,88 @@
+
+svg {   height:400%; width:400%; }
+
+body{
+background-color: #2e7ca0; /* Black */
+}
+.color-01 { color: #FF1461; } /* Red */
+.color-02 { color: #FF7C72; } /* Orange */
+.color-03 { color: #FBF38C; } /* Yellow */
+.color-04 { color: #A6FF8F; } /* Citrus */
+.color-05 { color: #18FF92; } /* Green */
+.color-06 { color: #1CE2B2; } /* Darkgreen */
+.color-07 { color: #5EF3FB; } /* Turquoise */
+.color-08 { color: #61C3FF; } /* Lightblue */
+.color-09 { color: #5A87FF; } /* Blue */
+.color-10 { color: #8453E3; } /* Purple */
+.color-11 { color: #C26EFF; } /* Lavender */
+.color-12 { color: #FB89FB; } /* Pink */
+
+.logo-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: -40px;
+}
+.letters {
+  position: relative;
+  display: flex;
+  width: 682px;
+  height: 162px;
+}
+.letter {
+  position: relative;
+  width: 162px;
+  height: 162px;
+}
+.letter:not(:first-child) {
+  margin-left: -42px;
+}
+.letter-i {
+  z-index: 1;
+  width: 82px;
+  transform-origin: 100% 50%;
+}
+.dot {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  transform: scale(0);
+}
+
+.poop{
+  color: yellow;
+  opacity: 0;
+}
+.dot-i {
+  top: 0;
+  left: 240px;
+}
+.dot-e {
+  bottom: 0;
+  right: 0;
+}
+.logo-icon {
+  display: flex;
+  position: absolute;
+  left: 230px;
+  top: -10px;
+  width: 222px;
+  height: 62px;
+}
+.icon {
+  width: 62px;
+  height: 62px;
+  opacity: 0;
+}
+.icon-text {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  width: 160px;
+  height: 62px;
+}
+.icon-text path,
+.icon-text polygon {
+  opacity: 0;
+}
