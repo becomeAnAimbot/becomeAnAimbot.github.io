@@ -13,7 +13,7 @@ var signupSketch = function(p) {
         canv.position(0,0);
 
         p.mainScreenHtml();
-
+        if(document.body.clientWidth < 980) {p.noLoop(); return;}
         for(let i = 0; i < 25; i++) {
             t = new Target(p, p.windowWidth, p.windowHeight);
             t.randomPlacement();

@@ -289,10 +289,15 @@ function createLoggedInHeader(p, gameCont) {
   homeButton.id("homeButton");
   homeButton.attribute("onclick","startMainScreen()");
   homeButton.attribute("class","headerButton");
+  if(document.body.clientWidth < 720) {document.getElementById('homeButton').style.display = 'none'}
 
   searchInput = p.createInput();
   searchInput.parent(leftHeader);
   searchInput.id("searchInput");
+
+  document.getElementById('searchInput').addEventListener("keydown", function(event) {
+    if(event.keyCode === 13) {searchUser();}
+  });
 
   magGlass = p.createElement("img");
   magGlass.attribute("src", "images/magnifyingGlass.png");
@@ -309,6 +314,7 @@ function createLoggedInHeader(p, gameCont) {
   userButton = p.createElement("button", "Hello, " + getUsername());
   userButton.parent(dropdownContainer);
   userButton.id("userDropdownButton");
+  if(document.body.clientWidth < 720) {document.getElementById('userDropdownButton').innerHTML = 'Menu';}
   userButton.style("cursor", "default");
   userButton.attribute("class","headerButton");
 
@@ -361,10 +367,14 @@ function createdNotLoggedInHeader(p, gameCont) {
   homeButton.attribute("onclick","startMainScreen()");
   homeButton.attribute("class","headerButton");
 
-  searchInput = p.createInput();
+  searchInput = p.createElement("input");
   searchInput.parent(leftHeader);
   searchInput.id("searchInput");
   searchInput.attribute("placeholder","Search for user");
+
+  document.getElementById('searchInput').addEventListener("keydown", function(event) {
+    if(event.keyCode === 13) {searchUser();}
+  });
 
   magGlass = p.createElement("img");
   magGlass.attribute("src", "images/magnifyingGlass.png");

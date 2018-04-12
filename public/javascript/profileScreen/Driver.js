@@ -14,6 +14,7 @@ var profileSketch = function(p) {
 
     p.profileScreenHtml();
 
+    if(document.body.clientWidth < 980) {p.noLoop(); return;}
     for(let i = 0; i < 25; i++) {
         t = new Target(p, p.windowWidth, p.windowHeight);
         t.randomPlacement();

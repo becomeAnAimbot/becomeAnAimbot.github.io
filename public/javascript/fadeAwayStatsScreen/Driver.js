@@ -183,6 +183,7 @@ var fadeStatsSketch = function(p) {
     };
 
     p.windowResized = function() {
+        if(document.body.clientWidth < 980) return;
         p.resizeCanvas(p.windowWidth, p.windowHeight);
         for(let i = 0; i< ambientTargets.length; i++) {
             ambientTargets[i].updateTargetBounds(p.windowWidth, p.windowHeight);

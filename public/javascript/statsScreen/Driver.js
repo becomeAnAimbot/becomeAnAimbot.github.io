@@ -9,8 +9,9 @@ var statsSketch = function(p) {
       canv.addClass("mainScreenBackground");
       canv.position(0,0);
 
-      p.mainScreenHtml();
+      p.statsScreenHtml();
 
+      if(document.body.clientWidth < 980) {p.noLoop(); return;}
       for(let i = 0; i < 25; i++) {
           t = new Target(p, p.windowWidth, p.windowHeight);
           t.randomPlacement();
@@ -38,7 +39,7 @@ var statsSketch = function(p) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  p.mainScreenHtml = function() {
+  p.statsScreenHtml = function() {
       gameCont = p.createElement("div","");
       gameCont.id("bodyContainer");
 
@@ -54,7 +55,7 @@ var statsSketch = function(p) {
 
       gamesList = p.createElement("div","");
       gamesList.parent(gameCont);
-      gamesList.addClass("mainGamesList");
+      gamesList.addClass("statsGamesList");
       gamesList.style("background","#FFFFFF");
 
       gameOne = p.createElement("h2","Priority Target Statistics");
@@ -67,22 +68,22 @@ var statsSketch = function(p) {
       gameTwo.addClass("listGame");
       gameTwo.attribute("onclick","startFadeAwayStats()");
 
-      gameThree = p.createElement("h2","Priority Target Statistics");
+      gameThree = p.createElement("h2","Tracking Target Statistics");
       gameThree.parent(gamesList);
       gameThree.addClass("listGame");
       gameThree.attribute("onclick","startPriorityStats()");
 
-      gameFour = p.createElement("h2","Speed Aim Game Statistics");
+      gameFour = p.createElement("h2","Strafing Aim Statistics");
       gameFour.parent(gamesList);
       gameFour.addClass("listGame");
       gameFour.attribute("onclick","startFadeAwayStats()");
 
-      gameFive = p.createElement("h2","Priority Target Statistics");
+      gameFive = p.createElement("h2","Target Crouch Statistics");
       gameFive.parent(gamesList);
       gameFive.addClass("listGame");
       gameFive.attribute("onclick","startPriorityStats()");
 
-      gameSix = p.createElement("h2","Speed Aim Game Statistics");
+      gameSix = p.createElement("h2","Sniper Statistics");
       gameSix.parent(gamesList);
       gameSix.addClass("listGame");
       gameSix.attribute("onclick","startFadeAwayStats()");
@@ -90,6 +91,7 @@ var statsSketch = function(p) {
   }
 
   p.windowResized = function() {
+      if(document.body.clientWidth < 980) return;
       p.resizeCanvas(p.windowWidth, p.windowHeight);
       for(let i = 0; i< ambientTargets.length; i++) {
           ambientTargets[i].updateTargetBounds(p.windowWidth, p.windowHeight);

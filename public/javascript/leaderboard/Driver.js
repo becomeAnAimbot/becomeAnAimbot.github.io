@@ -93,6 +93,7 @@ var leaderBoardSketch = function(p) {
       canv.style("z-index","-2");
       canv.addClass("mainScreenBackground");
       canv.position(0,0);
+      if(document.body.clientWidth < 980) {p.noLoop(); return;}
 
       for(let i = 0; i < 25; i++) {
         t = new Target(p, p.width, p.height);
@@ -167,14 +168,14 @@ var leaderBoardSketch = function(p) {
 
 function fadeLeaderboardClick(event) {
   x = event.target;
-  searchedUser = x.innerHtml;
-  searched = true;
+  searchedUser = x.innerHTML;
+  searching = true;
   startFadeAwayStats();
 }
 
 function priorityLeaderboardClick(event) {
   x = event.target;
-  searchedUser = x.innerHtml;
-  searched = true;
+  searchedUser = x.innerHTML;
+  searching = true;
   startPriorityStats();
 }
