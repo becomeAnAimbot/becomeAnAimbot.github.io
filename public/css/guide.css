@@ -42,6 +42,8 @@
 #contentPane {
     width: 50%;
     margin-left: 25%;
+    color: #FFFFFF;
+    background-color: #32A8E9;    
 }
 
 #guideContent {
@@ -49,6 +51,22 @@
     font-size: 1.4em;
     margin-top: 8%;
     padding: 2%;
-    background-color: #E2E3E3;
-    box-shadow: 0.6em 0.6em 0.7em #CCCCCC;
+}
+
+@media screen and (max-width: 980px) {
+  #topicsPane {
+    color: #FFFFFF;
+    background-color: #32A8E9;
+    position: static;
+    width: 100%;
+    box-shadow: 0 0 0 #999999;
+  }
+
+  #contentPane {
+    width: 100%;
+    margin-left: 0;
+    color: #FFFFFF;
+    background-color: #32A8E9;    
+    box-shadow: 0 0 0 #999999;
+  }
 }
