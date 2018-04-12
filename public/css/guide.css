@@ -46,13 +46,6 @@
     background-color: #32A8E9;    
 }
 
-#guideContent {
-    width: 100%;
-    font-size: 1.4em;
-    margin-top: 8%;
-    padding: 2%;
-}
-
 @media screen and (max-width: 980px) {
   #topicsPane {
     color: #FFFFFF;
@@ -63,10 +56,17 @@
   }
 
   #contentPane {
+    margin-top: 5%;
+    padding: 5% 0;
     width: 100%;
     margin-left: 0;
     color: #FFFFFF;
     background-color: #32A8E9;    
     box-shadow: 0 0 0 #999999;
+  }
+
+  #contentPane p {
+    width: 95%;
+    margin-left: 2.5%
   }
 }
