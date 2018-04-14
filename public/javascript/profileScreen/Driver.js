@@ -341,6 +341,7 @@ function showChangePicture() {
 }
 
 function clearProfileBoxes() {
+  uiselectSound.play();
   ele = document.getElementById('changePassCont');
   ele.style.display = 'none';
   ele = document.getElementById('deleteAccountCont');

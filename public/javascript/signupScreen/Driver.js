@@ -194,6 +194,7 @@ function emailIsValid() {
 }
 
 function checkSignup() {
+  uiclickSound.play();
   if(attemptingSignup) return;
   attemptingSignup = true;
   if(!passwordsMatch() || !emailIsValid()) { attemptingSignup = false; return;}

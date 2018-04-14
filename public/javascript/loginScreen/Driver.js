@@ -138,6 +138,7 @@ var loginSketch = function(p) {
 }
 
 function checkLogin() {
+  uiclickSound.play();
   if(attemptingLogIn) return;
   attemptingLogIn = true;
 

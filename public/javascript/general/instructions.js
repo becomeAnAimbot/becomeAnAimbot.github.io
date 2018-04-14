@@ -1,5 +1,6 @@
 function showInstructions() {
-	var instructions = document.getElementsByClassName('instructionsList');
+    uiclickSound.play();
+    var instructions = document.getElementsByClassName('instructionsList');
 	var hideButton = document.getElementsByClassName('hideInstructionsButton');
     var showButton = document.getElementsByClassName('instructionsButton');
 	var i;
@@ -17,6 +18,7 @@ function showInstructions() {
 }
 
 function hideInstructions() {
+    uiclickSound.play();
     var instructions = document.getElementsByClassName('instructionsList');
 	var hideButton = document.getElementsByClassName('hideInstructionsButton');
     var showButton = document.getElementsByClassName('instructionsButton');

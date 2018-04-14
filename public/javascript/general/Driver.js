@@ -33,6 +33,13 @@ var intervalList = [];
 var searching = false;
 var searchedUser;
 
+var uiclickSound;
+
+function preload() {
+    uiclickSound = new Audio("sounds/uiclick.wav");
+    uiselectSound = new Audio("sounds/uiselect.wav");
+}
+
 function masterFunction() {
     let cd = setInterval(function() {
        if(onMainScreen) {
@@ -101,6 +108,7 @@ function masterFunction() {
 }
 
 function clearBody() {
+    uiclickSound.play();
     let elem = document.getElementById("bodyContainer");
     elem.parentNode.removeChild(elem);
 }

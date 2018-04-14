@@ -50,6 +50,7 @@ function content5() {
 }
 
 function resetFocusedTopic() {
+    uiselectSound.play();
     document.getElementById("topic1").classList.remove("topicFocused");
     document.getElementById("topic2").classList.remove("topicFocused");
     document.getElementById("topic3").classList.remove("topicFocused");
