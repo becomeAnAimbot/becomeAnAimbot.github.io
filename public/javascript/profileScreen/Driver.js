@@ -354,6 +354,7 @@ function clearProfileBoxes() {
 }
 
 function changePassword() {
+  uiclickSound.play();
   if(attemptingAction) return;
   attemptingAction = true;
 
@@ -404,6 +405,7 @@ function passwordNotChanged() {
 }
 
 function startDeleteAccount() {
+  uiclickSound.play();
   if(attemptingAction) return;
   attemptingAction = true;
 
@@ -453,6 +455,7 @@ function userNotDeleted() {
 }
 
 function startDeleteStats() {
+  uiclickSound.play();
   if(attemptingAction) return;
   attemptingAction = true;
 
