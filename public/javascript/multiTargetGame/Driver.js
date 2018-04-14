@@ -118,6 +118,7 @@ var prioritySketch = function(p) {
 
     p.startGame = function() {
         startButton.hide();
+        startgameSound.play();
         countDown.position(p.select("#targetGameCanvas").position());
         countDown.html(3);
         countDown.show();

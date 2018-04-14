@@ -33,11 +33,10 @@ var intervalList = [];
 var searching = false;
 var searchedUser;
 
-var uiclickSound;
-
 function preload() {
     uiclickSound = new Audio("sounds/uiclick.wav");
     uiselectSound = new Audio("sounds/uiselect.wav");
+    startgameSound = new Audio("sounds/startgame.wav");
 }
 
 function masterFunction() {
