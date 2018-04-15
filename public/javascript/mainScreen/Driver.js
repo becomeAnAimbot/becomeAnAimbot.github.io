@@ -95,7 +95,11 @@ var mainSketch = function(p) {
     }
 
     p.windowResized = function() {
-        if(document.body.clientWidth < 980) return;
+        if(document.body.clientWidth < 980) {
+          document.getElementById('mainMobileMessage').style.display =  'block';
+          return;
+        }
+        document.getElementById('mainMobileMessage').style.display =  'none';
         p.resizeCanvas(p.windowWidth, p.windowHeight);
         for(let i = 0; i< ambientTargets.length; i++) {
             ambientTargets[i].updateTargetBounds(p.windowWidth, p.windowHeight);
