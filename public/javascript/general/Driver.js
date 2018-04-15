@@ -112,6 +112,12 @@ function clearBody() {
     elem.parentNode.removeChild(elem);
 }
 
+function clearSplash() {
+    // uiclickSound.play();
+    let elem = document.getElementById("bodyContainer1");
+    elem.parentNode.removeChild(elem);
+}
+
 function checkScreenSwitch() {
     if(screenSwitch) {
       clearAllIntervals();
@@ -472,4 +478,16 @@ function clearAllIntervals() {
 }
 
 
+setTimeout(function(){
+clearSplash();
+document.body.style.backgroundColor = "white";
+fadeIn(document.getElementsByTagName('body')[0]);
 masterFunction();
+
+
+// console.log(a);
+// }
+}, 6000);
+
+
+// masterFunction();
