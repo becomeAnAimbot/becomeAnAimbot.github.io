@@ -239,6 +239,6 @@ function getTopTen(result) {
   return top;
 }
 
-http.listen(7000, function() {
-    console.log('listening on 167.99.105.82:7000:');
+http.listen(6969, function() {
+    console.log('listening on 167.99.105.82:6969:');
 });
